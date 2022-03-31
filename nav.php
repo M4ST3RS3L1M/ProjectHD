@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" property="stylesheet" type="text/css"href="Media/css/style.css?2">
+<link rel="stylesheet" property="stylesheet" type="text/css"href="Media/css/style.css?3">
 
 <?php
 session_name('Website');
@@ -24,7 +24,7 @@ $navigation = <<<END
     <nav class="navigation">
         <a href="index.php">Home</a>
         <a href="about.php">About</a>
-        <a href="FAQ.php">FAQ</a>
+        <a href="faq.php">FAQ</a>
         <div class="login">
 
 END;
