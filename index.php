@@ -10,7 +10,7 @@
 
 
 <body>
-
+    
 
     
     <div class="container">
@@ -18,7 +18,7 @@
         include('nav.php');
 
         echo $navigation;
-
+        
         ?>
         
 
