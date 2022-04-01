@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-follow instructions
-=======
-hej hej
->>>>>>> c01e9d8a6a52ea0c9e5e901ef01187c7ad4caa70
 
 <?php
 include('HD_template.php');
