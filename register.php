@@ -29,7 +29,7 @@ echo $navigation;
 
 <html>
 	<head>
-        <link rel="stylesheet" href="css/stylesheet.css">
+        
         <title>Register</title>
         <meta charset="utf-8">
 	</head>
