@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" property="stylesheet" type="text/css"href="Media/css/style.css?3">
+<link rel="stylesheet" property="stylesheet" type="text/css"href="Media/css/style.css?4">
 
 <?php
 session_name('Website');
@@ -41,8 +41,9 @@ END;
 
     elseif (isset($_SESSION['userId'])) {
         $navigation .= <<<END
-          
-        <p id="loggedinas">Logged in as {$_SESSION['username']}</p>
+        <div class="loggedinas"> 
+        <p >Logged in as {$_SESSION['username']}</p>
+        </div> 
         <a href="logout.php">Logout</a> 
         </div>
         
