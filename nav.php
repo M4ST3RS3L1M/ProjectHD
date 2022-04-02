@@ -17,7 +17,7 @@ $navigation = <<<END
     </div>
 
     <div class="companyname">
-    <h3>Company name</h3>
+    <h3>Stay Fit</h3>
     </div>
 
 
@@ -25,12 +25,12 @@ $navigation = <<<END
         <a href="index.php">Home</a>
         <a href="about.php">About</a>
         <a href="faq.php">FAQ</a>
-        <div class="login">
+        
 
 END;
     if (!isset($_SESSION['userId'])) {
         $navigation .= <<<END
-        
+        <div class="login">
         <a href="register.php">Register</a>
         <a href="login.php">Log in</a>
         
@@ -41,9 +41,11 @@ END;
 
     elseif (isset($_SESSION['userId'])) {
         $navigation .= <<<END
+
+        <div class="login">
         <div class="loggedinas"> 
         <p >Logged in as {$_SESSION['username']}</p>
-        </div> 
+        </div>
         <a href="logout.php">Logout</a> 
         </div>
         
