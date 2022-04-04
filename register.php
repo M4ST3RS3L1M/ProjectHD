@@ -17,7 +17,7 @@
         if (isset($_POST['register_button'])) {
             $name       = $mysqli->real_escape_string($_POST['username']);
             $pwd        = $mysqli->real_escape_string($_POST['password']);
-            $repeat_pwd = $mysqli->real_escape_string($_POST['repeat_password']);
+            $repeat_pwd = $mysqli->real_escape_string($_POST['repeat_password']);  // DEN FÅR SITT VÄRDE HÄR SÅ ÄR DECLARED
             $firstname  = $mysqli->real_escape_string($_POST['fname']);
             $lastname   = $mysqli->real_escape_string($_POST['lname']);
             $DOB        = $mysqli->real_escape_string($_POST['DOB']);
@@ -27,13 +27,13 @@
             // Verify entered data
             if ($name != "" && $pwd != "" && $repeat_pwd != "" && $eMail != "") {
                 // Check that entered passwords match
-                if (true) { // ($pwd === $repeat_pwd) {
+                if (true) { //($pwd === $repeat_pwd) {  // NÅGOT STÄMMER INTE HÄR | STÅR UNDEFINED VARIABLE PÅ REPEAT_PWD MEN VISAR VÄRDET I DEN
                     // Check that pwd meets min req
                     if (strlen($pwd) >= 5 && strpbrk($pwd, "!#$.,:;()") != false) {
                         // Check if username is taken
                         $query = "SELECT * FROM HD_Users WHERE username='{$name}'";
                         $result = $mysqli->query($query);
-                        if ($result = "") {
+                        if ($result != "") {
                             // Encrypt password
                             $pwd = md5($pwd);
                             // Insert query to create the user
