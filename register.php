@@ -5,8 +5,10 @@
         <?php
         require_once('nav.php'); // Needed for db connection
 
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         // Check to see if user is already logged in
-        session_start();
         if (isset($_SESSION['username']) && isset($_SESSION['userid'])) {
             header("Location: ./index.php");
         }
