@@ -37,10 +37,10 @@ END;
         $navigation .= <<<END
 
         <div class="login">
-        <div class="loggedinas"> 
+        <div class="loggedinas">
         <p >Logged in as {$_SESSION['username']}</p>
         </div>
-        <a href="logout.php">Logout</a> 
+        <a href="logout.php">Logout</a>
         </div>
 END;
     }
