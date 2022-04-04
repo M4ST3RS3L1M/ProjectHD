@@ -32,7 +32,7 @@
                     if (strlen($pwd) >= 5 && strpbrk($pwd, "!#$.,:;()") != false) {
                         // Check if username is taken
                         $result = $mysqli->query("SELECT * FROM HD_Users WHERE username='{$name}'");
-                        if ($result != $name) {
+                        if (mysqli_num_rows($query) == 1) {
                             // Encrypt password
                             $pwd = md5($pwd);
                             // Insert query to create the user
