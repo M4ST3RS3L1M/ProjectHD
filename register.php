@@ -33,7 +33,7 @@
                         // Check if username is taken
                         $query = "SELECT * FROM HD_Users WHERE username='{$name}'";
                         $result = $mysqli->query($query);
-                        if ($result != "") {
+                        if ($result = "") {
                             // Encrypt password
                             $pwd = md5($pwd);
                             // Insert query to create the user
