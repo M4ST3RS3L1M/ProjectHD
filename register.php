@@ -30,18 +30,25 @@
                 if (true) { //($pwd === $repeat_pwd) {  // NÅGOT STÄMMER INTE HÄR | STÅR UNDEFINED VARIABLE PÅ REPEAT_PWD MEN VISAR VÄRDET I DEN
                     // Check that pwd meets min req
                     if (strlen($pwd) >= 5 && strpbrk($pwd, "!#$.,:;()") != false) {
-                        // Encrypt password
-                        $pwd = md5($pwd);
-                        // Insert query to create the user
-                        $query = "INSERT INTO HD_Users (username, password, fname, lname, DOB, eMail, sex) VALUES ('{$_POST['username']}', '{$_POST['password']}', '{$_POST['fname']}', '{$_POST['lname']}', '{$_POST['DOB']}', '{$_POST['eMail']}', '{$_POST['sex']}')";
-                        $mysqli-> query($query);
-                        // Verify account creation
+                        // Check if username is taken
                         $query = "SELECT * FROM HD_Users WHERE username='{$name}'";
-                        if ($mysqli->query($query) == TRUE) {
-                            $success = true;
+                        $result = $mysqli->query($query);
+                        if ($result != "") {
+                            // Encrypt password
+                            $pwd = md5($pwd);
+                            // Insert query to create the user
+                            $query = "INSERT INTO HD_Users (username, password, fname, lname, DOB, eMail, sex) VALUES ('{$_POST['username']}', '{$_POST['password']}', '{$_POST['fname']}', '{$_POST['lname']}', '{$_POST['DOB']}', '{$_POST['eMail']}', '{$_POST['sex']}')";
+                            $mysqli-> query($query);
+                            // Verify account creation
+                            $query = "SELECT * FROM HD_Users WHERE username='{$name}'";
+                            if ($mysqli->query($query) == TRUE) {
+                                $success = true;
+                            }
+                            else
+                                $error_msg = 'An error occurred and your account was not created.';
                         }
                         else
-                            $error_msg = 'An error occurred and your account was not created.';
+                            $error_msg = 'The username <i>'.$name.'</i> is already taken. Please use another.';
                     }
                     else
                         $error_msg = 'Password is not strong enough, make sure it meets the minimum requirements.';
