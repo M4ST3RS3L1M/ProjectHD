@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" property="stylesheet" type="text/css"href="Media/css/style.css?4">
+<link rel="stylesheet" property="stylesheet" type="text/css"href="media/css/style.css?4">
 
 <?php
 session_name('Website');
