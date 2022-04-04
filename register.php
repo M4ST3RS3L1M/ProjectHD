@@ -31,9 +31,8 @@
                     // Check that pwd meets min req
                     if (strlen($pwd) >= 5 && strpbrk($pwd, "!#$.,:;()") != false) {
                         // Check if username is taken
-                        $query = "SELECT * FROM HD_Users WHERE username='{$name}'";
-                        $result = $mysqli->query($query);
-                        if ($result = "") {
+                        $result = $mysqli->query("SELECT * FROM HD_Users WHERE username='{$name}'");
+                        if ($result != $name) {
                             // Encrypt password
                             $pwd = md5($pwd);
                             // Insert query to create the user
