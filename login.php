@@ -1,6 +1,7 @@
 
 <?php
-include('HD_template.php');
+include('nav.php');
+echo $navigation;
 if (isset($_POST['username']) and isset($_POST['password'])) {
  $name = $mysqli->real_escape_string($_POST['username']);
  $pwd = $mysqli->real_escape_string($_POST['password']);
@@ -40,6 +41,7 @@ $content = <<<END
 </body>
 END;
 echo $content;
+
 ?>
 
 

@@ -1,9 +1,8 @@
 <?php
-include('nav.php');
+include("nav.php");
 
 echo $navigation;
 ?>
-
 
 
 
@@ -13,7 +12,7 @@ echo $navigation;
     <head>
         
         <meta charset="utf-8">
-        <title>Home</title>
+        <title>Dashboard</title>
     </head>
 
 
@@ -32,7 +31,7 @@ echo $navigation;
 
 
                 <div class="welcometext">
-                    <h1>Welcome BLA BLA BLA</h1>
+                    <h1>Dashboard</h1>
 
                     <div class="text">
                     <p>
