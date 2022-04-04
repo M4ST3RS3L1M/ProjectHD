@@ -66,11 +66,12 @@
 	</head>
 
 	<body>
-		<h1>Register an account</h1>
-
+		
         <?php
         echo $navigation;
         ?>
+
+        <h1>Register an account</h1>
 
         <form action="register.php" class="form" method="POST">
             <h1>Create account</h1>
