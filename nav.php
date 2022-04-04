@@ -14,7 +14,7 @@ $navigation = <<<END
     <div class="topnav">
 
     <div class="logo">
-    <img src="Media/images/cricket-meme-0aa7.jpg" alt="">
+    <img src="media/images/cricket-meme-0aa7.jpg" alt="">
     </div>
 
     <div class="companyname">
