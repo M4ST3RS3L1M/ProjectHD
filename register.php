@@ -31,7 +31,7 @@
                     // Check that pwd meets min req
                     if (strlen($pwd) >= 5 && strpbrk($pwd, "!#$.,:;()") != false) {
                         // Check if username is taken
-                        $result = $mysqli->query("SELECT * FROM HD_Users WHERE username='{$name}'");
+                        $query = mysqli_query($mysqli, "SELECT * FROM users WHERE username='{$name}'");
                         if (mysqli_num_rows($query) == 1) {
                             // Encrypt password
                             $pwd = md5($pwd);
