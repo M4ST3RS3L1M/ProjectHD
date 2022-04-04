@@ -17,7 +17,7 @@
         if (isset($_POST['register_button'])) {
             $name       = $mysqli->real_escape_string($_POST['username']);
             $pwd        = $mysqli->real_escape_string($_POST['password']);
-            $repeat_pwd        = $mysqli->real_escape_string($_POST['repeat_password']);
+            $repeat_pwd = $mysqli->real_escape_string($_POST['repeat_password']);
             $firstname  = $mysqli->real_escape_string($_POST['fname']);
             $lastname   = $mysqli->real_escape_string($_POST['lname']);
             $DOB        = $mysqli->real_escape_string($_POST['DOB']);
@@ -27,7 +27,7 @@
             // Verify entered data
             if ($name != "" && $pwd != "" && $repeat_pwd != "" && $eMail != "") {
                 // Check that entered passwords match
-                if ($pwd === $ $repeat_pwd) {
+                if ($pwd === $repeat_pwd) {
                     // Check that pwd meets min req
                     if (strlen($pwd) >= 5 && strpbrk($pwd, "!#$.,:;()") != false) {
                         // Check if username is taken
