@@ -27,14 +27,14 @@ $navigation = <<<END
         <a href="faq.php">FAQ</a>
 
 END;
-    if (!isset($_SESSION['userId'])) {
+    if (!isset($_SESSION['userID'])) {
         $navigation .= <<<END
         <div class="login">
         <a href="register.php">Register</a>
         <a href="login.php">Log in</a>
 END;
     }
-    elseif (isset($_SESSION['userId'])) {
+    elseif (isset($_SESSION['userID'])) {
         $navigation .= <<<END
 
         <div class="login">

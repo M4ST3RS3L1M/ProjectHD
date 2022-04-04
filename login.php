@@ -3,23 +3,25 @@
 include('nav.php');
 echo $navigation;
 if (isset($_POST['username']) and isset($_POST['password'])) {
- $name = $mysqli->real_escape_string($_POST['username']);
- $pwd = $mysqli->real_escape_string($_POST['password']);
- $query = <<<END
-SELECT username, password, id FROM users
- WHERE username = '{$name}'
- AND password = '{$pwd}'
+    $name  =    $mysqli->real_escape_string($_POST['username']);
+    $pwd   =     $mysqli->real_escape_string($_POST['password']);
+    $query = <<<END
+    SELECT username, password, userID FROM HD_Users
+    WHERE username = '{$name}'
+    AND password = '{$pwd}'
 END;
- $result = $mysqli->query($query);
- if ($result->num_rows > 0) {
- $row = $result->fetch_object();
- $_SESSION["username"] = $row->username;
- $_SESSION["userId"] = $row->id;
- header("Location:index.php");
- } else {
- echo "Wrong username or password. Try again";
- }
+
+    $result = $mysqli->query($query);
+    if ($result->num_rows > 0) {
+        $row                   = $result->fetch_object();
+        $_SESSION["username"]  = $row->username;
+        $_SESSION["userID"]    = $row->userID;
+        header("Location:index.php");
+    } else {
+        echo "Wrong username or password. Try again";
+    }
 }
+
 $content = <<<END
 <body id="login_body">
 <form action="login.php" method="post" id="main">
