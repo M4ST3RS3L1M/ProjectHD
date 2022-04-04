@@ -1,16 +1,10 @@
-<?php
-include("nav.php");
-
-echo $navigation;
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
-        
+        <?php
+        include('nav.php');
+        ?>
         <meta charset="utf-8">
         <title>Dashboard</title>
     </head>
@@ -19,7 +13,9 @@ echo $navigation;
 
     <body>
         
-
+        <?php
+        echo $navigation;
+        ?>
         
         <div class="container">
             

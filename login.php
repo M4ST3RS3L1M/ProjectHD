@@ -1,7 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <?php
+    include('nav.php');
+    ?>
+    <meta charset="utf-8">
+    <title>FAQ</title>
+</head>
+
+<body>
+
+    <?php
+    echo $navigation;
+    ?>
+        
 <?php
-include('nav.php');
-echo $navigation;
 if (isset($_POST['username']) and isset($_POST['password'])) {
     $name  =    $mysqli->real_escape_string($_POST['username']);
     $pwd   =     $mysqli->real_escape_string($_POST['password']);
@@ -43,9 +57,8 @@ $content = <<<END
 </body>
 END;
 echo $content;
-
 ?>
 
-
+</body>
 
 </html>

@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-    
+    <?php
+    include('nav.php');
+    ?>
     <meta charset="utf-8">
     <title>FAQ</title>
 </head>
@@ -12,16 +14,16 @@
     <div class="container">
 
         <?php
-        include('nav.php');
-
         echo $navigation;
-
         ?>
-                        <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat, ligula eu tempor gravida, 
-                            mauris quam rhoncus urna, ac accumsan justo velit non dolor. Morbi vitae orci accumsan enim 
-                            dignissim imperdiet at ut felis. In lorem elit, pretium id risus ac, dapibus tempus velit. 
-                            Mauris non ex sit amet diam congue lacinia. Suspendisse potenti. Sed eu dignissim enim. Morbi 
-                            viverra turpis at augue tempor molestie. In id consequat sem.-->
+        
+        <!--
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat, ligula eu tempor gravida, 
+            mauris quam rhoncus urna, ac accumsan justo velit non dolor. Morbi vitae orci accumsan enim 
+            dignissim imperdiet at ut felis. In lorem elit, pretium id risus ac, dapibus tempus velit. 
+            Mauris non ex sit amet diam congue lacinia. Suspendisse potenti. Sed eu dignissim enim. Morbi 
+            viverra turpis at augue tempor molestie. In id consequat sem.
+        -->
 
 
         <div class="content">

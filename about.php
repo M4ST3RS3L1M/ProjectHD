@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-    
+    <?php
+    include('nav.php');
+    ?>
     <meta charset="utf-8">
     <title>About</title>
 </head>
@@ -12,13 +14,8 @@
     <div class="container">
 
         <?php
-        include('nav.php');
-
         echo $navigation;
-
         ?>
-        
-
 
         <div class="content">
 
