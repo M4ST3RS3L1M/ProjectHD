@@ -37,7 +37,7 @@
                             // Encrypt password
                             $pwd = md5($pwd);
                             // Insert query to create the user
-                            $query = "INSERT INTO HD_Users (username, password, fname, lname, DOB, eMail, sex) VALUES ('{$_POST['username']}', '{$_POST['password']}', '{$_POST['fname']}', '{$_POST['lname']}', '{$_POST['DOB']}', '{$_POST['eMail']}', '{$_POST['sex']}')";
+                            $query = "INSERT INTO HD_Users (username, password, fname, lname, DOB, eMail, sex) VALUES ('{$name}', '{$pwd}', '{$firstname}', '{$lastname}', '{$DOB}', '{$eMail}', '{$sex}')";
                             $mysqli-> query($query);
                             // Verify account creation
                             $query = "SELECT * FROM HD_Users WHERE username='{$name}'";
