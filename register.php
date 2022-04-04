@@ -27,7 +27,7 @@
             // Verify entered data
             if ($name != "" && $pwd != "" && $repeat_pwd != "" && $eMail != "") {
                 // Check that entered passwords match
-                if ($pwd === $repeat_pwd) {
+                if (true) { // ($pwd === $repeat_pwd) {
                     // Check that pwd meets min req
                     if (strlen($pwd) >= 5 && strpbrk($pwd, "!#$.,:;()") != false) {
                         // Check if username is taken
