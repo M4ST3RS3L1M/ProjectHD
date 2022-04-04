@@ -25,7 +25,6 @@ $navigation = <<<END
         <a href="index.php">Home</a>
         <a href="about.php">About</a>
         <a href="faq.php">FAQ</a>
-
 END;
     if (!isset($_SESSION['userId'])) {
         $navigation .= <<<END
