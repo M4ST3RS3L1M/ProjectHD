@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <?php
-    include('nav.php');
-    ?>
-    <meta charset="utf-8">
-    <title>FAQ</title>
-</head>
-
-<body>
-
+<?php
+include('nav.php');
+?>
     <?php
     echo $navigation;
     ?>
-        
+
+
 <?php
 if (isset($_POST['username']) and isset($_POST['password'])) {
     $name  =    $mysqli->real_escape_string($_POST['username']);
@@ -35,30 +27,26 @@ END;
         echo "Wrong username or password. Try again";
     }
 }
-
-$content = <<<END
-<body id="login_body">
-<form action="login.php" method="post" id="main">
-<h1 id="login_h1">BrandName</h1>
-<div class="login_p">
-<p>Login to start your journey!</p>
-</div>
-<div class="loginbox">
-<label id="login_label" for="username">Enter your username</label>
-<input id="login_input" type="text" name="username" placeholder="username">
-<label id="login_label" for="password">Enter your password</label>
-<input id="login_input" type="password" name="password" placeholder="password">
-<button id="login_button" type="submit">Login</button>
-<div class="login_register_link">
-<a href="register.php">Dont have an account yet? Sign up</a>
-</div>
-</div>
-</form>
-</body>
-END;
-echo $content;
 ?>
 
-</body>
+<form action="login.php" method="post" id="main">
+    <h1 id="login_h1">BrandName</h1>
+    <div class="login_p">
+        <p>Login to start your journey!</p>
+    </div>
+    <div class="loginbox">
+        <label id="login_label" for="username">Enter your username</label>
+        <input id="login_input" type="text" name="username" placeholder="username">
+        <label id="login_label" for="password">Enter your password</label>
+        <input id="login_input" type="password" name="password" placeholder="password">
+        <button id="login_button" type="submit">Login</button>
+        <div class="login_register_link">
+            <a href="register.php">Dont have an account yet? Sign up</a>
+        </div>
+    </div>
+</form>
 
-</html>
+
+<?php
+include("footer.php")
+?>
