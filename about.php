@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <?php
-    include('nav.php');
-    ?>
-    <meta charset="utf-8">
-    <title>About</title>
-</head>
+<?php
+include('nav.php');
+?>
 
-<body>
-    
-    <div class="container">
 
         <?php
         echo $navigation;
@@ -53,9 +44,8 @@
 
 
 
-
-</body>
-
-</html>
+<?php
+include("footer.php")
+?>
 
 
