@@ -15,19 +15,9 @@ h1 {
        
 }
 
-
-.logo {
-    margin-left: 25px;
-    
+.logga img {
+    height: 60px;
 }
-
-.logo img {
-    float: left;
-    margin-top: 6px;
-    width: 80px;
-      
-}
-
 
 .companyname h3{
     float: left;
