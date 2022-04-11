@@ -15,7 +15,9 @@ h1 {
        
 }
 
-
+.logga img {
+    height: 60px;
+}
 
 .companyname h3{
     float: left;
