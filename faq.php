@@ -1,10 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
 
-<?php
-include('nav.php');
-?>
+        <?php
+        include('nav.php');
+        echo $extLinks;
+        ?>
+    
+    </head>
 
-    
-    
+    <body>
 
         <?php
         echo $navigation;
@@ -86,17 +91,13 @@ include('nav.php');
                         amet congue dui porttitor. Phasellus et porta arcu.
                     </p>
                 </div>
-                
             </div>
-
         </div>
-        
-    </div>
-            
 
+        <?php
+        include("footer.php")
+        ?>
 
-<?php
-include("footer.php")
-?>
-
+    </body>
+</html>
 

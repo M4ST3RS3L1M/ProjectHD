@@ -1,4 +1,3 @@
-
 <?php
 include('nav.php');
 $_SESSION = array();

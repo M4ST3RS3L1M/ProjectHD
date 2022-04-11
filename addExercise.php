@@ -1,14 +1,15 @@
-<?php
-include('nav.php');
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
 
-        <meta charset="utf-8">
-        <title>Add Execise</title>
+    <?php
+    include('nav.php');
+    echo $extLinks;
+    ?>
+
+    <meta charset="utf-8">
+    <title>Add Execise</title>
     </head>
 
 
