@@ -23,7 +23,7 @@
             SELECT username, password, userID FROM HD_Users
             WHERE username = '{$name}'
             AND password = '{$pwd}'
-        END;
+END;
 
             $result = $mysqli->query($query);
             if ($result->num_rows > 0) {
@@ -55,8 +55,8 @@
         </form>-->
 
         <section class="vh-100">
-            <div class="container py-5 h-100">
-                <div class="row d-flex justify-content-center py-5 h-100">
+            <div class="container py-4 h-100">
+                <div class="row d-flex justify-content-center py-4 h-100">
                     <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                         <div class="card bg-dark text-white" style="border-radius: 1rem;">
                             <div class="card-body p-5 text-center">
@@ -67,15 +67,15 @@
                                     <p class="text-white-50 mb-2">Please enter your username and password to start your journey!</p>
                     
                                     <form action="login.php" method="post" id="main">  
-                                        <div class="form-outline form-white mb-4">
+                                        <div class="form mb-4">
                                             <label class="form-label text-white" for="username">Username</label>
-                                            <input id="loginName" type="text" name="username" class="form-control form-control-lg">
+                                            <input id="loginName" type="text" name="username" class="form-control form-control-mg">
                         
                                         </div>
 
-                                        <div class="form-outline form-white mb-4">
+                                        <div class="form mb-4">
                                             <label class="form-label text-white" for="typePasswordX">Password</label>
-                                            <input id="typePasswordX" type="password" name="password" class="form-control form-control-lg">
+                                            <input id="typePasswordX" type="password" name="password" class="form-control form-control-mg">
                         
                                         </div>
 
