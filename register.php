@@ -5,7 +5,6 @@
         <?php
         require_once('nav.php'); // Needed for db connection
         echo $extLinks;
-        echo $validation;
 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -28,8 +27,17 @@
         }
         ?>
 
+        <style>
+            #date-label {
+                margin: 0rem!important;
+            }
+            
+        </style>
+
+        <link rel="stylesheet" href="Media/css/jquery.passwordRequirements.css" />
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker.min.css'>   
+
         <title>Register</title>
-        <meta charset="utf-8">
 	</head>
 
 	<body>
@@ -45,7 +53,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <form action="" class="form" name="registration" method="POST">
+                    <form action="register.php" class="form" name="registration" method="POST">
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
                             <input type="text" class="form-control" name="username" placeholder="Username" autocomplete="off" required />
@@ -53,7 +61,7 @@
 
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="Password" autocomplete="off" required />
+                            <input type="password" id="password" class="pr-password form-control" name="password" placeholder="Password" autocomplete="off" required />
                             <div id="passwordHelpBlock" class="form-text">
                                 Your password must be 8-20 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character. It must also not contain spaces.
                             </div>
@@ -74,24 +82,45 @@
                             <input type="text" class="form-control" name="lname" placeholder="Last Name" autocomplete="off" />
                         </div>
 
-                        <div class="mb-3">
-                            <label for="DOB" class="form-label">Date of Birth</label>
-                            <input type="text" class="form-control" name="DOB" placeholder="Date of Birth" autocomplete="off" />
+                        <div class="mb-3" id="date-label">
+                            <label for="DOB" class="form-label">Date of birth</label>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <i class="bi bi-calendar-date input-group-text"></i>
+                            <input type="text" id="datepicker" class="datepicker_input form-control" name="DOB" placeholder="YYYY-MM-DD" required aria-label="Select your date of birth">
                         </div>
 
                         <div class="mb-3">
                             <label for="eMail" class="form-label">Email</label>
                             <input type="email" class="form-control" name="eMail" placeholder="Email" autocomplete="off" required />
-                            <div id="emailHelp" class="form-text">Must be a valid email e.g. your_email@gmail.com</div>
+                            <div id="emailHelp" class="form-text">Must be a valid email e.g. name@domain.com</div>
                         </div class="mb-3">
                     
-                        <div class="mb-3">
-                            <label for="sex" class="form-label">Sex</label>
-                            <input type="text" class="form-control" name="sex" placeholder="Sex" autocomplete="off" />
+                        <div class="form-check">
+                            <input type="radio" name="sex" value="M" id="sexM" class="form-check-input">
+                            <label class="form-check-label" for="sexM">
+                                Male
+                            </label>
                         </div>
+                        <div class="form-check">
+                            <input type="radio" name="sex" value="F" id="sexF" class="form-check-input">
+                            <label class="form-check-label">
+                                Female
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" name="sex" value="O" id="sexO" class="form-check-input">
+                            <label class="form-check-label">
+                                Other
+                            </label>
+                            <br>
+					    </div>
+                        <div id="errorMsg"></div>
 
                         <div class="row g-3 align-items-center">
                             <div class="col-auto">
+                                <br>
                                 <input type="submit" class="btn btn-primary" name="register_button" value="Create Account" />
                             </div>
                             <div class="col-auto">
@@ -106,7 +135,14 @@
         </div>
         <?php
             include('footer.php');
-        ?> 
+        ?>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src='https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker-full.min.js'></script>
+        <script src="Media/js/jquery.passwordRequirements.min.js"></script>
+        <script src="Media/js/jquery.validate.min.js"></script>
+        <script src="Media/js/formValidation.js"></script>
+
     </body>
 </html>
 
