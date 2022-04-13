@@ -1,8 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <?php
+        include('nav.php');
+        echo $extLinks;
+        ?>
+    </head>
 
-<?php
-include('nav.php');
-?>
-
+    <body>
 
         <?php
         echo $navigation;
@@ -37,15 +42,10 @@ include('nav.php');
             </div>
 
         </div>
-        
-    </div>
-            
 
+        <?php
+        include("footer.php")
+        ?>
 
-
-
-<?php
-include("footer.php")
-?>
-
-
+    </body>
+</html>

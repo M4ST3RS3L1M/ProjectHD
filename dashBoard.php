@@ -4,12 +4,11 @@
     <head>
         <?php
         include('nav.php');
+        echo $extLinks;
         ?>
         <meta charset="utf-8">
         <title>Dashboard</title>
     </head>
-
-
 
     <body>
         
@@ -49,17 +48,9 @@
                         cursus risus fermentum ut. Cras ac ultricies nisl. Suspendisse vulputate massa ac nisi mollis, sit 
                         amet congue dui porttitor. Phasellus et porta arcu.
                     </p>
-                    </div>
-                    
+                    </div> 
                 </div>
-
-
-
             </div>
-        
         </div>
     </body>
-
-
-
 </html>
