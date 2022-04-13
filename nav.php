@@ -101,5 +101,5 @@ END;
     $navigation .='</div>';
     $navigation .='</div>';
     $navigation .='</nav>';
-    
+include_once ('log.php');        
 ?>
