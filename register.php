@@ -41,12 +41,14 @@
 	</head>
 
 	<body>
+        <?php
+        echo $navigation;
+        ?>
+
         <div class="container">
-            <div class="row">
-		        <?php
-                echo $navigation;
-                ?>
-            </div>
+            
+            
+            
             <div class="row">
                 <h1>Register your account</h1>
                 <h4>Get started today!</h4>
