@@ -50,25 +50,10 @@ include('nav.php');
                     <div class="col-sm-6 col-xs-12">
                         <div class="form-group input-group">
                             <input id="cardioDistance" type="number" min="0" max="99999" step="any" class="form-control">
-                            <span class="input-group-addon">mi/km</span>
+                            <span class="input-group-addon">km</span>
                         </div>
                     </div>
 
-                    <div class="col-xs-12 swlOrangeUnderline marginBottom2pc marginTop4pc">HEART RATE</div>
-                    <div class="col-sm-6 col-xs-12">
-                        <div class="form-group input-group">
-                            <input id="cardioHeartRate" type="number" min="0" max="999" step="1" class="form-control">
-                            <span class="input-group-addon">bpm</span>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 swlOrangeUnderline marginBottom2pc marginTop4pc">CALORIES</div>
-                    <div class="col-sm-6 col-xs-12">
-                        <div class="form-group input-group">
-                            <input id="cardioCalories" type="number" min="0" max="99999" step="any" class="form-control">
-                            <span class="input-group-addon">cal</span>
-                        </div>
-                    </div>
 
                     <div class="col-xs-12 swlOrangeUnderline marginBottom2pc marginTop4pc">NOTES</div>
                     <div class="col-xs-12">
