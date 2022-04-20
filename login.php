@@ -23,7 +23,7 @@
             SELECT username, password, userID FROM HD_Users
             WHERE username = '{$name}'
             AND password = '{$pwd}'
-        END;
+END;
 
             $result = $mysqli->query($query);
             if ($result->num_rows > 0) {

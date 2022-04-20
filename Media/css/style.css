@@ -89,14 +89,21 @@ margin-left: 500px;
     margin-top: 6px;
     margin-right: 30px;
     font-size: 13px;
-
-
 }
 
+.valid-entry {
+    font-size: 80%;
+    line-height: 0.5;
+    color: #28a745;
+    margin-bottom: 1rem!important;
+}
 
-
-
-
+.invalid-entry {
+    font-size: 80%;
+    line-height: 0.5;
+    color: #dc3545;
+    margin-bottom: 1rem!important;
+}
 
 .welcometext {
     float: left;
@@ -114,8 +121,6 @@ margin-left: 500px;
 .questionAnswers {
     padding-top: 10px;
     padding-bottom: 10px;
-
-
 }
 
 .runningpic {
