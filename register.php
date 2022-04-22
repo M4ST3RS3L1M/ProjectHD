@@ -43,13 +43,13 @@
         // Get data from form when register button is clicked
         if (isset($_POST['save'])) {
             $username       = $mysqli->real_escape_string($_POST['username']);
-            $pwd        = $mysqli->real_escape_string($_POST['password']);
-            $repeat_pwd = $mysqli->real_escape_string($_POST['repeat_password']);
-            $firstname  = $mysqli->real_escape_string($_POST['fname']);
-            $lastname   = $mysqli->real_escape_string($_POST['lname']);
-            $DOB        = $mysqli->real_escape_string($_POST['DOB']);
-            $eMail      = $mysqli->real_escape_string($_POST['eMail']);
-            $sex        = $mysqli->real_escape_string($_POST['sex']);
+            $pwd            = $mysqli->real_escape_string($_POST['password']);
+            $repeat_pwd     = $mysqli->real_escape_string($_POST['repeat_password']);
+            $firstname      = $mysqli->real_escape_string($_POST['fname']);
+            $lastname       = $mysqli->real_escape_string($_POST['lname']);
+            $DOB            = $mysqli->real_escape_string($_POST['DOB']);
+            $eMail          = $mysqli->real_escape_string($_POST['eMail']);
+            $sex            = $mysqli->real_escape_string($_POST['sex']);
     
             $query = "SELECT * FROM HD_Users WHERE username='$username'";
             $output = mysqli_query($mysqli, $query);
@@ -71,10 +71,10 @@
         ?>
 
         <style>
-            .regHead {
+            .air {
                 margin: 15px;
             }
-            #datetimepicker1{
+            #datetimepicker1 {
                 display: none;
             }
             #curr_usr {
@@ -87,6 +87,7 @@
         <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker.min.css'>   
 
         <title>Register</title>
+
 	</head>
 
 	<body>
@@ -98,27 +99,27 @@
 		        
             </div>
             <div class="row text-center">
-                <h1 class="regHead">Register your account</h1>
-                <h4 class="regHead">Get started today!</h4>
+                <h1 class="air">Register your account</h1>
+                <h4 class="air">Get started today!</h4>
             </div>
             <div class="row">
                 <div class="col">
                     <form action="register.php" class="form row g-3" name="registration" method="POST">
                         <div class="col-md-4">
-                            <label for="username" class="form-label">Username</label>
+                            <label for="username" class="form-label">Username<span class="req_field"> *</span></label>
                             <input type="text" id="username" class="form-control" name="username" placeholder="Username" autocomplete="off" required />
                             <div id="uname_response" class="mb-3"></div>
                         </div>
 
                         <div class="col-md-4">
-                            <label for="password" class="form-label">Password</label>
+                            <label for="password" class="form-label">Password<span class="req_field"> *</span></label>
                             <input type="password" id="password" class="pr-password form-control" name="password" placeholder="Password" autocomplete="off" required />
                             
                         </div>
                         
 
                         <div class="col-md-4">
-                            <label for="repeat_password" class="form-label">Repeat Password</label>
+                            <label for="repeat_password" class="form-label">Repeat Password<span class="req_field"> *</span></label>
                             <input type="password" id="repeat_password" class="form-control" name="repeat_password" placeholder="Repeat Password" autocomplete="off" required />
                         </div>
                         <div id="passwordHelpBlock" class="col-md-12 form-text">
@@ -126,30 +127,30 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="fname" class="form-label">First Name</label>
+                            <label for="fname" class="form-label">First Name<span class="req_field"> *</span></label>
                             <input type="text" id="fname" class="form-control" name="fname" placeholder="First Name" autocomplete="off" />
                         </div>
 
                         <div class="col-md-6">
-                            <label for="lname" class="form-label">Last Name</label>
+                            <label for="lname" class="form-label">Last Name<span class="req_field"> *</span></label>
                             <input type="text" id="lname" class="form-control" name="lname" placeholder="Last Name" autocomplete="off" />
                         </div>
 
                         <div class="col-md-6">
                             <i id="datetimepicker1" class="bi bi-calendar-date input-group-text"></i>
-                            <label for="DOB" class="form-label">Date of birth</label>
+                            <label for="DOB" class="form-label">Date of birth<span class="req_field"> *</span></label>
                             <input type="text" id="datepicker" class="datepicker_input form-control" name="DOB" placeholder="YYYY-MM-DD" required aria-label="Select your date of birth">
                         </div>
 
                         <div class="col-md-6">
-                            <label for="eMail" class="form-label">Email</label>
+                            <label for="eMail" class="form-label">Email<span class="req_field"> *</span></label>
                             <input type="email" id="eMail" class="form-control" name="eMail" placeholder="Email" autocomplete="off" required />
                             <div id="email_response" class="form-text">
                                 Must be a valid email e.g. name@domain.com
                             </div>
                         </div>
                     
-                        <div class="row justify-content-md-center">
+                        <div class="row justify-content-md-center air">
                             <label for="sex" class="form-label text-center">Select your sex</label>
                             <div class="input-group-text col-md-2">
                                 <input type="radio" name="sex" value="M" id="sexM" class="form-check-input mt-0">
@@ -172,13 +173,18 @@
                             </div>
                         </div>
 
-                        <div class="row g-3-center create_account">
-                            <div id="error_msg" class="mb-4">
+                        <div class="row justify-content-md-center air">
+                            <input class="form-check-input" type="checkBox" name="terms" id="terms">
+                            <label class="form-check-label col-md-4" for="terms">
+                                I understand and agree with the <a href="TermsAndConditions.php">Terms & Conditions</a> and <a href="PrivacyPolicy.php">Privacy Policy</a>.
+                            </label>
                         </div>
 
                         
-                        <div class="row justify-content-md-center">
-                            <br>
+
+                        
+                        <div class="row justify-content-md-center air">
+                            <div id="error_msg" class="col-md-4 air req_field"></div>
                             <input type="submit" id="reg_btn" class="btn btn-primary col-md-10" name="register_button" value="Create Account" />
                             <div class="row justify-content-md-center">
                                 <span id="curr_usr" class="form-text col-md text-center">

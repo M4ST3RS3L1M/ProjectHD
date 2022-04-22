@@ -16,7 +16,7 @@ $(document).ready(function() {
             data: {
                 'username_check' : 1,
                 'username' : username,
-        },
+            },
             success: function(response) {
                 // If username is taken..
                 if (response.includes('unavailable--')) {
@@ -159,6 +159,7 @@ $(document).ready(function() {
                     required: true,
                     email: true
                 },
+                terms: "required"
             },
             
             // Corresponding error messages
@@ -203,12 +204,12 @@ $(document).ready(function() {
                     var email = $('#eMail').val();
                     var sex = $("input[name='sex']:checked").val();
                     if (username_state == false || email_state == false) {
-                        $('#error_msg').text('Fix the errors in the form first');
+                        $('#error_msg').text('You have to fix the errors in the form before you can create your account');
                     }
                     else { // proceed with form submission
                         $.ajax( {
                             url: 'register.php',
-                            type: 'post',
+                            type: 'POST',
                             data: {
                                 'save' : 1,
                                 'username' : username,
