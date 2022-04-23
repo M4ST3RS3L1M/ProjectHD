@@ -1,59 +1,55 @@
 $(document).ready(function() {
 
-    var credentials_state = false;
+    // Clear error message when typing
+    $("#loginName").focus(function() {
+        $('#error_msg').text('');
+    });
+    $("#typePasswordX").focus(function() {
+        $('#error_msg').text('');
+    });
+    
+    // Gets data from fields when the button is clicked
+    $("#login_btn").on('click', function() {
+        var username = $("#loginName").val().trim();
+        var password = $("#typePasswordX").val().trim();
 
-    $('#login_btn').on('click', function() {
-        var username = $('#loginName').val();
-        var password = $('#typePasswordX').val();
-        if (username == '' || password == '') {
-            credentials_state = false;
-        }
-        $.ajax( {
-            url: 'login.php',
-            type: 'POST',
-            data: {
-                'credentials_check' : 1,
-                'username' : username,
-                'password' : password,
-            },
-            success: function(response) {
-                // If credentials are incorrect
-                if (response.includes('incorrect--')) {
-                    credentials_state = false;
-                }
-                // If credentials are correct
-                else if (response.includes('cred--match')) {
-                    credentials_state = true;
-                }
-            }
-        })
-        $(function() {
-            $("form[name='login']").validate({
-
-                rules: {
-                    username: "required",
-                    password: "required"
-                },
-
-                messages: {
-                    username: {
-                        required: "This field is required"
-                    },
-                    password: {
-                        required: "This field is required"
-                    }
-                },
-                submitHandler: function(form, event) {
-                    event.preventDefault();
-
-                    if (credentials_state == false) {
-                        $('#error_msg').text("Wrong username or password. Try again");
-                    }
-                    else {
+        if( username != "" && password != "" ) {
+            $.ajax({
+                url:'login.php',
+                type:'POST',
+                data: {
+                    username:username,
+                    password:password},
+                success:function(response) {
+                    if(response.includes('cred--match')) {
                         window.location.href = 'index.php';
                     }
+                    else {
+                        $('#error_msg').text("Wrong username or password. Try again");
+                    }
                 }
-            })
-        })
+            });
+        }
     });
+    $(function() {
+        $("form[name='login']").validate({
+
+            rules: {
+                username: "required",
+                password: "required"
+            },
+
+            messages: {
+                username: {
+                    required: "Enter your username"
+                },
+                password: {
+                    required: "Enter your password"
+                }
+            },
+            submitHandler: function(form, event) {
+                event.preventDefault();
+            }
+        })
+    })
 });

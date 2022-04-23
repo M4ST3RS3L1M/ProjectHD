@@ -5,8 +5,9 @@
         <?php
         include('nav.php');
         echo $extLinks;
-        
-        if (isset($_POST['credentials_check'])) {
+
+        if (isset($_POST['username']) and isset($_POST['password'])) {
+
             $username  = $mysqli->real_escape_string($_POST['username']);
             $pwd       = $mysqli->real_escape_string($_POST['password']);
             $pwd       = substr(md5($pwd), 0, 24);
@@ -14,16 +15,17 @@
             $query = "SELECT username, password, userID FROM HD_Users WHERE username='$username' AND password='$pwd'";
             $result = mysqli_query($mysqli, $query);
 
-            if (mysqli_num_rows($output) > 0) {
+            if (mysqli_num_rows($result) > 0) {
+                $obj                   = mysqli_fetch_object($result);
+                $_SESSION["username"]  = $obj->username;
+                $_SESSION["userID"]    = $obj->userID;
                 echo "cred--match";
-                $row                   = $result->fetch_object();
-                $_SESSION["username"]  = $row->username;
-                $_SESSION["userID"]    = $row->userID;
             }
             else {
-                echo "incorrect--";
+                echo 0;
             }
         }
+        
         ?>
 
         <style>
@@ -81,7 +83,7 @@
                                             <input id="typePasswordX" type="password" name="password" class="form-control form-control-lg">
                                         </div>
                                         <div id="error_msg" class="mb-4"></div>
-                                        <button id="login_btn" class="btn btn-outline-light px-5" type="submit">Login</button>
+                                        <button id="login_btn" class="btn btn-outline-light px-5" type="button">Login</button>
                                     </form>
                                 </div>
 
