@@ -13,34 +13,25 @@
         echo $navigation;
         ?>
 
-        <div class="content">
-
-            <div class="welcometext">
-                <h1>About</h1>
-                <div class="text">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 align-self-start welcometext">
+                    <h1>About</h1>
+                </div>
+                <div class="col-6 align-self-start text-light">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat, ligula eu tempor gravida, 
-                        mauris quam rhoncus urna, ac accumsan justo velit non dolor. Morbi vitae orci accumsan enim 
-                        dignissim imperdiet at ut felis. In lorem elit, pretium id risus ac, dapibus tempus velit. 
-                        Mauris non ex sit amet diam congue lacinia. Suspendisse potenti. Sed eu dignissim enim. Morbi 
-                        viverra turpis at augue tempor molestie. In id consequat sem.
+                    Sed faucibus lorem at ullamcorper ullamcorper. Phasellus interdum sapien sem, nec facilisis dui imperdiet at. Nullam in est feugiat, vestibulum turpis pellentesque, pharetra lorem. In id feugiat enim. Ut diam diam, dictum ac auctor nec, commodo vitae enim. Nunc elit velit, ornare in neque eu, consectetur viverra ipsum. Phasellus malesuada augue enim, at congue mauris lobortis vitae. Quisque vitae euismod tortor. In molestie ornare porta. Pellentesque at erat laoreet quam euismod gravida. Fusce maximus est sit amet malesuada sagittis.
                     </p>
 
                     <p>
-                        Sed ornare auctor massa, eu mollis dolor porttitor sed. Ut suscipit ipsum sit amet enim ultricies 
-                        pellentesque. Phasellus nec hendrerit nunc. Aenean et sem quis lorem varius sollicitudin. Etiam 
-                        accumsan finibus nisl, nec pellentesque nibh dignissim nec. Phasellus pretium velit non ante porta 
-                        tristique. Cras felis neque, varius ac dolor eu, accumsan ultrices dolor. Curabitur eu commodo sem, 
-                        non luctus lorem. Aliquam vestibulum semper arcu posuere semper. Mauris vel congue leo, id tempor 
-                        leo. Vestibulum eget dictum lorem, vitae sodales risus. Donec ornare, risus et iaculis elementum, 
-                        ipsum elit consequat ex, sit amet aliquet erat quam laoreet quam. Quisque ornare nisi lectus, quis 
-                        cursus risus fermentum ut. Cras ac ultricies nisl. Suspendisse vulputate massa ac nisi mollis, sit 
-                        amet congue dui porttitor. Phasellus et porta arcu.
+                    Morbi eu malesuada eros. Pellentesque nec justo eu ipsum efficitur aliquam vitae vel magna. Suspendisse ac erat leo. Duis at quam id felis sollicitudin porttitor. Morbi pellentesque arcu sit amet dui vulputate, eu pharetra ex vulputate. Suspendisse congue sit amet purus sed pellentesque. Nullam tristique aliquam magna, et fringilla felis vulputate sit amet. Sed a posuere augue, nec congue lorem. Cras malesuada vitae ante vitae scelerisque. Mauris porttitor urna nec metus vehicula condimentum. Ut lobortis justo in lacus tincidunt, ut congue mi efficitur. Donec vulputate porttitor condimentum. Cras aliquet nisi vel blandit auctor. Ut ultricies aliquet metus nec hendrerit.
+                    </p>
+
+                    <p>
+                    Aliquam mollis bibendum elit nec elementum. Quisque ut est sit amet turpis cursus rutrum nec id justo. Praesent ullamcorper condimentum lectus, ac varius est vestibulum ut. Vestibulum tristique varius pharetra. Cras in lacinia massa. Nunc imperdiet mattis facilisis. Nullam nulla metus, vestibulum ut augue ac, volutpat tincidunt mauris. Nam eleifend ac libero a pellentesque. Maecenas urna ante, tempor at blandit posuere, tempor sit amet sapien. Integer lacinia, ligula placerat placerat ullamcorper, elit dolor malesuada nulla, eget ultricies magna purus nec arcu. Morbi tincidunt auctor sapien, vel gravida neque luctus consequat.
                     </p>
                 </div>
-                
             </div>
-
         </div>
 
         <?php

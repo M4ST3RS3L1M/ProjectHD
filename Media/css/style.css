@@ -118,29 +118,8 @@ margin-left: 500px;
     padding-bottom: 10px;
 }
 
-.runningpic {
-    float: left;
-    z-index: -1;
-    position: absolute;
-
-}
-
-.runningpic img{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    height: auto;
-    
-
-}
-
 .active {
     background-color: #72a1fa;
-}
-
-.text {
-    color: #ffffff;
 }
 
 .loginbox {
@@ -171,7 +150,6 @@ margin-left: 500px;
 .errormsg {
     color: #ffffff;
 }
-
 
 #signup {
     background-color: #ffffff;
