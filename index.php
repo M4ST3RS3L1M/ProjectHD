@@ -15,15 +15,12 @@
         echo $navigation;
         ?>
 
-
-        <div class="content">
-
-
-
-            <div class="welcometext">
-                <h1>Welcome BLA BLA BLA</h1>
-
-                <div class="text">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 align-self-start welcometext">
+                    <h1>Welcome to StayFit!</h1>
+                </div>
+                <div class="col-6 align-self-start text-light">
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat, ligula eu tempor gravida, 
                         mauris quam rhoncus urna, ac accumsan justo velit non dolor. Morbi vitae orci accumsan enim 
@@ -46,8 +43,10 @@
                 </div>
             </div>
         </div>
+
         <?php
         include("footer.php")
         ?>
+        
     </body>
 </html>

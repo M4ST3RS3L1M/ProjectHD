@@ -9,7 +9,7 @@ $extLinks = <<<END
         <!--CSS-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css">
-        <link rel="stylesheet" href="https://mdbootstrap.com/snippets/styles.e41eb5076eefabc7c908.css"> <!--Vad gör denna? Mina radiobuttons funkar inte när den inkluderas-->
+        <link rel="stylesheet" href="https://mdbootstrap.com/snippets/styles.e41eb5076eefabc7c908.css">
         <link rel="stylesheet" href="Media/css/style.css">
         
         <!--JS-->
@@ -32,8 +32,8 @@ $navigation = <<<END
     
     <nav class="navbar navbar-expand-lg bg-light navbar-light">
         <div class="container">
-            <a class="logga" href="#">
-            <img id="logo" src="/~seleri21/ProjectHD/Media/images/brandstayfit.png" alt="Logo" draggable="false" height="30">
+            <a class="logga" href="index.php">
+            <img id="logo" src="Media/images/brandstayfit.png" alt="Logo" draggable="false" height="30">
             </a>
 
             <button
@@ -78,7 +78,7 @@ END;
         </li>
         
         <li class="nav-item ms-3">
-            <a class="btn btn-black btn-rounded" href="register.php">Sign up</a>
+            <a class="btn btn-black btn-rounded" href="register.php">Register</a>
         </li>
 END;
     }

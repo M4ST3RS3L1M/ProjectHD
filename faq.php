@@ -6,6 +6,13 @@
         include('nav.php');
         echo $extLinks;
         ?>
+
+        <style>
+            #suspendisse {
+                color: #136c40
+            }
+
+        </style>
     
     </head>
 
@@ -15,20 +22,12 @@
         echo $navigation;
         ?>
         
-        <!--
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat, ligula eu tempor gravida, 
-            mauris quam rhoncus urna, ac accumsan justo velit non dolor. Morbi vitae orci accumsan enim 
-            dignissim imperdiet at ut felis. In lorem elit, pretium id risus ac, dapibus tempus velit. 
-            Mauris non ex sit amet diam congue lacinia. Suspendisse potenti. Sed eu dignissim enim. Morbi 
-            viverra turpis at augue tempor molestie. In id consequat sem.
-        -->
-
-
-        <div class="content">
-
-            <div class="welcometext">
-                <h1>FAQ</h1>
-                <div class="text">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 align-self-start welcometext">
+                    <h1>FAQ</h1>
+                </div>
+                <div class="col-6 align-self-start text-light">
                     <div class="questionAnswers">
                         <p>
                             Question: Lorem ipsum dolor sit amet, consectetur adipiscing elit?
@@ -78,7 +77,9 @@
                             mauris quam rhoncus urna, ac accumsan justo velit non dolor.
                         </p>
                     </div>
-
+                </div>
+                <div class="col-6 align-self-start text-light">
+                    <h4 id="suspendisse">Suspendisse porttitor lacus?</h4>
                     <p>
                         Sed ornare auctor massa, eu mollis dolor porttitor sed. Ut suscipit ipsum sit amet enim ultricies 
                         pellentesque. Phasellus nec hendrerit nunc. Aenean et sem quis lorem varius sollicitudin. Etiam 
