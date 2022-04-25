@@ -73,7 +73,7 @@
                                     <p class="text-white-50 mb-2">Please enter your username and password to start your journey!</p>
                     
                                     <form action="login.php" method="post" name="login" id="main">  
-                                        <div class="form-outline form-white mb-4">
+                                        <div class="form mb-4">
                                             <label class="form-label text-white" for="username">Username</label>
                                             <input id="loginName" type="text" name="username" class="form-control form-control-lg">
                                         </div>
@@ -83,7 +83,7 @@
                                             <input id="typePasswordX" type="password" name="password" class="form-control form-control-lg">
                                         </div>
                                         <div id="error_msg" class="mb-4"></div>
-                                        <button id="login_btn" class="btn btn-outline-light px-5" type="button">Login</button>
+                                        <button id="login_btn" class="btn btn-outline-light px-5" type="button" name="login">Login</button>
                                     </form>
                                 </div>
 
