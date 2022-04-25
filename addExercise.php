@@ -9,7 +9,7 @@
     ?>
 
     <meta charset="utf-8">
-    <title>Add Execise</title>
+    <title>Add Exercise</title>
     </head>
 
 
@@ -19,54 +19,38 @@
         echo $navigation
         ?>
 
-
-        <div id="logContainer" class="col-md-9" style="display: block;">
-            <h2 id="exerName" class="fontWeight300 swlOrange text-center marginBottom3pc">TEST</h2>
-            <div id="exerciseHeaders" class="row">
-
-                <form role="form" id="newCardioForm">
-                    <div class="col-xs-12 swlOrangeUnderline marginBottom2pc marginTop4pc">DATE &amp; TIME</div>
-                    <div class="col-xs-6 marginBottom15px">
-                        <input type="text" class="form-control" id="newDate">
+        <section id="contact vh-100">
+            <div class="container-lg py-5">
+                <div class="text-center text-white">
+                <h2>Add exercises!</h2>
+                <p class="lead text-white-50">Add an exercise below!</p>
+                </div>
+                <div class="row justify-content-center my-5">
+                    <div class="col-lg-6">
+                        <form>
+                            <label for="name" class="form-label text-white">Name:</label>
+                            <input type="text" class="form-control mb-4" id="name" placeholder="e.g. Walk around the block.">
+                            <label for="subject" class="form-label text-white ">Pick one of the alternatives below:</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option value="1" selected>example 1</option>
+                                <option value="2">example 2</option>
+                                <option value="3">example 3</option>
+                            </select>
+                            <div class="form-floating">
+                                <textarea id="query" class="form-control" style="height: 140px"></textarea>
+                                <label for="query">Your query...</label>
+                            </div>
+                        </form>
                     </div>
-                    <div class="col-xs-6 marginBottom15px">
-                        <input type="text" class="form-control" id="newTime">
-                    </div>
-
-                    <div class="col-xs-12 swlOrangeUnderline marginBottom2pc marginTop4pc">DURATION</div>
-                    
-                    <div class="col-xs-4 marginBottom15px">
-                        <input id="cardioDurationHour" placeholder="hr" type="number" min="0" max="99" class="form-control">
-                    </div>
-
-                    <div class="col-xs-4 marginBottom15px">
-                        <input id="cardioDurationMinute" placeholder="min" type="number" min="0" max="60" class="form-control">
-                    </div>
-
-                    <div class="col-xs-4 marginBottom15px">
-                        <input id="cardioDurationSecond" placeholder="sec" type="number" min="0" max="60" class="form-control">
-                    </div>
-
-                    <div class="col-xs-12 swlOrangeUnderline marginBottom2pc marginTop4pc">DISTANCE</div>
-                    <div class="col-sm-6 col-xs-12">
-                        <div class="form-group input-group">
-                            <input id="cardioDistance" type="number" min="0" max="99999" step="any" class="form-control">
-                            <span class="input-group-addon">km</span>
-                        </div>
-                    </div>
-
-
-                    <div class="col-xs-12 swlOrangeUnderline marginBottom2pc marginTop4pc">NOTES</div>
-                    <div class="col-xs-12">
-                        <textarea id="cardioComment" rows="3" class="form-control width100pc maxWidth100pc"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-warning btn-circle btn-lg swlOrange fab" onclick="saveNewCardio(2);"><i class="fa fa-check"></i></button>
-                </form>
+                </div>
             </div>
-        </div>
+        </section>
+
+        
 
 
 
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     </body>
 
