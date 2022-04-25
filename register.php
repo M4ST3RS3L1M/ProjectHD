@@ -3,7 +3,7 @@
 	<head>
 
         <?php
-        require_once('nav.php'); // Needed for db connection
+        require_once('nav.php'); // Required for db connection
         echo $extLinks;
 
         if (session_status() === PHP_SESSION_NONE) {
