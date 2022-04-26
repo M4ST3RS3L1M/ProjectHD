@@ -11,6 +11,7 @@
             $username  = $mysqli->real_escape_string($_POST['username']);
             $pwd       = $mysqli->real_escape_string($_POST['password']);
             $pwd       = substr(md5($pwd), 0, 24);
+            echo $pwd;
 
             $query = "SELECT username, password, userID FROM HD_Users WHERE username='$username' AND password='$pwd'";
             $result = mysqli_query($mysqli, $query);

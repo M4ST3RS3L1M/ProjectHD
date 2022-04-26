@@ -3,19 +3,15 @@
 
     <head>
 
-        <?php
-        include('nav.php');
-        echo $extLinks;
-        ?>
 
         <?php
         include_once('nav.php'); // Needed for db connection
-        //echo $extLinks;
+        echo $extLinks;
 
 
 
-        // Get data from form when register button is clicked
-        if (isset($_POST['add_button']) && isset($_SESSION['userID'])) {
+
+        /*if (isset($_POST['add_button']) && isset($_SESSION['userID'])) {
             $exercise       = $mysqli->real_escape_string($_POST['exerciseType']);
             $dist           = $mysqli->real_escape_string($_POST['distance']);
             $starttime      = $mysqli->real_escape_string($_POST['startTime']); 
@@ -29,7 +25,7 @@
         $stmt = "INSERT INTO HD_ExerciseData(userID, exerciseID, distance,startTime,endTime)
         VALUES ($user, (SELECT exerciseID FROM HD_ExerciseType WHERE exerciseType = '$exercise'), 36, '$startTime','$endTime');";
 
-        $mysqli->query($stmt);
+        $mysqli->query($stmt);*/
 
         ?>
 
