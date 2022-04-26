@@ -33,8 +33,8 @@ $navigation = <<<END
     
     <nav class="navbar navbar-expand-lg bg-light navbar-light">
         <div class="container">
-            <a class="logga" href="#">
-            <img id="logo" src="/~seleri21/ProjectHD/Media/images/brandstayfit.png" alt="Logo" draggable="false" height="30">
+            <a class="logga" href="index.php">
+            <img id="logo" src="Media/images/brandstayfit.png" alt="Logo" draggable="false" height="30">
             </a>
 
             <button
@@ -79,7 +79,7 @@ END;
         </li>
         
         <li class="nav-item ms-3">
-            <a class="btn btn-black btn-rounded" href="register.php">Sign up</a>
+            <a class="btn btn-black btn-rounded" href="register.php">Register</a>
         </li>
 END;
     }
@@ -89,6 +89,10 @@ END;
         
         <li class="nav-item">
             <a class="nav-link mx-2" href="addExercise.php">Add exercise</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link mx-2" href="visualizeUserData.php">Visualize your data</a>
         </li>
       
         <li class="nav-item ms-3">
