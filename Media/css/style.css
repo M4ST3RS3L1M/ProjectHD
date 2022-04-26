@@ -229,3 +229,43 @@ margin-left: 500px;
 .errormsg {
     color: #ffffff;
 }
+
+.IPaddress {
+    width: 45%;
+    margin: 0px 10px 10px;
+    background-color: #ffffff;
+    border: 2px solid;
+    text-align: center;
+}
+
+.AccessLog {
+    width: 45%;
+    margin: 0px 10px 10px;
+    background-color: #ffffff;
+    border: 2px solid;
+    text-align: center;
+}
+
+#tableHeads {
+    background-color: #2092e3;
+    color: white;
+    font: 18px Arial, sans-serif;
+    border: 2px solid #000000;
+    padding: 3px;
+    height: 20px
+}
+
+#tableBodies {
+    background-color: #fffefe;
+    border-bottom: 1px solid;
+    padding: 5px;
+}
+
+#tableTitles {
+    color: #101010;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font: 25px Arial, sans-serif;
+    font-weight: bold;
+}
