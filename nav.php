@@ -29,6 +29,16 @@ $pwd        = "C5cCBIatVU";
 $db         = "seleri21_db";
 $mysqli = new mysqli($host, $user, $pwd, $db);
 
+if (isset($_SESSION['userID'])) {
+        $stmt = ("SELECT u.userID 
+                FROM HD_Users u
+                INNER JOIN HD_Admins a ON a.userID = u.userID
+                WHERE u.userID = '{$_SESSION['userID']}'");
+
+        $result=mysqli_query($mysqli,$stmt);
+        $rowcount=mysqli_num_rows($result);
+}
+
 $navigation = <<<END
     
     <nav class="navbar navbar-expand-lg bg-light navbar-light">
@@ -83,10 +93,26 @@ END;
         </li>
 END;
     }
+    elseif (isset($_SESSION['userID']) AND ($rowcount != 0)) {
+    $navigation .= <<<END
+    
+    <li class="nav-item">
+        <a class="nav-link mx-2" href="adminAnalytics.php">Admin Analytics</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link mx-2" href="manageUsers.php">Manage Users</a>
+    </li>
+
+    <li class="nav-item ms-3">
+        <a class="btn btn-black btn-rounded" href="logout.php">Log out</a>
+    </li>
+    
+END;
+    }
     elseif (isset($_SESSION['userID'])) {
         $navigation .= <<<END
 
-        
         <li class="nav-item">
             <a class="nav-link mx-2" href="addExercise.php">Add exercise</a>
         </li>
