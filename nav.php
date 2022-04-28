@@ -9,7 +9,6 @@ $extLinks = <<<END
         <!--CSS-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css">
-        <link rel="stylesheet" href="https://mdbootstrap.com/snippets/styles.e41eb5076eefabc7c908.css">
         <link rel="stylesheet" type="text/css" href="Media/css/style.css">
         
         <!--JS-->
