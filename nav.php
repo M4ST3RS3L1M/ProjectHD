@@ -103,6 +103,14 @@ END;
         <a class="nav-link mx-2" href="manageUsers.php">Manage Users</a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link mx-2" href="addExercise.php">Add exercise</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link mx-2" href="visualizeUserData.php">Visualize your data</a>
+    </li>
+
     <li class="nav-item ms-3">
         <a class="btn btn-black btn-rounded" href="logout.php">Log out</a>
     </li>
