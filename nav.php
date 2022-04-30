@@ -9,7 +9,6 @@ $extLinks = <<<END
         <!--CSS-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css">
-        <link rel="stylesheet" href="https://mdbootstrap.com/snippets/styles.e41eb5076eefabc7c908.css">
         <link rel="stylesheet" type="text/css" href="Media/css/style.css">
         
         <!--JS-->
@@ -21,6 +20,8 @@ $extLinks = <<<END
 
 END;
 
+
+// DB Connection
 session_name('Website');
 session_start();
 $host       = "localhost";
@@ -39,6 +40,15 @@ if (isset($_SESSION['userID'])) {
         $rowcount=mysqli_num_rows($result);
 }
 
+// Redirect user to index if not logged in and trying to access pages which require an account
+if (isset($memberOnly)) {
+    if (!isset($_SESSION['userID'])) {
+      header('Location: index.php');
+      exit;
+    }
+}
+
+// Creates navbar for all pages
 $navigation = <<<END
     
     <nav class="navbar navbar-expand-lg bg-light navbar-light">
@@ -75,12 +85,9 @@ $navigation = <<<END
                     <li class="nav-item">
                         <a class="nav-link mx-2" href="faq.php">FAQ</a>
                     </li>
-
-
-
-
-
 END;
+
+// Adds login and register buttons if user isn't logged in
     if (!isset($_SESSION['userID'])) {
         $navigation .= <<<END
 
@@ -93,6 +100,8 @@ END;
         </li>
 END;
     }
+
+// Navbar items for user who is logged in and admin
     elseif (isset($_SESSION['userID']) AND ($rowcount != 0)) {
     $navigation .= <<<END
     
@@ -104,12 +113,22 @@ END;
         <a class="nav-link mx-2" href="manageUsers.php">Manage Users</a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link mx-2" href="addExercise.php">Add exercise</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link mx-2" href="visualizeUserData.php">Visualize your data</a>
+    </li>
+
     <li class="nav-item ms-3">
         <a class="btn btn-black btn-rounded" href="logout.php">Log out</a>
     </li>
     
 END;
     }
+
+// Navbar items for regular user who is logged in
     elseif (isset($_SESSION['userID'])) {
         $navigation .= <<<END
 
@@ -127,6 +146,8 @@ END;
         
 END;
     }
+
+// Closing tags
     $navigation .='</ul>';
     $navigation .='</div>';
     $navigation .='</div>';

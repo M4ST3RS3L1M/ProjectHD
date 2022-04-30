@@ -1,4 +1,5 @@
 <?php
+$memberOnly = true;
 include ('nav.php');
 echo $navigation;
 echo $extLinks;

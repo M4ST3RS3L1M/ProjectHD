@@ -9,5 +9,6 @@
       <li class="nav-item"><a href="index.php" class="nav-link px-2 text-muted">Home</a></li>
       <li class="nav-item"><a href="faq.php" class="nav-link px-2 text-muted">FAQs</a></li>
       <li class="nav-item"><a href="about.php" class="nav-link px-2 text-muted">About</a></li>
+      <li class="nav-item"><a href="termsAndConditions.php" class="nav-link px-2 text-muted">Terms&Conditions</a></li>
     </ul>
   </footer>
