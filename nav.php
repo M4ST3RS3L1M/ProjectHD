@@ -20,6 +20,8 @@ $extLinks = <<<END
 
 END;
 
+
+// DB Connection
 session_name('Website');
 session_start();
 $host       = "localhost";
@@ -38,6 +40,15 @@ if (isset($_SESSION['userID'])) {
         $rowcount=mysqli_num_rows($result);
 }
 
+// Redirect user to index if not logged in and trying to access pages which require an account
+if (isset($memberOnly)) {
+    if (!isset($_SESSION['userID'])) {
+      header('Location: index.php');
+      exit;
+    }
+}
+
+// Creates navbar for all pages
 $navigation = <<<END
     
     <nav class="navbar navbar-expand-lg bg-light navbar-light">
@@ -74,12 +85,9 @@ $navigation = <<<END
                     <li class="nav-item">
                         <a class="nav-link mx-2" href="faq.php">FAQ</a>
                     </li>
-
-
-
-
-
 END;
+
+// Adds login and register buttons if user isn't logged in
     if (!isset($_SESSION['userID'])) {
         $navigation .= <<<END
 
@@ -92,6 +100,8 @@ END;
         </li>
 END;
     }
+
+// Navbar items for user who is logged in and admin
     elseif (isset($_SESSION['userID']) AND ($rowcount != 0)) {
     $navigation .= <<<END
     
@@ -117,6 +127,8 @@ END;
     
 END;
     }
+
+// Navbar items for regular user who is logged in
     elseif (isset($_SESSION['userID'])) {
         $navigation .= <<<END
 
@@ -134,6 +146,8 @@ END;
         
 END;
     }
+
+// Closing tags
     $navigation .='</ul>';
     $navigation .='</div>';
     $navigation .='</div>';

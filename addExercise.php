@@ -4,6 +4,7 @@
     <head>
 
         <?php
+        $memberOnly = true;
         include_once('nav.php'); // Needed for db connection
         echo $extLinks;
 

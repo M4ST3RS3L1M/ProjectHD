@@ -3,8 +3,11 @@
 	<head>
 
         <?php
+        $memberOnly = true;
         include_once('nav.php');
         echo $extLinks;
+
+        // CHART QUERIES //
 
         // STEPS
         // Query to get step data
@@ -192,12 +195,15 @@
         ?>
 
         <style>
-                .flex-column .nav-link {
-                    padding: 17px 29px 16px!important;
-                }
-                canvas {
-                    background-color: #222629;
-                }
+            .air {
+                margin: 15px;
+            }
+            .flex-column .nav-link {
+                padding: 17px 29px 16px!important;
+            }
+            canvas {
+                background-color: #222629;
+            }
         </style>
 
         <title>Visualize your data</title>
@@ -215,6 +221,7 @@
                 <div class="row text-center">
                     <h1 class="air">Data overwiev</h1>
                     <h4 class="air">Select a tab</h4>
+                    <hr>
                 </div>
                 <div class="row">
                         
@@ -260,6 +267,7 @@
                         </div>
                     </div>
                 </div>
+                <hr>
             </div>
         </div>
 
