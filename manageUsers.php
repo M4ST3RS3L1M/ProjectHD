@@ -14,8 +14,7 @@ $result = $mysqli->query($sql);
     <table class="manageUsers">
         <thead>
         <tr>
-            <th id="manageUsersHeadsFirst">User ID</th>
-            <th id="manageUsersHeads">Username</th> 
+            <th id="manageUsersHeadsFirst">Username</th> 
             <th id="manageUsersHeads">Password</th>
             <th id="manageUsersHeads">Firstname</th>
             <th id="manageUsersHeads">Lastname</th> 
@@ -29,8 +28,7 @@ $result = $mysqli->query($sql);
             <tr>
         <?php while($row = mysqli_fetch_assoc($result)):
             ?>       
-            <td id="manageUsersBodiesFirst"><?php echo $row['userID']; ?></td>
-            <td id="manageUsersBodies"><?php echo $row['username']; ?></td>
+            <td id="manageUsersBodiesFirst"><?php echo $row['username']; ?></td>
             <td id="manageUsersBodies"><?php echo $row['password']; ?></td>
             <td id="manageUsersBodies"><?php echo $row['fName']; ?></td>
             <td id="manageUsersBodies"><?php echo $row['lName']; ?></td>
