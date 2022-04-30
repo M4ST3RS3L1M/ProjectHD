@@ -151,33 +151,32 @@
                         </div>
                     
                         <div class="row justify-content-md-center air">
-                            <label for="sex" class="form-label text-center text-light">Select your sex</label>
-                            <div class="input-group-text col-md-2">
-                                <input type="radio" name="sex" value="M" id="sexM" class="form-check-input mt-0">
-                                <label class="form-check-label" for="sexM">
+                            <label for="sex" class="form-label text-center text-light">
+                                Select your sex
+                            </label>
+                            <div class="input-group-text col-md-auto">
+                                <input type="radio" name="sex" value="M" id="sexM" class="btn-check">
+                                <label class="btn btn-primary" for="sexM">
                                     Male
                                 </label>
-                            </div>
-                            <div class="input-group-text col-md-2">
-                                <input type="radio" name="sex" value="F" id="sexF" class="form-check-input mt-0">
-                                <label class="form-check-label" for="sexF">
+                                <input type="radio" name="sex" value="F" id="sexF" class="btn-check">
+                                <label class="btn btn-primary" for="sexF">
                                     Female
                                 </label>
-                            </div>
-                            <div class="input-group-text col-md-2">
-                                <input type="radio" name="sex" value="O" id="sexO" class="form-check-input mt-0">
-                                <label class="form-check-label" for="sexO">
+                                <input type="radio" name="sex" value="O" id="sexO" class="btn-check">
+                                <label class="btn btn-primary" for="sexO">
                                     Other
                                 </label>
-                                <br>
                             </div>
                         </div>
 
                         <div class="row justify-content-md-center air">
-                            <input class="form-check-input" type="checkBox" name="terms" id="terms">
-                            <label class="form-check-label col-md-4" for="terms">
-                                I understand and agree with the <a href="TermsAndConditions.php">Terms & Conditions</a> and <a href="PrivacyPolicy.php">Privacy Policy</a>.
-                            </label>
+                            <div class="form-check form-switch col-md-4">
+                                    <input class="form-check-input" type="checkBox" role="switch" name="terms" id="terms">
+                                    <label class="form-check-label" for="terms">
+                                        I understand and agree with the <a href="termsAndConditions.php">Terms & Conditions</a> and <a href="privacyPolicy.php">Privacy Policy</a>.
+                                    </label>
+                            </div>
                         </div>
 
                         
