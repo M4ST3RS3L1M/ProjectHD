@@ -45,6 +45,9 @@ $result = $mysqli->query($sql);
         <?php endwhile; ?>
         </tbody>
     </table>
+    <div id="adduserdiv">
+        <a id="adduserlink" href="addUser.php">add a new user</a>
+    </div>
 </body>
       <?php
          include("footer.php")

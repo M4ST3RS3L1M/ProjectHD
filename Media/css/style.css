@@ -341,3 +341,16 @@ margin-left: 500px;
     color: #1b136c;
     margin-top: 15px;
 }
+
+#adduserlink {
+    font-weight: bold;
+    font-size: 200%;
+    font-variant-caps: petite-caps;
+    color: #1b136c;
+}
+
+#adduserdiv {
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+}
