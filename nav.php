@@ -35,7 +35,7 @@ if (isset($_SESSION['userID'])) {
                 INNER JOIN HD_Admins a ON a.userID = u.userID
                 WHERE u.userID = '{$_SESSION['userID']}'");
 
-        $result=mysqli_query($mysqli,$stmt);
+        $result= $mysqli->query($stmt);
         $rowcount=mysqli_num_rows($result);
 }
 
@@ -97,7 +97,7 @@ END;
     $navigation .= <<<END
     
     <li class="nav-item">
-        <a class="nav-link mx-2" href="adminAnalytics.php">Admin Analytics</a>
+        <a class="nav-link mx-2" href="adminAnalytics.php">Analytics</a>
     </li>
 
     <li class="nav-item">

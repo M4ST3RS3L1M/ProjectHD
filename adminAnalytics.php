@@ -11,7 +11,7 @@ include ('analyticsQueries.php');
 </div>
 </head>
 
-<body style="background-color: #ffffff;">
+<body>
 <script>
   const myChart = new Chart(
     document.getElementById('myChart'),
@@ -19,7 +19,7 @@ include ('analyticsQueries.php');
   );
 </script>
 <h1 id="tableTitles">IP address statistics</h1>
-<table class="IPaddress">
+<table class="analyticsTable">
     <thead>
     <tr>
         <th id="tableHeads">IP address</th>
@@ -41,7 +41,7 @@ include ('analyticsQueries.php');
     </tbody>
 </table>
 <h1 id="tableTitles">Access log</h1>
-<table class="AccessLog">
+<table class="analyticsTable">
     <thead>
     <tr>
         <th id="tableHeads">Username</th>
