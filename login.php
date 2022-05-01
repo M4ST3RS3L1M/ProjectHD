@@ -3,15 +3,16 @@
 	<head>
 
         <?php
-        include('nav.php');
+        include('nav.php'); //Required for db connection.
         echo $extLinks;
+
+        //If username and password has been submited, check if there is a match in the db.
 
         if (isset($_POST['username']) and isset($_POST['password'])) {
 
             $username  = $mysqli->real_escape_string($_POST['username']);
             $pwd       = $mysqli->real_escape_string($_POST['password']);
             $pwd       = substr(md5($pwd), 0, 24);
-            echo $pwd;
 
             $query = "SELECT username, password, userID FROM HD_Users WHERE username='$username' AND password='$pwd'";
             $result = mysqli_query($mysqli, $query);
@@ -44,23 +45,6 @@
     <?php
         echo $navigation;
     ?>
-    
-    <!--<form action="login.php" method="post" id="main">
-        <h1 id="login_h1">BrandName</h1>
-        <div class="login_p">
-            <p>Login to start your journey!</p>
-        </div>
-        <div class="loginbox">
-            <label id="login_label" for="username">Enter your username</label>
-            <input id="login_input" type="text" name="username" placeholder="username">
-            <label id="login_label" for="password">Enter your password</label>
-            <input id="login_input" type="password" name="password" placeholder="password">
-            <button id="login_button" type="submit">Login</button>
-            <div class="login_register_link">
-                <a href="register.php">Dont have an account yet? Sign up</a>
-            </div>
-        </div>
-    </form>-->
 
         <section class="vh-100">
             <div class="container py-4 h-100">
@@ -73,6 +57,8 @@
                                     <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                                     <p class="text-white-50 mb-2">Please enter your username and password to start your journey!</p>
                     
+                                    <!-- The login form is created below. -->
+
                                     <form action="login.php" method="post" name="login" id="main">  
                                         <div class="form mb-4">
                                             <label class="form-label text-white" for="username">Username</label>

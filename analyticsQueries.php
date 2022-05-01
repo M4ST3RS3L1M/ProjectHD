@@ -1,12 +1,14 @@
 <?php 
 
-/* Below is the query for the browser pie chart */
+//Below is the query to retrieve browsernames and number of connections for the browser pie chart.
 
-$sql = "SELECT t2.browserName, COUNT(t1.browserID) 
+$pieChartQuery = "SELECT t2.browserName, COUNT(t1.browserID) 
 FROM HD_WebAnalytics t1 
 INNER JOIN HD_Browser t2 ON t1.browserID = t2.browserID 
 GROUP BY t2.browserID";
-$result = $mysqli->query($sql);
+$result = $mysqli->query($pieChartQuery);
+
+//The results of the query are put into two different arrays, labels and data for the pie chart.
 
 while($row = mysqli_fetch_assoc($result))
 {
@@ -15,6 +17,8 @@ while($row = mysqli_fetch_assoc($result))
 }
 
 ?>
+
+<!-- Below is the script that creates and defines the pie chart. -->
 
 <script>
   const labels = <?php echo json_encode($labels); ?>;
@@ -59,15 +63,17 @@ while($row = mysqli_fetch_assoc($result))
 
 <?php
 
-/* Below is the query for the IP address connections */
+//Below is the query to retrieve IP address information for the IP address connections statistics.
 
-$sql = "SELECT IP_Address, COUNT(IP_Address), max(timestamp) 
+$ipQuery = "SELECT IP_Address, COUNT(IP_Address), max(timestamp) 
         FROM HD_WebAnalytics 
         WHERE IP_Address IS NOT NULL 
         GROUP BY IP_Address 
         ORDER BY (COUNT(IP_Address)) DESC, date(timestamp)";
 
-$result = $mysqli->query($sql);
+$result = $mysqli->query($ipQuery);
+
+//The results of the query are put into three different arrays, to be echoed in the statistics table.
 
 while($row = mysqli_fetch_assoc($result))
 {
@@ -76,9 +82,9 @@ while($row = mysqli_fetch_assoc($result))
   $timestamp[] = $row["max(timestamp)"];
 }
 
-/* Below is the query for the access log */
+//Below is the query to retrieve user information for the access log.
 
-$sql = "SELECT u.username, pi.pageTitle, date(wa.timestamp), time(wa.timestamp) 
+$accessLogQuery = "SELECT u.username, pi.pageTitle, date(wa.timestamp), time(wa.timestamp) 
         FROM HD_WebAnalytics wa 
         INNER JOIN HD_UserRequest ur ON ur.requestID = wa.requestID 
         INNER JOIN HD_Users u ON u.userID = ur.userID 
@@ -86,7 +92,9 @@ $sql = "SELECT u.username, pi.pageTitle, date(wa.timestamp), time(wa.timestamp)
         ORDER BY (date(wa.timestamp)) DESC, (time(wa.timestamp)) DESC
         LIMIT 10";
 
-$result = $mysqli->query($sql);
+$result = $mysqli->query($accessLogQuery);
+
+//The results of the query are put into four different arrays, to be echoed in the access log table.
 
 while($row = mysqli_fetch_assoc($result))
 {
