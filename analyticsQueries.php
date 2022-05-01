@@ -37,7 +37,7 @@ while($row = mysqli_fetch_assoc($result))
       plugins: {
         title: {
           display: true,
-          color: "black",
+          color: "#1b136c",
           text: 'Most common browsers using the website',  
           font: {
             size: 25,

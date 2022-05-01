@@ -3,8 +3,11 @@
 	<head>
 
         <?php
+        $memberOnly = true;
         include_once('nav.php');
         echo $extLinks;
+
+        // CHART QUERIES //
 
         // STEPS
         // Query to get step data
@@ -15,19 +18,14 @@
             WHERE hd.userID= {$_SESSION['userID']} AND ht.healthType='steps'"
         );
 
-        $steps = "";
-        $date = "";
+        $phpStepData = array();
+        $phpStepDate = array();
         // Extracting data from returned object
         $result = mysqli_query($mysqli, $stepQuery);
         while($obj=$result->fetch_object()){
-            $steps .= $obj->amount . " ";
-            $date .= $obj->date . " ";
+            array_push($phpStepData, $obj->amount);
+            array_push($phpStepDate, $obj->date);
         }
-        // Trim and convert to array
-        $steps = trim($steps);
-        $date = trim($date);
-        $phpSteps = explode(' ', $steps);
-        $phpStepDate = explode(' ', $date);
 
 
 
@@ -40,19 +38,14 @@
             WHERE hd.userID= {$_SESSION['userID']} AND ht.healthType='calories'"
         );
 
-        $calories = "";
-        $date = "";
+        $phpCalorieData = array();
+        $phpCalorieDate = array();
         // Extracting data from returned object
         $result = mysqli_query($mysqli, $calorieQuery);
         while($obj=$result->fetch_object()){
-            $calories .= $obj->amount . " ";
-            $date .= $obj->date . " ";
+            array_push($phpCalorieData, $obj->amount);
+            array_push($phpCalorieDate, $obj->date);
         }
-        // Trim and convert to array
-        $calories = trim($calories);
-        $date = trim($date);
-        $phpCalories = explode(' ', $calories);
-        $phpCalorieDate = explode(' ', $date);
 
 
 
@@ -65,21 +58,16 @@
             WHERE ed.userID= {$_SESSION['userID']} AND et.exerciseType='walking'"
         );
 
-        $walkDist = "";
-        $date = "";
+        $phpWalkData = array();
+        $phpWalkDate = array();
         // Extracting data from returned object
         $result = mysqli_query($mysqli, $walkDQuery);
         while($obj=$result->fetch_object()){
-            $walkDist .= $obj->distance . " ";
-            $time = $obj->startTime;
-            $time = substr($time, 0, 10); // To just display the date
-            $date .= $time . " ";
+            $walkDate = $obj->startTime;
+            $walkDate = substr($walkDate, 0, 10); // To just display the date
+            array_push($phpWalkData, $obj->distance);
+            array_push($phpWalkDate, $walkDate);
         }
-        // Trim and convert to array
-        $walkDist = trim($walkDist);
-        $date = trim($date);
-        $phpWalkDist = explode(' ', $walkDist);
-        $phpWalkDate = explode(' ', $date);
 
 
 
@@ -92,25 +80,20 @@
             WHERE ed.userID= {$_SESSION['userID']} AND et.exerciseType='cycling'"
         );
 
-        $cyclingDist = "";
-        $date = "";
+        $phpCyclingData = array();
+        $phpCyclingDate = array();
         // Extracting data from returned object
         $result = mysqli_query($mysqli, $cyclingDQuery);
         while($obj=$result->fetch_object()){
-            $cyclingDist .= $obj->distance . " ";
-            $time = $obj->startTime;
-            $time = substr($time, 0, 10); // To just display the date
-            $date .= $time . " ";
+            $cycleDate = $obj->startTime;
+            $cycleDate = substr($cycleDate, 0, 10); // To just display the date
+            array_push($phpCyclingData, $obj->distance);
+            array_push($phpCyclingDate, $cycleDate);
         }
-        // Trim and convert to array
-        $cyclingDist = trim($cyclingDist);
-        $date = trim($date);
-        $phpCyclingDist = explode(' ', $cyclingDist);
-        $phpCyclingDate = explode(' ', $date);
 
 
 
-        // SLEEP
+        // SLEEP AND DURATION
         // Query to get sleep data
         $bedtimeQuery = (
             "SELECT bedTime, wakeTime
@@ -119,6 +102,8 @@
         );
 
         $phpSleepData = array();
+        $phpSleepDuration = array();
+        $sleep = array();
         $date = "";
         // Extracting data from returned object
         $result = mysqli_query($mysqli, $bedtimeQuery);
@@ -126,12 +111,34 @@
             $returnBedtime = $obj->bedTime;
             $returnWakeUp = $obj->wakeTime;
 
-            $sleep = substr($returnBedtime, 11) . " "; // Get bedtime-part of returned data
             $date .= substr($returnBedtime, 0, 10) . " "; // Get date-part of returned data
-            $sleep .= substr($returnWakeUp, 11); // Get wakeup-part of returned data
-            $sleep = explode(' ', $sleep); // Make array out of bed-and-wakeup-time
+            $bedtime = new DateTime(substr($returnBedtime, 11)); // Get bedtime-part of returned data
+            $waketime = new DateTime(substr($returnWakeUp, 11)); // Get wakeup-part of returned data
 
+            array_push($sleep, $bedtime);  // Put bedtime into sleep array
+            array_push($sleep, $waketime);  // Put waketime into sleep array
+
+            if ($bedtime > $waketime) { // If bedtime is before midnight
+                // Calculate hours slept before midnight
+                $timeToMidnight = $bedtime->diff(new DateTime("24:00:00"));
+                $hoursToMidnight = $timeToMidnight->h + ($timeToMidnight->i/60) + ($timeToMidnight->s/3600);
+
+                // Calculate hourse slept after midnight
+                $remainingHours = new DateTime("00:00:00");
+                $remainingHours = $remainingHours->diff($waketime);
+                $remainingHours = $remainingHours->h + ($remainingHours->i/60) + ($remainingHours->s/3600);
+                
+                // Adds hours together for total sleep duration
+                $sleepDuration = $hoursToMidnight + $remainingHours;
+            }
+            else { //If bedtime is after midnight
+                // Calculate total sleep duration
+                $timeSlept = $waketime->diff($bedtime);
+                $sleepDuration = $timeSlept->h + ($timeSlept->i/60) + ($timeSlept->s/3600);
+            }
+            
             array_push($phpSleepData, $sleep); //Put one-night-array into many-nights-array
+            array_push($phpSleepDuration, $sleepDuration);
 /*
             $keys = array_keys($phpSleepData);
             for($i = 0; $i < count($phpSleepData); $i++) {
@@ -147,39 +154,56 @@
         $phpSleepDate = explode(' ', $date);
 
 
-            // WAKE-UP TIME
-            // Query to get wake-up time data
-            $wakeUpQuery = (
-                "SELECT wakeTime
-                FROM HD_SleepData
-                WHERE userID= {$_SESSION['userID']}"
-            );
 
-            $wakeUpTime = "";
-            $date = "";
-            // Extracting data from returned object
-            $result = mysqli_query($mysqli, $wakeUpQuery);
-            while($obj=$result->fetch_object()){
-                $returnData = $obj->wakeTime;
-                $wakeUpTime .= substr($returnData, 11) . " "; // Get wake-up-part of returned data
-                $date .= substr($returnData, 0, 10) . " "; // Get date-part of returned data
-            }
+        // NAPS
+        // Query to get nap data
+        $napQuery = (
+            "SELECT date, napsToday
+            FROM HD_NapData
+            WHERE userID= {$_SESSION['userID']}"
+        );
 
-            // Trim and convert to array
-            $wakeUpTime = trim($wakeUpTime);
-            $date = trim($date);
-            $phpWakeUpTime = explode(' ', $wakeUpTime);
-            $phpWakeUpDate = explode(' ', $date);
+        $phpNapData = array();
+        $phpNapDate = array();
+        // Extracting data from returned object
+        $result = mysqli_query($mysqli, $napQuery);
+        while($obj=$result->fetch_object()){
+            array_push($phpNapData, $obj->napsToday);
+            array_push($phpNapDate, $obj->date);
+        }
+
+
+
+        // WEIGHT
+        // Query to get weight data
+        $weightQuery = (
+            "SELECT hd.amount, hd.date
+            FROM HD_HealthData hd
+            JOIN HD_HealthType ht ON hd.healthTypeID = ht.healthTypeID
+            WHERE hd.userID= {$_SESSION['userID']} AND ht.healthType='weight'"
+        );
+
+        $phpWeightData = array();
+        $phpWeightDate = array();
+        // Extracting data from returned object
+        $result = mysqli_query($mysqli, $weightQuery);
+        while($obj=$result->fetch_object()){
+            array_push($phpWeightData, $obj->amount);
+            array_push($phpWeightDate, $obj->date);
+        }
 
         ?>
 
         <style>
-                .flex-column .nav-link {
-                    padding: 17px 29px 16px!important;
-                }
-                canvas {
-                    background-color: #222629;
-                }
+            .air {
+                margin: 15px;
+            }
+            .flex-column .nav-link {
+                padding: 17px 29px 16px!important;
+            }
+            canvas {
+                background-color: #222629;
+            }
         </style>
 
         <title>Visualize your data</title>
@@ -197,6 +221,7 @@
                 <div class="row text-center">
                     <h1 class="air">Data overwiev</h1>
                     <h4 class="air">Select a tab</h4>
+                    <hr>
                 </div>
                 <div class="row">
                         
@@ -208,7 +233,6 @@
                             <button class="nav-link" id="v-pills-walking-tab" data-bs-toggle="pill" data-bs-target="#v-pills-walking" type="button" role="tab" aria-controls="v-pills-walking" aria-selected="false">Daily walking dist.</button>
                             <button class="nav-link" id="v-pills-cycling-tab" data-bs-toggle="pill" data-bs-target="#v-pills-cycling" type="button" role="tab" aria-controls="v-pills-cycling" aria-selected="false">Daily cycling dist.</button>
                             <button class="nav-link" id="v-pills-bedtime-tab" data-bs-toggle="pill" data-bs-target="#v-pills-bedtime" type="button" role="tab" aria-controls="v-pills-bedtime" aria-selected="false">Sleeping times</button>
-                            <button class="nav-link" id="v-pills-wakeup-tab" data-bs-toggle="pill" data-bs-target="#v-pills-wakeup" type="button" role="tab" aria-controls="v-pills-wakeup" aria-selected="false">Wake-up time</button>
                             <button class="nav-link" id="v-pills-sleep-tab" data-bs-toggle="pill" data-bs-target="#v-pills-sleep" type="button" role="tab" aria-controls="v-pills-sleep" aria-selected="false">Sleep duration</button>
                             <button class="nav-link" id="v-pills-nap-tab" data-bs-toggle="pill" data-bs-target="#v-pills-nap" type="button" role="tab" aria-controls="v-pills-nap" aria-selected="false">Daily naps</button>
                             <button class="nav-link" id="v-pills-weight-tab" data-bs-toggle="pill" data-bs-target="#v-pills-weight" type="button" role="tab" aria-controls="v-pills-weight" aria-selected="false">Weight</button>
@@ -232,11 +256,8 @@
                         <div class="tab-pane fade" id="v-pills-bedtime" role="tabpanel" aria-labelledby="v-pills-bedtime-tab">
                             <canvas id="sleep-chart"></canvas>
                         </div>
-                        <div class="tab-pane fade" id="v-pills-wakeup" role="tabpanel" aria-labelledby="v-pills-wakeup-tab">
-                            <canvas id="wakeup-chart"></canvas>
-                        </div>
                         <div class="tab-pane fade" id="v-pills-sleep" role="tabpanel" aria-labelledby="v-pills-sleep-tab">
-                            <canvas id="sleep-chart"></canvas>
+                            <canvas id="sleepDur-chart"></canvas>
                         </div>
                         <div class="tab-pane fade" id="v-pills-nap" role="tabpanel" aria-labelledby="v-pills-nap-tab">
                             <canvas id="nap-chart"></canvas>
@@ -246,6 +267,7 @@
                         </div>
                     </div>
                 </div>
+                <hr>
             </div>
         </div>
 
@@ -266,7 +288,7 @@
             // Steps chart
             let stepsChart = document.getElementById("steps-chart").getContext("2d");
             
-            let stepData = <?php echo json_encode($phpSteps); ?>;
+            let stepData = <?php echo json_encode($phpStepData); ?>;
             let stepLabels = <?php echo json_encode($phpStepDate) ?>; 
 
             let stepsChart1 = new Chart(stepsChart, {
@@ -297,7 +319,7 @@
             // Calories chart
             let caloriesChart = document.getElementById("energy-chart").getContext("2d");
             
-            let calorieData = <?php echo json_encode($phpCalories); ?>;
+            let calorieData = <?php echo json_encode($phpCalorieData); ?>;
             let calorieLabels = <?php echo json_encode($phpCalorieDate) ?>;
             //let stepColors = "#61892F"; // FIX THESE
             //let stepBgColor = "#86C232"; // ----
@@ -334,7 +356,7 @@
             // Walking distance chart
             let walkChart = document.getElementById("walking-chart").getContext("2d");
             
-            let walkData = <?php echo json_encode($phpWalkDist); ?>;
+            let walkData = <?php echo json_encode($phpWalkData); ?>;
             let walkLabels = <?php echo json_encode($phpWalkDate) ?>; 
 
             let walkChart1 = new Chart(walkChart, {
@@ -365,7 +387,7 @@
             // Cycling distance chart
             let cyclingChart = document.getElementById("cycling-chart").getContext("2d");
             
-            let cyclingData = <?php echo json_encode($phpCyclingDist); ?>;
+            let cyclingData = <?php echo json_encode($phpCyclingData); ?>;
             let cyclingLabels = <?php echo json_encode($phpCyclingDate) ?>; 
 
             let cyclingChart1 = new Chart(cyclingChart, {
@@ -410,18 +432,14 @@
                         fill: false,
                         borderColor: dataColor,
                         backgroundColor: dataBgColor,
-                        tension: 0.1
                     }]
                 },
                 options: {
-                    yAxes: [{
-                        ticks: {
-                            callback: function(value) {
-                                //"HH:mm:ss"
-                                return moment(value).format("hh:mm:ss");
-                            }
+                    scales: {
+                        y: {
+                            beginAtZero: true
                         }
-                    }],
+                    },
                     plugins: {
                         title: {
                             display: true,
@@ -432,21 +450,93 @@
             });
 
 
-/*
-            // WAKE-UP-TIME
-            // Wake-up-time chart
-            let wakeUpChart = document.getElementById("wakeup-chart").getContext("2d");
-            
-            let wakeUpData = <?php echo json_encode($phpWakeUpTime); ?>;
-            let wakeUpLabels = <?php echo json_encode($phpWakeUpDate) ?>; 
 
-            let wakeUpChart1 = new Chart(wakeUpChart, {
+            // SLEEP DURATION
+            // Sleep Duration chart
+            let sleepDurChart = document.getElementById("sleepDur-chart").getContext("2d");
+            
+            let sleepDurData = <?php echo json_encode($phpSleepDuration); ?>;
+            let sleepDurLabels = <?php echo json_encode($phpSleepDate) ?>; 
+
+            let sleepDurChart1 = new Chart(sleepDurChart, {
+                type: "bar",
+                data: {
+                    labels: sleepDurLabels,
+                    datasets: [ {
+                        label: "Sleeping duration (h)",
+                        data: sleepDurData,
+                        fill: false,
+                        borderColor: dataColor,
+                        backgroundColor: dataBgColor,
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: "Hours slept per day"
+                        }    
+                    }
+                }
+            });
+
+
+
+            // NAPS
+            // Nap chart
+            let napChart = document.getElementById("nap-chart").getContext("2d");
+            
+            let napData = <?php echo json_encode($phpNapData); ?>;
+            let napLabels = <?php echo json_encode($phpNapDate) ?>; 
+
+            let napChart1 = new Chart(napChart, {
+                type: "bar",
+                data: {
+                    labels: napLabels,
+                    datasets: [ {
+                        label: "Amount of naps",
+                        data: napData,
+                        fill: false,
+                        borderColor: dataColor,
+                        backgroundColor: dataBgColor,
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: "Naps per day"
+                        }    
+                    }
+                }
+            });
+
+
+
+            // WEIGHT
+            // Weight chart
+            let weightChart = document.getElementById("weight-chart").getContext("2d");
+            
+            let weightData = <?php echo json_encode($phpWeightData); ?>;
+            let weightLabels = <?php echo json_encode($phpWeightDate) ?>; 
+
+            let weightChart1 = new Chart(weightChart, {
                 type: "line",
                 data: {
-                    labels: wakeUpLabels,
+                    labels: weightLabels,
                     datasets: [ {
-                        label: "Cycling distance (km)",
-                        data: wakeUpData,
+                        label: "Weight",
+                        data: weightData,
                         fill: false,
                         borderColor: dataColor,
                         backgroundColor: dataBgColor,
@@ -454,15 +544,14 @@
                     }]
                 },
                 options: {
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: "Distance cycled per day"
-                        }    
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
             });
-*/
+
         </script>
 
     </body>
@@ -478,13 +567,13 @@ VALUES
 ('26', '3', '7.80', '2022-04-25 00:00:00','2022-04-25 23:40:38'),
 ('26', '3', '10.60', '2022-04-26 00:00:00','2022-04-26 23:59:59')
 
-INSERT INTO `HD_SleepData` (`userID`, `bedTime`, `wakeTime`)
+INSERT INTO `HD_HealthData` (`userID`, `healthTypeID`, `amount`, `date`)
 VALUES
-('26', '2022-04-20 23:46:00','2022-04-21 10:33:59'),
-('26', '2022-04-21 22:31:00','2022-04-22 09:24:59'),
-('26', '2022-04-22 23:02:00','2022-04-23 09:15:59'),
-('26', '2022-04-23 23:12:00','2022-04-24 10:44:59'),
-('26', '2022-04-24 23:48:00','2022-04-25 08:51:53'),
-('26', '2022-04-25 22:53:00','2022-04-26 08:40:38'),
-('26', '2022-04-26 23:55:00','2022-04-27 09:30:59')
+('26', '3', '82.6', '2022-04-20'),
+('26', '3', '81.45', '2022-04-21'),
+('26', '3', '82.11', '2022-04-22'),
+('26', '3', '81.8', '2022-04-23'),
+('26', '3', '81.23', '2022-04-24'),
+('26', '3', '80.96', '2022-04-25'),
+('26', '3', '80.13', '2022-04-26')
 -->

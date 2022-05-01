@@ -9,10 +9,6 @@
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        // Check to see if user is already logged in
-        if (isset($_SESSION['username']) && isset($_SESSION['userid'])) {
-            header("Location: ./index.php");
-        }
 
         // Query to see if username is already in db
         if (isset($_POST['username_check'])) {
@@ -86,7 +82,7 @@
         <link rel="stylesheet" href="Media/css/jquery.passwordRequirements.css" />
         <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker.min.css'>   
 
-        <title>Register</title>
+        <title >Add user</title>
 
 	</head>
 
@@ -99,8 +95,7 @@
 		        
             </div>
             <div class="row text-center">
-                <h1 class="air">Register your account</h1>
-                <h4 class="air">Get started today!</h4>
+                <h1 id="updateuserH1">add a new user</h1>
             </div>
             <div class="row">
                 <div class="col">
@@ -123,7 +118,7 @@
                             <input type="password" id="repeat_password" class="form-control" name="repeat_password" placeholder="Repeat Password" autocomplete="off" required />
                         </div>
                         <div id="passwordHelpBlock" class="col-md-12 form-text">
-                            Your password must be 8-20 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character. It must also not contain spaces.
+                            The password must be 8-20 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character. It must also not contain spaces.
                         </div>
 
                         <div class="col-md-6">
@@ -152,7 +147,7 @@
                     
                         <div class="row justify-content-md-center air">
                             <label for="sex" class="form-label text-center text-light">
-                                Select your sex
+                                Select the users sex
                             </label>
                             <div class="input-group-text col-md-auto">
                                 <input type="radio" name="sex" value="M" id="sexM" class="btn-check">
@@ -168,28 +163,11 @@
                                     Other
                                 </label>
                             </div>
-                        </div>
-
-                        <div class="row justify-content-md-center air">
-                            <div class="form-check form-switch col-md-4">
-                                    <input class="form-check-input" type="checkBox" role="switch" name="terms" id="terms">
-                                    <label class="form-check-label" for="terms">
-                                        I understand and agree with the <a href="termsAndConditions.php">Terms & Conditions</a> and <a href="privacyPolicy.php">Privacy Policy</a>.
-                                    </label>
-                            </div>
-                        </div>
-
-                        
-
+                        </div>                        
                         
                         <div class="row justify-content-md-center air">
                             <div id="error_msg" class="col-md-4 air req_field"></div>
-                            <input type="submit" id="reg_btn" class="btn btn-primary col-md-10" name="register_button" value="Create Account" />
-                            <div class="row justify-content-md-center">
-                                <span id="curr_usr" class="form-text col-md text-center">
-                                    Already have an account? <a href="login.php">Login here</a>
-                                </span>
-                            </div>
+                            <input type="submit" id="reg_btn" class="btn btn-primary col-md-10" name="register_button" value="Add user" />
                         </div>
                         
                     </form>

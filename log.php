@@ -1,5 +1,6 @@
 <?php
 
+$memberOnly = true;
 function getBrowserName($userAgent) {
     if(strpos($userAgent, "Opera") || strpos($userAgent, "OPR/"))
     {
