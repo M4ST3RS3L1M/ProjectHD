@@ -13,7 +13,7 @@
         echo $navigation;
         ?>
 
-        <div class="container">
+        <div class="container text-black-50">
             <div class="row justify-content-md-center text-center">
                 <div class="col-md-auto welcometext">
                     <h1>Privacy Policy</h1>
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-6 align-self-start text-light">
+                <div class="col-6 align-self-start">
                     <p>
                     Donec eu augue aliquet est ultricies rhoncus. Aliquam id tellus at mi suscipit suscipit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In lacinia rutrum sem vitae cursus. Phasellus ultrices aliquam facilisis. Fusce ultricies sodales magna, a ultrices tellus fringilla ut. Sed at ultricies eros, ut porta mi. Maecenas lacinia leo eu purus commodo gravida. Sed condimentum mattis enim in fringilla. Suspendisse pretium nibh non metus malesuada, a imperdiet metus venenatis. Vivamus eget libero vitae magna accumsan bibendum nec id enim. Donec ligula tellus, ornare tincidunt tempor ut, porttitor nec ante. Ut porta at tellus vitae ullamcorper.
                     </p>
@@ -34,7 +34,7 @@
                     Integer et purus sed ante ultrices pellentesque id vitae leo. Praesent vestibulum facilisis felis mattis maximus. Praesent metus quam, pharetra et auctor in, finibus sit amet dolor. Praesent volutpat bibendum nisi sit amet egestas. Integer rutrum eleifend mi. Etiam molestie, lorem eleifend facilisis placerat, mauris lacus aliquet urna, non hendrerit massa tortor quis lectus. In malesuada odio eu quam tempus sollicitudin. Nam rutrum ultricies dignissim. Mauris tincidunt mauris eget condimentum congue. Pellentesque eget sapien posuere, pellentesque turpis nec, cursus orci. Proin euismod interdum elit. Nulla venenatis velit ut gravida aliquet.
                     </p>
                 </div>
-                <div class="col-6 align-self-start text-light">
+                <div class="col-6 align-self-start">
                     <p>
                     Phasellus et ex dui. Vestibulum dictum ipsum odio. Integer lacus erat, convallis sit amet tempus eget, suscipit sit amet ex. Ut iaculis eget odio non vehicula. Proin volutpat cursus arcu vitae molestie. Nullam cursus, mi nec eleifend imperdiet, ante ex vehicula est, vel ornare ante velit id velit. Phasellus vitae sapien dapibus magna ullamcorper efficitur eget at eros. Donec sollicitudin, velit nec fermentum tempus, augue arcu malesuada ante, ac euismod justo elit id massa. Praesent elementum metus eget mauris lacinia, quis sollicitudin est tempus. Aliquam vel cursus quam.
                     </p>

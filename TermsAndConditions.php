@@ -13,7 +13,7 @@
         echo $navigation;
         ?>
 
-        <div class="container">
+        <div class="container text-black-50">
             <div class="row justify-content-md-center text-center">
                 <div class="col-md-auto welcometext">
                     <h1>Terms & Conditions</h1>
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-6 align-self-start text-light">
+                <div class="col-6 align-self-start">
                     <p>
                     1. In at mattis nulla, et congue elit. Fusce volutpat, metus in ornare cursus, lectus massa gravida lectus, in scelerisque lectus massa a massa. Pellentesque porttitor nisl justo, mollis maximus nibh faucibus a. Proin interdum aliquet porttitor. Mauris feugiat hendrerit dui, at blandit dui laoreet et. Cras dignissim, tortor elementum sollicitudin pulvinar, ipsum ex venenatis lacus, semper dictum ligula lectus sit amet diam. Morbi ipsum dolor, aliquet id diam vel, accumsan cursus quam. Morbi tempus gravida odio vel posuere. Sed iaculis, est sed rutrum venenatis, elit neque aliquam metus, vel vulputate tellus eros suscipit diam. Nullam finibus malesuada ex et aliquam. Sed at fringilla diam. Suspendisse sed massa vestibulum, lacinia tellus at, placerat ante. Aliquam erat volutpat. Integer iaculis, tellus quis dapibus ornare, ante eros blandit est, sed placerat nunc velit non lorem.
                     </p>
@@ -34,7 +34,7 @@
                     3. Vivamus in dapibus nulla. Integer egestas lobortis tristique. Vestibulum vitae commodo magna. Proin nec suscipit nunc. Cras tristique nisi at tellus viverra ultricies. Maecenas laoreet risus nec odio mollis, et venenatis odio pellentesque. Nam sed dictum ante. Aliquam a diam ut est sagittis congue. Sed accumsan nec mi nec lobortis. Nam euismod sapien at semper hendrerit. Ut feugiat vestibulum orci eu volutpat. Ut porta tincidunt enim, a dictum ante sagittis nec. Aliquam blandit libero et ante scelerisque porttitor. Proin nisl risus, cursus lobortis feugiat eget, efficitur suscipit enim.Donec ultricies leo lectus, sit amet mattis nunc consectetur ut. Vivamus tincidunt imperdiet fermentum. Nullam at nisi augue. Etiam porta ornare lorem. Aliquam sagittis nulla et enim tempor aliquam. Pellentesque ante massa, viverra lacinia semper eu, fermentum et magna. Proin commodo id justo a luctus.
                     </p>
                 </div>
-                <div class="col-6 align-self-start text-light">
+                <div class="col-6 align-self-start">
                     <p>
                     4. Maecenas non consectetur mauris. Mauris neque enim, suscipit a viverra sit amet, rhoncus a felis. Nam dapibus augue libero, non faucibus velit vehicula non. Curabitur quis tempus dui. Donec aliquam felis odio, et mollis magna ullamcorper convallis. Maecenas vitae auctor ligula. Vivamus fringilla ligula id mattis tincidunt. Suspendisse potenti. Integer pellentesque libero in aliquet egestas.
                     </p>
