@@ -1,5 +1,5 @@
 <?php 
-
+$memberOnly = true;
 //Below is the query to retrieve browsernames and number of connections for the browser pie chart.
 
 $pieChartQuery = "SELECT t2.browserName, COUNT(t1.browserID) 

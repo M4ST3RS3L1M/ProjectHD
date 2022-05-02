@@ -219,7 +219,7 @@
 		        
                 </div>
                 <div class="row text-center">
-                    <h1 class="air">Data overwiev</h1>
+                    <h1 class="air">Data overview</h1>
                     <h4 class="air">Select a tab</h4>
                     <hr>
                 </div>

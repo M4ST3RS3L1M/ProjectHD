@@ -22,7 +22,7 @@ $(document).ready(function() {
                     password:password},
                 success:function(response) {
                     if(response.includes('cred--match')) {
-                        window.location.href = 'index.php';
+                        window.location.href = 'visualizeUserData.php';
                     }
                     else {
                         $('#error_msg').text("Wrong username or password. Try again");

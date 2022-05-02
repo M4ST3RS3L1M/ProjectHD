@@ -1,4 +1,5 @@
 <?php
+$memberOnly = true;
 include ('nav.php'); //Required for db connection.
 echo $navigation;
 echo $extLinks;

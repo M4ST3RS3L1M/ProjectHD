@@ -3,6 +3,7 @@
 	<head>
 
         <?php
+        $memberOnly = true;
         require_once('nav.php'); //Required for db connection.
         echo $extLinks;
 

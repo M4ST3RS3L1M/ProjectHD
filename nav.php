@@ -74,22 +74,24 @@ $navigation = <<<END
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto align-items-center">
 
-                    <li class="nav-item">
-                        <a class="nav-link mx-2" href="index.php">Home</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link mx-2" href="about.php">About</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link mx-2" href="faq.php">FAQ</a>
-                    </li>
+                    
 END;
 
 // Adds login and register buttons if user isn't logged in
     if (!isset($_SESSION['userID'])) {
         $navigation .= <<<END
+
+        <li class="nav-item">
+        <a class="nav-link mx-2" href="index.php">Home</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link mx-2" href="about.php">About</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link mx-2" href="faq.php">FAQ</a>
+        </li>
 
         <li class="nav-item ms-3">
             <a class="btn btn-black btn-rounded" href="login.php">Sign in</a>
@@ -106,6 +108,14 @@ END;
     $navigation .= <<<END
     
     <li class="nav-item">
+        <a class="nav-link mx-2" href="visualizeUserData.php">Visualize your data</a>
+    </li>
+
+    <li class="nav-item">
+    <a class="nav-link mx-2" href="addExercise.php">Add exercise</a>
+    </li>
+
+    <li class="nav-item">
         <a class="nav-link mx-2" href="adminAnalytics.php">Analytics</a>
     </li>
 
@@ -114,11 +124,11 @@ END;
     </li>
 
     <li class="nav-item">
-        <a class="nav-link mx-2" href="addExercise.php">Add exercise</a>
+    <a class="nav-link mx-2" href="about.php">About</a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link mx-2" href="visualizeUserData.php">Visualize your data</a>
+        <a class="nav-link mx-2" href="faq.php">FAQ</a>
     </li>
 
     <li class="nav-item ms-3">
@@ -133,11 +143,19 @@ END;
         $navigation .= <<<END
 
         <li class="nav-item">
+            <a class="nav-link mx-2" href="visualizeUserData.php">Visualize your data</a>
+        </li>
+        
+        <li class="nav-item">
             <a class="nav-link mx-2" href="addExercise.php">Add exercise</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link mx-2" href="visualizeUserData.php">Visualize your data</a>
+            <a class="nav-link mx-2" href="about.php">About</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link mx-2" href="faq.php">FAQ</a>
         </li>
       
         <li class="nav-item ms-3">

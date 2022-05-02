@@ -1,4 +1,5 @@
 <?php
+$memberOnly = true;
 include('nav.php'); //Required for db connection.
 
 //Query to delete the selected user from the db.
