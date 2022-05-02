@@ -194,7 +194,7 @@ $(document).ready(function() {
                 event.preventDefault();
                 
                 // Gets data from fields when reg_bth is clicked
-                $('#reg_btn').on('click', function() {
+                $('#add_btn').on('click', function() {
                     var username = $('#username').val();
                     var password = $('#password').val();
                     var repeat_password = $('#repeat_password').val();
