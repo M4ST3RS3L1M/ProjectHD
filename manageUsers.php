@@ -1,16 +1,21 @@
 <?php
 $memberOnly = true;
-include ('nav.php');
+include ('nav.php'); //Required for db connection.
 echo $navigation;
 echo $extLinks;
 
-$sql = "SELECT * FROM HD_Users";
-$result = $mysqli->query($sql);
+//Below is the query to retrieve information about registered users.
+
+$userInformationQuery = "SELECT * FROM HD_Users";
+$result = $mysqli->query($userInformationQuery);
 
 ?>
 <head>
 </head>
 <body>
+
+    <!-- The user information table for the admins is created below. -->
+
     <table class="manageUsers">
         <thead>
         <tr>
@@ -26,6 +31,10 @@ $result = $mysqli->query($sql);
         </thead>
         <tbody>
             <tr>
+
+        <!-- For each row of user information, seven columns are created 
+           with the corresponding values being echoed as the content. -->
+
         <?php while($row = mysqli_fetch_assoc($result)):
             ?>       
             <td id="manageUsersBodiesFirst"><?php echo $row['username']; ?></td>
@@ -36,6 +45,10 @@ $result = $mysqli->query($sql);
             <td id="manageUsersBodies"><?php echo $row['eMail']; ?></td>
             <td id="manageUsersBodies"><?php echo $row['sex']; ?></td>
             <td id="manageUsersBodiesLast">
+
+                <!-- At the end of every row, two links allow the admins to update or remove the user.
+                     The userID is sent to the linked php files to ensure that the correct user is being updated or removed. -->
+
                 <a href="updateUsers.php?id=<?php echo $row['userID'] ?>">Update user</a><br>
                 <a href="deleteUsers.php?id=<?php echo $row['userID'] ?>" onclick="return confirm('WARNING! All information regarding this user will be removed, including logs and statistics. This cannot be undone. Are you sure?')" style="color: #FF0000;">Remove user</a>
             </td>
@@ -43,6 +56,9 @@ $result = $mysqli->query($sql);
         <?php endwhile; ?>
         </tbody>
     </table>
+
+    <!-- Another link is located below the table, which allow admins to add new users. -->
+
     <div id="adduserdiv">
         <a id="adduserlink" href="addUser.php">add a new user</a>
     </div>

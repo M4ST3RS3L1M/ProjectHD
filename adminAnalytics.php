@@ -1,9 +1,9 @@
 <?php
 $memberOnly = true;
-include ('nav.php');
+include ('nav.php'); //Required for db connection.
 echo $navigation;
 echo $extLinks;
-include ('analyticsQueries.php');
+include ('analyticsQueries.php'); //Includes all the queries that are needed.
 ?>
 
 <head>
@@ -13,12 +13,18 @@ include ('analyticsQueries.php');
 </head>
 
 <body>
+
+<!-- The pie chart is called below. -->
+
 <script>
   const myChart = new Chart(
     document.getElementById('myChart'),
     config
   );
 </script>
+
+<!-- The IP address statistics table is created below. -->
+
 <h1 id="tableTitles">IP address statistics</h1>
 <table class="analyticsTable">
     <thead>
@@ -30,6 +36,10 @@ include ('analyticsQueries.php');
      </thead>
      <tbody>
         <tr>
+
+      <!-- For each row of IP information, three columns are created 
+           with the corresponding values being echoed as the content. -->
+
      <?php foreach ($IPaddress as $i => $ip):
               $con = $connections[$i];
               $time = $timestamp[$i];
@@ -41,6 +51,9 @@ include ('analyticsQueries.php');
      <?php endforeach; ?>
     </tbody>
 </table>
+
+<!-- The access log statistics table is created below. -->
+
 <h1 id="tableTitles">Access log</h1>
 <table class="analyticsTable">
     <thead>
@@ -53,6 +66,10 @@ include ('analyticsQueries.php');
      </thead>
      <tbody>
         <tr>
+
+      <!-- For each row of access log information, four columns are created 
+           with the corresponding values being echoed as the content. -->
+
      <?php foreach ($username as $i => $user):
               $page = $pageTitle[$i];
               $da = $dates[$i];

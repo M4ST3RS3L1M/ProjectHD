@@ -3,18 +3,19 @@
 	<head>
 
         <?php
-        require_once('nav.php'); // Required for db connection
+        require_once('nav.php'); //Required for db connection.
         echo $extLinks;
 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
-        // Query to see if username is already in db
+        // Query to see if username is already in db.
+
         if (isset($_POST['username_check'])) {
             $username = $_POST['username'];
-            $query = "SELECT * FROM HD_Users WHERE username='$username'";
-            $output = mysqli_query($mysqli, $query);
+            $checkUsernameQuery = "SELECT * FROM HD_Users WHERE username='$username'";
+            $output = mysqli_query($mysqli, $checkUsernameQuery);
             if (mysqli_num_rows($output) > 0) {
                 echo "unavailable--";	
             }
@@ -23,11 +24,13 @@
             }
             exit();
         }
-        // Query to see if email is already in db
+
+        // Query to see if email is already in db.
+
         if (isset($_POST['email_check'])) {
             $email = $_POST['eMail'];
-            $query = "SELECT * FROM HD_Users WHERE eMail='$email'";
-            $output = mysqli_query($mysqli, $query);
+            $checkEmailQuery = "SELECT * FROM HD_Users WHERE eMail='$email'";
+            $output = mysqli_query($mysqli, $checkEmailQuery);
             if (mysqli_num_rows($output) > 0) {
                 echo "unavailable--";	
             }
@@ -36,7 +39,9 @@
             }
             exit();
         }
-        // Get data from form when register button is clicked
+
+        // Get data from form when register button is clicked.
+
         if (isset($_POST['save'])) {
             $username       = $mysqli->real_escape_string($_POST['username']);
             $pwd            = $mysqli->real_escape_string($_POST['password']);
@@ -47,20 +52,25 @@
             $eMail          = $mysqli->real_escape_string($_POST['eMail']);
             $sex            = $mysqli->real_escape_string($_POST['sex']);
     
-            $query = "SELECT * FROM HD_Users WHERE username='$username'";
-            $output = mysqli_query($mysqli, $query);
+            $checkUserInformationQuery = "SELECT * FROM HD_Users WHERE username='$username'";
+            $output = mysqli_query($mysqli, $checkUserInformationQuery);
             if (mysqli_num_rows($output) > 0) {
                 echo "exists";	
                 exit();
             }
             else {
-                // Encrypt password
+
+                // Encrypt password.
+
                 $pwd = md5($pwd);
-                // Insert query to create the user
-                $query = "INSERT INTO HD_Users (username, password, fname, lname, DOB, eMail, sex) VALUES ('{$username}', '{$pwd}', '{$firstname}', '{$lastname}', '{$DOB}', '{$eMail}', '{$sex}')";
-                $output = mysqli_query($mysqli, $query);
-                echo 'Saved!';
+
+                // Insert query to create the user.
+
+                $insertNewUserQuery = "INSERT INTO HD_Users (username, password, fname, lname, DOB, eMail, sex) VALUES ('{$username}', '{$pwd}', '{$firstname}', '{$lastname}', '{$DOB}', '{$eMail}', '{$sex}')";
+                $output = mysqli_query($mysqli, $insertNewUserQuery);
+                echo "manage--Users";
                 exit();
+                
             }
         }
 
@@ -184,7 +194,7 @@
         <script src='https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker-full.min.js'></script>
         <script src="Media/js/jquery.passwordRequirements.min.js"></script>
         <script src="Media/js/jquery.validate.min.js"></script>
-        <script src="Media/js/formValidation.js"></script>
+        <script src="Media/js/AdminFormValidation.js"></script>
 
     </body>
 </html>
