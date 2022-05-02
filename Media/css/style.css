@@ -260,7 +260,7 @@ margin-left: 500px;
     margin-top: 36px;
 }
 
-#manageUsersHeads {
+.manageUsersHeads {
     background-color: #10095d;
     color: white;
     font: 20px Arial, sans-serif;
@@ -289,7 +289,7 @@ margin-left: 500px;
     overflow: hidden;
 }
 
-#manageUsersBodies {
+.manageUsersBodies {
     background-color: #fffefe;
     font: 16px Arial, sans-serif;
     border-bottom: 1px solid;

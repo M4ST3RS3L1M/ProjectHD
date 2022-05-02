@@ -20,6 +20,7 @@ if (isset($_GET['id']) AND (isset($_POST['submit']))) {
  
     $username = $mysqli->real_escape_string($_POST['username']);
     $password = $mysqli->real_escape_string($_POST['password']);
+    $md5pwd = md5($password);
     $fName = $mysqli->real_escape_string($_POST['fName']);
     $lName = $mysqli->real_escape_string($_POST['lName']);
     $DOB = $mysqli->real_escape_string($_POST['DOB']);
@@ -30,7 +31,7 @@ if (isset($_GET['id']) AND (isset($_POST['submit']))) {
 
     $stmt = "UPDATE HD_Users 
             SET username = '$username', 
-            password = '$password', 
+            password = '$md5pwd', 
             fName = '$fName',
             lName = '$lName',
             DOB = '$DOB',
@@ -86,7 +87,7 @@ while($row = mysqli_fetch_assoc($result)) {
 
     <!-- The update users form is created below. -->
 
-    <form class="updateUsersForm" method="post" action="updateUsers.php?id=<?php echo $_GET['id']; ?>">
+    <form class="updateUsersForm" method="post" name="updateUser" action="updateUsers.php?id=<?php echo $_GET['id']; ?>">
         
         <div class="row">
             <div class="col">
@@ -148,7 +149,7 @@ while($row = mysqli_fetch_assoc($result)) {
                 </label>
             </div>
         </div>
-        <input style="margin: 25px 0px 0px;" class="btn btn-primary btn-block" type="submit" name="submit" onclick="return confirm('Are you sure you want to make these changes?')" value="Save changes">
+        <input id="reg_btn" style="margin: 25px 0px 0px;" class="btn btn-primary btn-block" type="submit" name="submit" onclick="return confirm('Are you sure you want to make these changes?')" value="Save changes">
     </form>
 </body>
     <?php
