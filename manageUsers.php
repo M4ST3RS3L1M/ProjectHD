@@ -20,12 +20,12 @@ $result = $mysqli->query($userInformationQuery);
         <thead>
         <tr>
             <th id="manageUsersHeadsFirst">Username</th> 
-            <th id="manageUsersHeads">Password</th>
-            <th id="manageUsersHeads">Firstname</th>
-            <th id="manageUsersHeads">Lastname</th> 
-            <th id="manageUsersHeads">Date of Birth</th>
-            <th id="manageUsersHeads">Email</th> 
-            <th id="manageUsersHeads">Sex</th>
+            <th class="manageUsersHeads">Password</th>
+            <th class="manageUsersHeads">Firstname</th>
+            <th class="manageUsersHeads">Lastname</th> 
+            <th class="manageUsersHeads">Date of Birth</th>
+            <th class="manageUsersHeads">Email</th> 
+            <th class="manageUsersHeads">Sex</th>
             <th id="manageUsersHeadsLast">Edit</th>
         </tr>
         </thead>
@@ -38,12 +38,12 @@ $result = $mysqli->query($userInformationQuery);
         <?php while($row = mysqli_fetch_assoc($result)):
             ?>       
             <td id="manageUsersBodiesFirst"><?php echo $row['username']; ?></td>
-            <td id="manageUsersBodies"><?php echo $row['password']; ?></td>
-            <td id="manageUsersBodies"><?php echo $row['fName']; ?></td>
-            <td id="manageUsersBodies"><?php echo $row['lName']; ?></td>
-            <td id="manageUsersBodies"><?php echo $row['DOB']; ?></td>
-            <td id="manageUsersBodies"><?php echo $row['eMail']; ?></td>
-            <td id="manageUsersBodies"><?php echo $row['sex']; ?></td>
+            <td class="manageUsersBodies"><?php echo $row['password']; ?></td>
+            <td class="manageUsersBodies"><?php echo $row['fName']; ?></td>
+            <td class="manageUsersBodies"><?php echo $row['lName']; ?></td>
+            <td class="manageUsersBodies"><?php echo $row['DOB']; ?></td>
+            <td class="manageUsersBodies"><?php echo $row['eMail']; ?></td>
+            <td class="manageUsersBodies"><?php echo $row['sex']; ?></td>
             <td id="manageUsersBodiesLast">
 
                 <!-- At the end of every row, two links allow the admins to update or remove the user.

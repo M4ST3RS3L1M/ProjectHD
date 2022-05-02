@@ -202,7 +202,7 @@
                 padding: 17px 29px 16px!important;
             }
             canvas {
-                background-color: #222629;
+                background-color: #f5f5f5;
             }
         </style>
 
@@ -214,7 +214,7 @@
         <?php
             echo $navigation;
         ?>
-        <div class="container text-light">
+        <div class="container text-black-50">
             <div class="row">
 		        
                 </div>
@@ -281,8 +281,8 @@
         <!--Chart JS-->
         <script>
 
-            let dataColor = "#61892F";
-            let dataBgColor = "#86C232";
+            let dataColor = "#1b136c";
+            let dataBgColor = "#2a1fad";
 
             //STEPS
             // Steps chart
@@ -427,7 +427,7 @@
                 data: {
                     labels: sleepLabels,
                     datasets: [ {
-                        label: "Cycling distance (km)",
+                        label: "Sleeping times",
                         data: sleepData,
                         fill: false,
                         borderColor: dataColor,
@@ -443,7 +443,7 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: "Distance cycled per day"
+                            text: "Bed- and wake-up times"
                         }    
                     }
                 }

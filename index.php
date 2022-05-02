@@ -9,7 +9,7 @@
 
     </head>
 
-    <body>
+    <body class="d-flex flex-column min-vh-100">
 
         <?php
         echo $navigation;
@@ -20,7 +20,7 @@
                 <div class="col-6 align-self-start welcometext">
                     <h1>Welcome to StayFit!</h1>
                 </div>
-                <div class="col-6 align-self-start text-light">
+                <div class="col-6 align-self-start text-black-50">
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat, ligula eu tempor gravida, 
                         mauris quam rhoncus urna, ac accumsan justo velit non dolor. Morbi vitae orci accumsan enim 
