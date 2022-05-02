@@ -18,7 +18,7 @@
                 <div class="col-6 align-self-start welcometext">
                     <h1>About</h1>
                 </div>
-                <div class="col-6 align-self-start text-light">
+                <div class="col-6 align-self-start text-black-50">
                     <p>
                     Sed faucibus lorem at ullamcorper ullamcorper. Phasellus interdum sapien sem, nec facilisis dui imperdiet at. Nullam in est feugiat, vestibulum turpis pellentesque, pharetra lorem. In id feugiat enim. Ut diam diam, dictum ac auctor nec, commodo vitae enim. Nunc elit velit, ornare in neque eu, consectetur viverra ipsum. Phasellus malesuada augue enim, at congue mauris lobortis vitae. Quisque vitae euismod tortor. In molestie ornare porta. Pellentesque at erat laoreet quam euismod gravida. Fusce maximus est sit amet malesuada sagittis.
                     </p>

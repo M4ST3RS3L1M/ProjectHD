@@ -27,7 +27,7 @@
                 <div class="col-6 align-self-start welcometext">
                     <h1>FAQ</h1>
                 </div>
-                <div class="col-6 align-self-start text-light">
+                <div class="col-6 align-self-start text-black-50">
                     <div class="questionAnswers">
                         <p>
                             Question: Lorem ipsum dolor sit amet, consectetur adipiscing elit?
@@ -78,7 +78,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-6 align-self-start text-light">
+                <div class="col-6 align-self-start text-black-50">
                     <h4 id="suspendisse">Suspendisse porttitor lacus?</h4>
                     <p>
                         Sed ornare auctor massa, eu mollis dolor porttitor sed. Ut suscipit ipsum sit amet enim ultricies 
