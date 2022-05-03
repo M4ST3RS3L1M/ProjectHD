@@ -101,7 +101,7 @@
         <?php
             echo $navigation;
         ?>
-        <div class="container text-light">
+        <div class="container text-black-50">
             <div class="row">
 		        
             </div>
@@ -157,7 +157,7 @@
                         </div>
                     
                         <div class="row justify-content-md-center air">
-                            <label for="sex" class="form-label text-center text-light">
+                            <label for="sex" class="form-label text-center text-black-50">
                                 Select the users sex
                             </label>
                             <div class="input-group-text col-md-auto">
@@ -178,7 +178,7 @@
                         
                         <div class="row justify-content-md-center air">
                             <div id="error_msg" class="col-md-4 air req_field"></div>
-                            <input type="submit" id="reg_btn" class="btn btn-primary col-md-10" name="register_button" value="Add user" />
+                            <input type="submit" id="add_btn" class="btn btn-primary col-md-10" name="add_button" value="Add user" />
                         </div>
                         
                     </form>
@@ -195,7 +195,7 @@
         <script src='https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker-full.min.js'></script>
         <script src="Media/js/jquery.passwordRequirements.min.js"></script>
         <script src="Media/js/jquery.validate.min.js"></script>
-        <script src="Media/js/AdminFormValidation.js"></script>
+        <script src="Media/js/adminFormValidation.js"></script>
 
     </body>
 </html>

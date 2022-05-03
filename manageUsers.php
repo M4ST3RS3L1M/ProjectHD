@@ -20,7 +20,7 @@ $result = $mysqli->query($userInformationQuery);
         <thead>
         <tr>
             <th id="manageUsersHeadsFirst">Username</th> 
-            <th class="manageUsersHeads">Password</th>
+            <th class="manageUsersHeads">Password(MD5)</th>
             <th class="manageUsersHeads">Firstname</th>
             <th class="manageUsersHeads">Lastname</th> 
             <th class="manageUsersHeads">Date of Birth</th>
