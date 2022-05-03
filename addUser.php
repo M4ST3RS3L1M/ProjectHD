@@ -112,20 +112,20 @@
                 <div class="col">
                     <form action="register.php" class="form row g-3" name="registration" method="POST">
                         <div class="col-md-4">
-                            <label for="username" class="form-label text-light">Username<span class="req_field"> *</span></label>
+                            <label for="username" class="form-label text-black-50">Username<span class="req_field"> *</span></label>
                             <input type="text" id="username" class="form-control" name="username" placeholder="Username" autocomplete="off" required />
                             <div id="uname_response" class="mb-3"></div>
                         </div>
 
                         <div class="col-md-4">
-                            <label for="password" class="form-label text-light">Password<span class="req_field"> *</span></label>
+                            <label for="password" class="form-label text-black-50">Password<span class="req_field"> *</span></label>
                             <input type="password" id="password" class="pr-password form-control" name="password" placeholder="Password" autocomplete="off" required />
                             
                         </div>
                         
 
                         <div class="col-md-4">
-                            <label for="repeat_password" class="form-label text-light">Repeat Password<span class="req_field"> *</span></label>
+                            <label for="repeat_password" class="form-label text-black-50">Repeat Password<span class="req_field"> *</span></label>
                             <input type="password" id="repeat_password" class="form-control" name="repeat_password" placeholder="Repeat Password" autocomplete="off" required />
                         </div>
                         <div id="passwordHelpBlock" class="col-md-12 form-text">
@@ -133,23 +133,23 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="fname" class="form-label text-light">First Name<span class="req_field"> *</span></label>
+                            <label for="fname" class="form-label text-black-50">First Name<span class="req_field"> *</span></label>
                             <input type="text" id="fname" class="form-control" name="fname" placeholder="First Name" autocomplete="off" />
                         </div>
 
                         <div class="col-md-6">
-                            <label for="lname" class="form-label text-light">Last Name<span class="req_field"> *</span></label>
+                            <label for="lname" class="form-label text-black-50">Last Name<span class="req_field"> *</span></label>
                             <input type="text" id="lname" class="form-control" name="lname" placeholder="Last Name" autocomplete="off" />
                         </div>
 
                         <div class="col-md-6">
                             <i id="datetimepicker1" class="bi bi-calendar-date input-group-text"></i>
-                            <label for="DOB" class="form-label text-light">Date of birth<span class="req_field"> *</span></label>
+                            <label for="DOB" class="form-label text-black-50">Date of birth<span class="req_field"> *</span></label>
                             <input type="text" id="datepicker" class="datepicker_input form-control" name="DOB" placeholder="YYYY-MM-DD" required aria-label="Select your date of birth">
                         </div>
 
                         <div class="col-md-6">
-                            <label for="eMail" class="form-label text-light">Email<span class="req_field"> *</span></label>
+                            <label for="eMail" class="form-label text-black-50">Email<span class="req_field"> *</span></label>
                             <input type="email" id="eMail" class="form-control" name="eMail" placeholder="Email" autocomplete="off" required />
                             <div id="email_response" class="form-text">
                                 Must be a valid email e.g. name@domain.com
