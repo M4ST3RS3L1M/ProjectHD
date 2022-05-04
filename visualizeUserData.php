@@ -101,24 +101,39 @@
             WHERE userID= {$_SESSION['userID']}"
         );
 
-        $phpSleepData = array();
-        $phpSleepDuration = array();
-        $sleep = array();
-        $date = "";
+        // Initializing needed arrays
+        $phpBedtimeData = array();
+        $phpBedtimeDate = array();
+        $phpWaketimeData = array();
+        $phpWaketimeDate = array();
+        $phpSleepDurData = array();
+
         // Extracting data from returned object
         $result = mysqli_query($mysqli, $bedtimeQuery);
         while($obj=$result->fetch_object()){
             $returnBedtime = $obj->bedTime;
             $returnWakeUp = $obj->wakeTime;
 
-            $date .= substr($returnBedtime, 0, 10) . " "; // Get date-part of returned data
-            $bedtime = new DateTime(substr($returnBedtime, 11)); // Get bedtime-part of returned data
-            $waketime = new DateTime(substr($returnWakeUp, 11)); // Get wakeup-part of returned data
+            // Get the date-part for bedtime and wake-up time of returned data
+            array_push($phpBedtimeDate, substr($returnBedtime, 0, 10));
+            array_push($phpWaketimeDate, substr($returnWakeUp, 0, 10));
 
-            array_push($sleep, $bedtime);  // Put bedtime into sleep array
-            array_push($sleep, $waketime);  // Put waketime into sleep array
+            // Get bedtime-part of returned data and format it as minutes
+            $bedtime = new DateTime(substr($returnBedtime, 11));
+            $bedtimeMinutes = $bedtime->format('H')*60 + ($bedtime->format('i')) + ($bedtime->format('s')/60);
 
-            if ($bedtime > $waketime) { // If bedtime is before midnight
+            // Get wakeup-part of returned data and format it as minutes
+            $waketime = new DateTime(substr($returnWakeUp, 11));
+            $waketimeMinutes = $waketime->format('H')*60 + ($waketime->format('i')) + ($waketime->format('s')/60);
+
+            // Adds bed- and waketime to array as in-data for chart
+            array_push($phpBedtimeData, $bedtimeMinutes);
+            array_push($phpWaketimeData, $waketimeMinutes);
+
+            // Part to extract SLEEP DURATION data
+
+            // If bedtime is before midnight
+            if ($bedtime > $waketime) {
                 // Calculate hours slept before midnight
                 $timeToMidnight = $bedtime->diff(new DateTime("24:00:00"));
                 $hoursToMidnight = $timeToMidnight->h + ($timeToMidnight->i/60) + ($timeToMidnight->s/3600);
@@ -131,27 +146,15 @@
                 // Adds hours together for total sleep duration
                 $sleepDuration = $hoursToMidnight + $remainingHours;
             }
-            else { //If bedtime is after midnight
+            //If bedtime is after midnight
+            else {
                 // Calculate total sleep duration
                 $timeSlept = $waketime->diff($bedtime);
                 $sleepDuration = $timeSlept->h + ($timeSlept->i/60) + ($timeSlept->s/3600);
             }
             
-            array_push($phpSleepData, $sleep); //Put one-night-array into many-nights-array
-            array_push($phpSleepDuration, $sleepDuration);
-/*
-            $keys = array_keys($phpSleepData);
-            for($i = 0; $i < count($phpSleepData); $i++) {
-                echo $keys[$i] . "{<br>";
-                foreach($phpSleepData[$keys[$i]] as $key => $value) {
-                    echo $key . " : " . $value . "<br>";
-                }
-                echo "}<br>";
-            }
-*/      }
-        // Trim and convert to array
-        $date = trim($date);
-        $phpSleepDate = explode(' ', $date);
+            array_push($phpSleepDurData, $sleepDuration);
+        }
 
 
 
@@ -232,7 +235,8 @@
                             <button class="nav-link" id="v-pills-energy-tab" data-bs-toggle="pill" data-bs-target="#v-pills-energy" type="button" role="tab" aria-controls="v-pills-energy" aria-selected="false">Energy expenditure</button>
                             <button class="nav-link" id="v-pills-walking-tab" data-bs-toggle="pill" data-bs-target="#v-pills-walking" type="button" role="tab" aria-controls="v-pills-walking" aria-selected="false">Daily walking dist.</button>
                             <button class="nav-link" id="v-pills-cycling-tab" data-bs-toggle="pill" data-bs-target="#v-pills-cycling" type="button" role="tab" aria-controls="v-pills-cycling" aria-selected="false">Daily cycling dist.</button>
-                            <button class="nav-link" id="v-pills-bedtime-tab" data-bs-toggle="pill" data-bs-target="#v-pills-bedtime" type="button" role="tab" aria-controls="v-pills-bedtime" aria-selected="false">Sleeping times</button>
+                            <button class="nav-link" id="v-pills-bedtime-tab" data-bs-toggle="pill" data-bs-target="#v-pills-bedtime" type="button" role="tab" aria-controls="v-pills-bedtime" aria-selected="false">Bedtimes</button>
+                            <button class="nav-link" id="v-pills-waketime-tab" data-bs-toggle="pill" data-bs-target="#v-pills-waketime" type="button" role="tab" aria-controls="v-pills-waketime" aria-selected="false">Wake-up-times</button>
                             <button class="nav-link" id="v-pills-sleep-tab" data-bs-toggle="pill" data-bs-target="#v-pills-sleep" type="button" role="tab" aria-controls="v-pills-sleep" aria-selected="false">Sleep duration</button>
                             <button class="nav-link" id="v-pills-nap-tab" data-bs-toggle="pill" data-bs-target="#v-pills-nap" type="button" role="tab" aria-controls="v-pills-nap" aria-selected="false">Daily naps</button>
                             <button class="nav-link" id="v-pills-weight-tab" data-bs-toggle="pill" data-bs-target="#v-pills-weight" type="button" role="tab" aria-controls="v-pills-weight" aria-selected="false">Weight</button>
@@ -254,7 +258,10 @@
                             <canvas id="cycling-chart"></canvas>
                         </div>
                         <div class="tab-pane fade" id="v-pills-bedtime" role="tabpanel" aria-labelledby="v-pills-bedtime-tab">
-                            <canvas id="sleep-chart"></canvas>
+                            <canvas id="bedtime-chart"></canvas>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-waketime" role="tabpanel" aria-labelledby="v-pills-waketime-tab">
+                            <canvas id="waketime-chart"></canvas>
                         </div>
                         <div class="tab-pane fade" id="v-pills-sleep" role="tabpanel" aria-labelledby="v-pills-sleep-tab">
                             <canvas id="sleepDur-chart"></canvas>
@@ -281,15 +288,15 @@
         <!--Chart JS-->
         <script>
 
-            let dataColor = "#1b136c";
+            let dataColor   = "#1b136c";
             let dataBgColor = "#2a1fad";
 
             //STEPS
             // Steps chart
             let stepsChart = document.getElementById("steps-chart").getContext("2d");
             
-            let stepData = <?php echo json_encode($phpStepData); ?>;
-            let stepLabels = <?php echo json_encode($phpStepDate) ?>; 
+            let stepData   = <?php echo json_encode($phpStepData); ?>;
+            let stepLabels = <?php echo json_encode($phpStepDate); ?>; 
 
             let stepsChart1 = new Chart(stepsChart, {
                 type: "line",
@@ -319,10 +326,9 @@
             // Calories chart
             let caloriesChart = document.getElementById("energy-chart").getContext("2d");
             
-            let calorieData = <?php echo json_encode($phpCalorieData); ?>;
-            let calorieLabels = <?php echo json_encode($phpCalorieDate) ?>;
-            //let stepColors = "#61892F"; // FIX THESE
-            //let stepBgColor = "#86C232"; // ----
+            // Colour scheme for charts
+            let calorieData   = <?php echo json_encode($phpCalorieData); ?>;
+            let calorieLabels = <?php echo json_encode($phpCalorieDate); ?>;
 
             let caloriesChart1 = new Chart(caloriesChart, {
                 type: "bar",
@@ -354,10 +360,10 @@
 
             // WALKING DIST
             // Walking distance chart
-            let walkChart = document.getElementById("walking-chart").getContext("2d");
+            let walkChart  = document.getElementById("walking-chart").getContext("2d");
             
-            let walkData = <?php echo json_encode($phpWalkData); ?>;
-            let walkLabels = <?php echo json_encode($phpWalkDate) ?>; 
+            let walkData   = <?php echo json_encode($phpWalkData); ?>;
+            let walkLabels = <?php echo json_encode($phpWalkDate); ?>; 
 
             let walkChart1 = new Chart(walkChart, {
                 type: "line",
@@ -373,6 +379,11 @@
                     }]
                 },
                 options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
                     plugins: {
                         title: {
                             display: true,
@@ -385,10 +396,10 @@
 
             // CYCLING DIST
             // Cycling distance chart
-            let cyclingChart = document.getElementById("cycling-chart").getContext("2d");
+            let cyclingChart  = document.getElementById("cycling-chart").getContext("2d");
             
-            let cyclingData = <?php echo json_encode($phpCyclingData); ?>;
-            let cyclingLabels = <?php echo json_encode($phpCyclingDate) ?>; 
+            let cyclingData   = <?php echo json_encode($phpCyclingData); ?>;
+            let cyclingLabels = <?php echo json_encode($phpCyclingDate); ?>; 
 
             let cyclingChart1 = new Chart(cyclingChart, {
                 type: "line",
@@ -404,6 +415,11 @@
                     }]
                 },
                 options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
                     plugins: {
                         title: {
                             display: true,
@@ -415,35 +431,157 @@
 
 
 
-            // SLEEP
+            // BEDTIME
             // Bedtime chart
-            let sleepChart = document.getElementById("sleep-chart").getContext("2d");
+            let bedtimeChart  = document.getElementById("bedtime-chart").getContext("2d");
             
-            let sleepData = <?php echo json_encode($phpSleepData); ?>;
-            let sleepLabels = <?php echo json_encode($phpSleepDate) ?>; 
+            let bedtimeData   = <?php echo json_encode($phpBedtimeData); ?>;
+            let bedtimeLabels = <?php echo json_encode($phpBedtimeDate); ?>; 
 
-            let sleepChart1 = new Chart(sleepChart, {
-                type: "bar",
+            let bedtimeChart1 = new Chart(bedtimeChart, {
+                type: "line",
                 data: {
-                    labels: sleepLabels,
+                    labels: bedtimeLabels,
                     datasets: [ {
-                        label: "Sleeping times",
-                        data: sleepData,
+                        label: "Bedtime",
+                        data: bedtimeData,
                         fill: false,
-                        borderColor: dataColor,
+                        pointStyle: 'rectRot',
+                        pointRadius: 7.5,
+                        showLine: false,
                         backgroundColor: dataBgColor,
+                        tension: 0.1
                     }]
                 },
                 options: {
                     scales: {
                         y: {
+                            min: 0,
+                            max: 1440,
+                            ticks: {
+                                stepSize: 180,
+                                callback: function(value, index, ticks) {
+                                    return Math.floor(value/60) + ':0' + Math.floor((value%60)*60) + ':0' + (value%60)
+                                }
+                            },
                             beginAtZero: true
                         }
                     },
                     plugins: {
+                        legend: {
+                            labels: {
+                                usePointStyle: true,
+                            },
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(item, everything) {
+                                    // Gets minute data before tooltip is rendered
+                                    let minData = item.raw
+                                    // Calculates hours
+                                    let hour = Math.floor(minData/60)
+                                    if (hour.toString().length < 2) { // Adds leading zero if needed
+                                        hour = '0' + hour
+                                    }
+                                    // Calculates minutes
+                                    let min = Math.floor(minData%60)
+                                    if (min.toString().length < 2) { //Adds leading zero if needed
+                                        min = '0' + min
+                                    }
+                                    // Calculates seconds
+                                    let sec = Math.floor(((minData%60) % 1)*60)
+                                    if (sec.toString().length < 2) { //Adds leading zero if needed
+                                        sec = '0' + sec
+                                    }
+                                    // Concatenates into neat format
+                                    let displayData = hour + ':' + min + ':' + sec
+                                    
+                                    return displayData
+                                }
+                            }
+                        },
                         title: {
                             display: true,
-                            text: "Bed- and wake-up times"
+                            text: "Bedtimes each logged day"
+                        }    
+                    }
+                }
+            });
+
+
+
+            // WAKETIME
+            // Bedtime chart
+            let waketimeChart  = document.getElementById("waketime-chart").getContext("2d");
+            
+            let waketimeData   = <?php echo json_encode($phpWaketimeData); ?>;
+            let waketimeLabels = <?php echo json_encode($phpWaketimeDate); ?>; 
+
+            let waketimeChart1 = new Chart(waketimeChart, {
+                type: "line",
+                data: {
+                    labels: waketimeLabels,
+                    datasets: [ {
+                        label: "Wake-up time",
+                        data: waketimeData,
+                        fill: false,
+                        pointStyle: 'rectRot',
+                        pointRadius: 7.5,
+                        showLine: false,
+                        backgroundColor: dataBgColor,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            min: 0,
+                            max: 1440,
+                            ticks: {
+                                stepSize: 180,
+                                callback: function(value, index, ticks) {
+                                    return Math.floor(value/60) + ':0' + Math.floor((value%60)*60) + ':0' + (value%60)
+                                }
+                            },
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                usePointStyle: true,
+                            },
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(item, everything) {
+                                    // Gets minute data before tooltip is rendered
+                                    let minData = item.raw
+                                    // Calculates hours
+                                    let hour = Math.floor(minData/60)
+                                    if (hour.toString().length < 2) { // Adds leading zero if needed
+                                        hour = '0' + hour
+                                    }
+                                    // Calculates minutes
+                                    let min = Math.floor(minData%60)
+                                    if (min.toString().length < 2) { //Adds leading zero if needed
+                                        min = '0' + min
+                                    }
+                                    // Calculates seconds
+                                    let sec = Math.floor(((minData%60) % 1)*60)
+                                    if (sec.toString().length < 2) { //Adds leading zero if needed
+                                        sec = '0' + sec
+                                    }
+                                    // Concatenates into neat format
+                                    let displayData = hour + ':' + min + ':' + sec
+                                    
+                                    return displayData
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: "Wake-up times each logged day"
                         }    
                     }
                 }
@@ -453,10 +591,10 @@
 
             // SLEEP DURATION
             // Sleep Duration chart
-            let sleepDurChart = document.getElementById("sleepDur-chart").getContext("2d");
+            let sleepDurChart  = document.getElementById("sleepDur-chart").getContext("2d");
             
-            let sleepDurData = <?php echo json_encode($phpSleepDuration); ?>;
-            let sleepDurLabels = <?php echo json_encode($phpSleepDate) ?>; 
+            let sleepDurData   = <?php echo json_encode($phpSleepDurData); ?>;
+            let sleepDurLabels = <?php echo json_encode($phpBedtimeDate); ?>; 
 
             let sleepDurChart1 = new Chart(sleepDurChart, {
                 type: "bar",
@@ -489,10 +627,10 @@
 
             // NAPS
             // Nap chart
-            let napChart = document.getElementById("nap-chart").getContext("2d");
+            let napChart  = document.getElementById("nap-chart").getContext("2d");
             
-            let napData = <?php echo json_encode($phpNapData); ?>;
-            let napLabels = <?php echo json_encode($phpNapDate) ?>; 
+            let napData   = <?php echo json_encode($phpNapData); ?>;
+            let napLabels = <?php echo json_encode($phpNapDate); ?>; 
 
             let napChart1 = new Chart(napChart, {
                 type: "bar",
@@ -525,10 +663,10 @@
 
             // WEIGHT
             // Weight chart
-            let weightChart = document.getElementById("weight-chart").getContext("2d");
+            let weightChart  = document.getElementById("weight-chart").getContext("2d");
             
-            let weightData = <?php echo json_encode($phpWeightData); ?>;
-            let weightLabels = <?php echo json_encode($phpWeightDate) ?>; 
+            let weightData   = <?php echo json_encode($phpWeightData); ?>;
+            let weightLabels = <?php echo json_encode($phpWeightDate); ?>; 
 
             let weightChart1 = new Chart(weightChart, {
                 type: "line",
@@ -556,24 +694,3 @@
 
     </body>
 </html>
-
-<!--
-INSERT INTO `HD_SleepData` (`userID`, `exerciseID`, `distance`, `startTime`, `endTime`)
-VALUES
-('26', '3', '5.10', '2022-04-21 00:00:00','2022-04-21 23:59:59'),
-('26', '3', '16.60', '2022-04-22 00:00:00','2022-04-22 23:59:59'),
-('26', '3', '42.90', '2022-04-23 00:00:00','2022-04-23 23:59:59'),
-('26', '3', '12.80', '2022-04-24 00:00:00','2022-04-24 21:51:53'),
-('26', '3', '7.80', '2022-04-25 00:00:00','2022-04-25 23:40:38'),
-('26', '3', '10.60', '2022-04-26 00:00:00','2022-04-26 23:59:59')
-
-INSERT INTO `HD_HealthData` (`userID`, `healthTypeID`, `amount`, `date`)
-VALUES
-('26', '3', '82.6', '2022-04-20'),
-('26', '3', '81.45', '2022-04-21'),
-('26', '3', '82.11', '2022-04-22'),
-('26', '3', '81.8', '2022-04-23'),
-('26', '3', '81.23', '2022-04-24'),
-('26', '3', '80.96', '2022-04-25'),
-('26', '3', '80.13', '2022-04-26')
--->
