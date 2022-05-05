@@ -89,16 +89,16 @@
                 <div class="row justify-content-center my-5">
 
 
-                    <ul class="nav nav-tabs mb-3 justify-content-center">
-                        <li class="nav-item active"><a class="nav-link show" href="#home" aria-selected="true">Add Exercise Data</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#menu1" aria-selected="false">Add Health Data</a></li>
+                    <ul class="nav nav-pills mb-3 justify-content-center">
+                        <li class="nav-pills show active"><a class="nav-link" href="#exercise">Add Exercise Data</a></li>
+                        <li class="nav-pills"><a class="nav-link" href="#health">Add Health Data</a></li>
                     </ul>
 
 
                     <div class="tab-content">
 
 
-                        <div id="home" class="tab-pane fade in d-flex justify-content-center active">
+                        <div id="exercise" class="tab-pane fade in d-flex justify-content-center">
                             <div class="col-lg-6">
                                 <form action="" method="POST">
                                 
@@ -183,7 +183,7 @@
 
 
 
-                        <div id="menu1" class="tab-pane fade in d-flex justify-content-center">
+                        <div id="health" class="tab-pane fade in d-flex justify-content-center">
                         <div class="col-lg-6">
                                 <form action="" method="POST">
                                 
@@ -284,7 +284,7 @@
 
         <script>
         $(document).ready(function(){
-            $(".nav-tabs a").click(function(){
+            $(".nav-pills a").click(function(){
                 $(this).tab('show');
             });
         });
