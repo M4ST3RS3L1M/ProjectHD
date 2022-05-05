@@ -5,6 +5,7 @@
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        
         <?php
         $memberOnly = true;
         include_once('nav.php'); // Needed for db connection
@@ -24,8 +25,6 @@
             $user           = $_SESSION['userID'];
             $starttime      = $sdate.' '.$stime;
             $endtime        = $edate.' '.$etime;
-
-
 
             
             $query = "INSERT INTO HD_ExerciseData (userID, exerciseID, distance, startTime, endTime) 
@@ -77,12 +76,14 @@
 
     </head>
 
+    
 
-
-    <body>
+    <body onload="click()">
         <?php
         echo $navigation
         ?>
+        
+            
 
         <section id="contact vh-100">
             <div class="container-lg py-5">
@@ -94,8 +95,8 @@
                 <div class="row justify-content-center my-5">
 
 
-                    <ul class="nav nav-pills mb-3 justify-content-center">
-                        <li class="nav-pills active"><a class="nav-link" href="#exercise">Add Exercise Data</a></li>
+                    <ul class="nav nav-pills mb-3 justify-content-center" >
+                        <li class="nav-pills"><a class="nav-link" id="exerciselink" href="#exercise">Add Exercise Data</a></li>
                         <li class="nav-pills"><a class="nav-link" href="#health">Add Health Data</a></li>
                     </ul>
 
@@ -104,7 +105,7 @@
 
 
                         <div id="exercise" class="tab-pane fade in d-flex justify-content-center">
-                        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                        <div class="card shadow-2-strong" style="border-radius: 1rem; position: absolute;">
                                 <div class="card-body p-5 text-center">
 
                             <div class="col">
@@ -192,7 +193,7 @@
                         
                         <div id="health" class="tab-pane fade in d-flex justify-content-center">
                         
-                            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                            <div class="card shadow-2-strong" style="border-radius: 1rem; z-index: 1;">
                                 <div class="card-body p-5 text-center">
                                 
                                     <div class="col">
@@ -262,6 +263,14 @@
 
         </script>
 
+        <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+        <script >
+            $(function(){
+            $(document).ready(function () {
+            $('#exerciselink')[0].click();
+            });
+        });
+        </script> 
 
         <script>
         $(document).ready(function(){
@@ -272,6 +281,7 @@
         </script>
 
     </body>
+    
 
 
 </html>
