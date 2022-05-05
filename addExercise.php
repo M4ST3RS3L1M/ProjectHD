@@ -5,6 +5,7 @@
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        
         <?php
         $memberOnly = true;
         include_once('nav.php'); // Needed for db connection
@@ -24,24 +25,6 @@
             $user           = $_SESSION['userID'];
             $starttime      = $sdate.' '.$stime;
             $endtime        = $edate.' '.$etime;
-
-            /*echo $starttime;
-            echo $endtime;
-
-            echo "exercise: ", $exercise;
-            echo "<br>";
-            echo "distance: ", $dist;
-            echo "<br>";
-            echo "Startdate:", $sdate;
-            echo "<br>";
-            echo "Starttime:", $stime;
-            echo "<br>";
-            echo "Enddate: ", $edate," ",  $etime;
-            echo "<br>";
-            echo "Endtime: ", $etime;
-            echo "<br>";
-            echo "USER: ", $user;
-            */
 
             
             $query = "INSERT INTO HD_ExerciseData (userID, exerciseID, distance, startTime, endTime) 
@@ -72,12 +55,14 @@
 
     </head>
 
+    
 
-
-    <body>
+    <body onload="click()">
         <?php
         echo $navigation
         ?>
+        
+            
 
         <section id="contact vh-100">
             <div class="container-lg py-5">
@@ -89,8 +74,8 @@
                 <div class="row justify-content-center my-5">
 
 
-                    <ul class="nav nav-pills mb-3 justify-content-center">
-                        <li class="nav-pills show active"><a class="nav-link" href="#exercise">Add Exercise Data</a></li>
+                    <ul class="nav nav-pills mb-3 justify-content-center" >
+                        <li class="nav-pills"><a class="nav-link" id="exerciselink" href="#exercise">Add Exercise Data</a></li>
                         <li class="nav-pills"><a class="nav-link" href="#health">Add Health Data</a></li>
                     </ul>
 
@@ -98,8 +83,8 @@
                     <div class="tab-content">
 
 
-                        <div id="exercise" class="tab-pane fade in d-flex justify-content-center">
-                            <div class="col-lg-6">
+                        <div id="exercise" class="tab-pane fade in d-flex justify-content-center" >
+                            <div class="col-lg-6" style="position: absolute;">
                                 <form action="" method="POST">
                                 
                                     <div class="row mb-4">
@@ -183,8 +168,8 @@
 
 
 
-                        <div id="health" class="tab-pane fade in d-flex justify-content-center">
-                        <div class="col-lg-6">
+                        <div id="health" class="tab-pane fade in d-flex justify-content-center" >
+                        <div class="col-lg-6" style="z-index: 1;">
                                 <form action="" method="POST">
                                 
                                     <div class="row mb-4">
@@ -281,6 +266,14 @@
 
         </script>
 
+        <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+        <script >
+            $(function(){
+            $(document).ready(function () {
+            $('#exerciselink')[0].click();
+            });
+        });
+        </script> 
 
         <script>
         $(document).ready(function(){
@@ -291,6 +284,7 @@
         </script>
 
     </body>
+    
 
 
 </html>
