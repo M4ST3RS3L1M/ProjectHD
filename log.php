@@ -32,7 +32,7 @@ function getBrowserName($userAgent) {
     {
         return "Other";
     }
-}
+}   
 
 // Use the $_SERVER global variable to retrieve the users IP address, 
 // the current page, the current time and the browser used. 
