@@ -44,9 +44,6 @@
             $user         = $_SESSION['userID'];
 
 
-
-
-            
             $query = "INSERT INTO HD_HealthData (userID, healthTypeID, amount, date) 
             VALUES ('$user', (SELECT healthTypeID FROM HD_HealthType WHERE healthType = '$health'), '$amount', '$date')";
            
@@ -54,6 +51,49 @@
             echo $mysqli->error;
 
         }
+
+
+        
+        if (isset($_POST['submit3']) && isset($_SESSION['userID'])) {
+            $bdate          = $mysqli->real_escape_string($_POST['bdate']); 
+            $btime          = $mysqli->real_escape_string($_POST['btime']); 
+            $wdate          = $mysqli->real_escape_string($_POST['wdate']); 
+            $wtime          = $mysqli->real_escape_string($_POST['wtime']);
+            $user           = $_SESSION['userID'];
+            $bedtime        = $bdate.' '.$btime;
+            $waketime       = $wdate.' '.$wtime;
+
+            
+            $query = "INSERT INTO HD_SleepData (userID, bedTime, wakeTime) 
+            VALUES ('$user', '$bedtime', '$waketime')";
+           
+            $mysqli->query($query);
+            echo $mysqli->error;
+
+
+        }
+
+
+
+
+                
+        if (isset($_POST['submit4']) && isset($_SESSION['userID'])) {
+            $naps           = $mysqli->real_escape_string($_POST['naps']);
+            $date           = $mysqli->real_escape_string($_POST['date2']); 
+            $user           = $_SESSION['userID'];
+
+
+            $query = "INSERT INTO HD_NapData (userID, date, napsToday) 
+            VALUES ('$user', '$date', '$naps')";
+           
+            $mysqli->query($query);
+            echo $mysqli->error;
+
+        }
+
+
+
+        
 
 
             
@@ -98,100 +138,96 @@
                     <ul class="nav nav-pills mb-3 justify-content-center" >
                         <li class="nav-pills"><a class="nav-link" id="exerciselink" href="#exercise">Add Exercise Data</a></li>
                         <li class="nav-pills"><a class="nav-link" href="#health">Add Health Data</a></li>
+                        <li class="nav-pills"><a class="nav-link" href="#sleep">Add Sleep Time</a></li>
+                        <li class="nav-pills"><a class="nav-link" href="#numNaps">Add Number of Naps</a></li>
                     </ul>
 
 
-                    <div class="tab-content">
+                    <div class="tab-content col-4">
 
 
-                        <div id="exercise" class="tab-pane fade in d-flex justify-content-center">
-                        <div class="card shadow-2-strong" style="border-radius: 1rem; position: absolute;">
+                        <div id="exercise" class="tab-pane fade in justify-content-center">
+                            <div class="card shadow-2-strong " style="border-radius: 1rem;">
                                 <div class="card-body p-5 text-center">
 
-                            <div class="col">
-                                <form action="" method="POST">
-                                
-                                    <div class="row mb-4 justify-content-center">
+                                    <div class="col">
+                                        <form action="" method="POST">
                                         
-                                        <div class="col-6">
-                                            
-                                            <label class="form-label" for="exerciseType">Choose a type of exercise</label>
-                                            <select class="form-control form-select" name="exerciseType">
-                                                <option value="1">Exercises</option>
-                                                <option value="walking">Walking</option>
-                                                <option value="running">Running</option></option>
-                                                <option value="cycling">Cycling</option>
-                                            </select>
-                                            
-                                        </div>   
-                                        
-                                        <div class="col-4">
-                                            <div class="form mb-4 km">
-                                                <label class="form-label" for="distance">Distance</label>
-                                                <input type="number" id="dist" name="distance" class="form-control" autocomplete="off"/>                            
+                                            <div class="row mb-4 justify-content-center">
+
+                                                <div class="col-6">
+                                                    <label class="form-label" for="exerciseType">Choose exercise</label>
+                                                    <select class="form-control form-select" name="exerciseType">
+                                                        <option value="1">Exercises</option>
+                                                        <option value="walking">Walking</option>
+                                                        <option value="running">Running</option></option>
+                                                        <option value="cycling">Cycling</option>
+                                                    </select>
+                                                </div>   
+                                                
+                                                <div class="col-5">
+                                                    <div class="form mb-4 km">
+                                                        <label class="form-label" for="distance">Distance km/h</label>
+                                                        <input type="number" id="dist" name="distance" class="form-control" autocomplete="off"/>                            
+                                                    </div>
+                                                </div>
+                                                
                                             </div>
-                                        </div>
-                                        
-                                    </div>
 
-                                    <div class="row mb-4">
-                                        <label class="form-label" for="startTime">Start time</label>
 
-                                        <div class="col">
-                                            <div class="form mb-4"> 
-                                                <div>
-                                                    <input class="form-control" type="date" id="sdate" name="sdate" value="2022-04-28">
-                                                </div>                                                
-                                            </div>
-                                        </div>
+                                            <div class="row mb-4">
+                                                <label class="form-label" for="startTime">Start time</label>
 
-                                        <div class="col">
-                                            <div class="form mb-4">
-                                                <div>
-                                                    <input class="form-control" type="time" id="stime" name="stime" value="08:00">
+                                                <div class="col">
+                                                    <div class="form mb-4"> 
+                                                        <div>
+                                                            <input class="form-control" type="date" id="sdate" name="sdate" value="2022-04-28">
+                                                        </div>                                                
+                                                    </div>
+                                                </div>
+
+                                                <div class="col">
+                                                    <div class="form mb-4">
+                                                        <div>
+                                                            <input class="form-control" type="time" id="stime" name="stime" value="08:00">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
 
-                                    <div class="row mb-4">
-                                        <div class="col">
-                                            <div class="form mb-4">
-                                                <label class="form-label" for="endTime">End time</label>
-                                                <div>
-                                                    <div class="col">
-                                                        <input class="form-control" type="date" id="edate" name="edate" value="2022-04-28">
+                                            <div class="row mb-4">
+                                                <label class="form-label" for="endTime">Start time</label>
+
+                                                <div class="col">
+                                                    <div class="form mb-4"> 
+                                                        <div>
+                                                            <input class="form-control" type="date" id="edate" name="edate" value="2022-04-28">
+                                                        </div>                                                
                                                     </div>
-                                                        <span></span>
-                                                    <div class="col">
-                                                        <input class="form-control" type="time" id="etime" name="etime" value="08:00">
+                                                </div>
+
+                                                <div class="col">
+                                                    <div class="form mb-4">
+                                                        <div>
+                                                            <input class="form-control" type="time" id="etime" name="etime" value="08:00">
+                                                        </div>
                                                     </div>
-                                                    
-                                                </div>                                                               
+                                                </div>
                                             </div>
-                                        </div>
 
+                                            <!-- Submit button -->
+                                            <button type="submit" name="submit" class="btn btn-primary btn-block mb-4">Submit</button>
+                                        </form>
                                     </div>
-
-                                    <!-- Submit button -->
-                                    <button type="submit" name="submit" class="btn btn-primary btn-block mb-4">Submit</button>
-
-                                    
-                                </form>
-                            </div>
-
-
                                 </div>
+                            </div>
                         </div>
 
 
-                        </div>
-
-
                         
                         
                         
-                        <div id="health" class="tab-pane fade in d-flex justify-content-center">
+                        <div id="health" class="tab-pane fade in justify-content-center">
                         
                             <div class="card shadow-2-strong" style="border-radius: 1rem; z-index: 1;">
                                 <div class="card-body p-5 text-center">
@@ -208,7 +244,7 @@
                                                         <option value="1">Health Data</option>
                                                         <option value="steps">Steps</option>
                                                         <option value="calories">calories</option>
-                                                        <option value="wight">weight</option>
+                                                        <option value="weight">weight</option>
                                                     </select>
                                                     
                                                 </div>                                    
@@ -244,6 +280,123 @@
                         </div>
 
 
+
+
+
+
+
+                        <div id="sleep" class="tab-pane fade in justify-content-center">
+                            <div class="card shadow-2-strong " style="border-radius: 1rem;">
+                                <div class="card-body p-5 text-center">
+
+                                    <div class="col">
+                                        <form action="" method="POST">
+                                        
+
+
+                                            <div class="row mb-4">
+                                                <label class="form-label" for="bedTime">Start time</label>
+
+                                                <div class="col">
+                                                    <div class="form mb-4"> 
+                                                        <div>
+                                                            <input class="form-control" type="date" id="bdate" name="bdate" value="2022-04-28">
+                                                        </div>                                                
+                                                    </div>
+                                                </div>
+
+                                                <div class="col">
+                                                    <div class="form mb-4">
+                                                        <div>
+                                                            <input class="form-control" type="time" id="btime" name="btime" value="08:00">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row mb-4">
+                                                <label class="form-label" for="wakeTime">Start time</label>
+
+                                                <div class="col">
+                                                    <div class="form mb-4"> 
+                                                        <div>
+                                                            <input class="form-control" type="date" id="wdate" name="wdate" value="2022-04-28">
+                                                        </div>                                                
+                                                    </div>
+                                                </div>
+
+                                                <div class="col">
+                                                    <div class="form mb-4">
+                                                        <div>
+                                                            <input class="form-control" type="time" id="wtime" name="wtime" value="08:00">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <!-- Submit button -->
+                                            <button type="submit" name="submit3" class="btn btn-primary btn-block mb-4">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        
+                        <div id="numNaps" class="tab-pane fade in justify-content-center">
+                        
+                            <div class="card shadow-2-strong" style="border-radius: 1rem; z-index: 1;">
+                                <div class="card-body p-5 text-center">
+                                
+                                    <div class="col">
+                                        <form action="" method="POST">                                    
+
+                                            <div class="row mb-4">
+
+                                                
+                                                <div class="col-8">
+                                                    <div class="form mb-4">                                        
+                                                        <label class="form-label" for="date2">Date</label>
+                                                        <div class="col">
+                                                            <input class="form-control" type="date" id="date2" name="date2" value="2022-04-28">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-4">
+                                                    <div class="form mb-4">
+                                                        <label class="form-label" for="naps">Nr of naps</label>
+                                                        <input type="number" id="naps" name="naps" class="form-control" autocomplete="off"/>                            
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- Submit button -->
+                                            <button type="submit" name="submit4" class="btn btn-primary btn-block mb-4">Submit</button>
+
+                                            
+                                        </form>
+                                    </div>
+                                </div>             
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
                         
                     </div>
 
@@ -264,6 +417,7 @@
         </script>
 
         <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+
         <script >
             $(function(){
             $(document).ready(function () {
@@ -280,6 +434,9 @@
         });
         </script>
 
+        <?php
+            include('footer.php');
+        ?>
     </body>
     
 
