@@ -51,17 +51,18 @@ if (isset($_GET['id']) AND (isset($_POST['submit']))) {
             WHERE userID = '{$_GET['id']}';";
     }
 
-    //If the checkbox to give the user admin privileges is checked, insert the users ID into the admin table.
+    // If the checkbox switch to give the user admin privileges is checked, insert the users ID into the admin table.
+    // Ignore the insert if the user already is an admin.
 
     if (isset($_POST['makeadmin'])) {
-        $makeadmin = "INSERT INTO HD_Admins(userID)
+        $makeadmin = "INSERT IGNORE INTO HD_Admins(userID)
                   VALUES ((SELECT userID FROM HD_Users WHERE userID = '{$_GET['id']}'))";
         $mysqli->query($makeadmin);
     }
 
-    //If the checkbox to remove admin privileges from the user is checked, delete the users ID from the admin table.
+    // If the checkbox switch is not checked, delete the users ID from the admin table.
 
-    if (isset($_POST['removeadmin'])) {
+    if (!isset($_POST['makeadmin'])) {
         $removeadmin = "DELETE FROM HD_Admins WHERE userID = '{$_GET['id']}'";
         $mysqli->query($removeadmin);
     }
@@ -143,20 +144,12 @@ while($row = mysqli_fetch_assoc($result)) {
         <!-- Use the checkadmin query to notify the admin if the selected user is an admin or not. -->
         <p id="userisadmin"><?php if ($rowcount != 0) { echo 'this user is an admin'; } else { echo 'this user is not an admin'; }?></p>
         <div class="row">
-            <div style="padding-right: 0px;" class="col-md-6">
+            <div style="display: flex; justify-content: center;" class="form-check form-switch">
 
-                <!-- Disable the make admin checkbox if the user already is an admin. -->
-                <input class="form-check-input" type="checkbox" name="makeadmin" id="makeadmin" <?php if ($rowcount != 0) { echo 'disabled'; } ?>>
+                <!-- Checkbox switch to add or remove admins. -->
+                <input class="form-check-input" type="checkbox" role="switch" name="makeadmin" id="makeadmin" <?php if ($rowcount != 0) { echo 'checked'; } ?>>
                 <label style="padding-top: 0px;" class="form-check-label" for="makeadmin">
-                Give admin privileges to this user
-                </label>
-            </div>
-            <div style="padding-left: 0px;" class="col-md-6">
-
-                <!-- Disable the remove admin checkbox if the user is not an admin. -->
-                <input class="form-check-input" type="checkbox" name="removeadmin" id="removeadmin" <?php if ($rowcount == 0) { echo 'disabled'; } ?>>
-                <label style="padding-top: 0px;" class="form-check-label" for="removeadmin">
-                Remove admin privileges for this user
+                Admin privileges
                 </label>
             </div>
         </div>
