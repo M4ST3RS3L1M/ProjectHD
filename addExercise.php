@@ -196,7 +196,7 @@
                                             </div>
 
                                             <div class="row mb-4">
-                                                <label class="form-label" for="endTime">Start time</label>
+                                                <label class="form-label" for="endTime">End time</label>
 
                                                 <div class="col">
                                                     <div class="form mb-4"> 
@@ -316,7 +316,7 @@
 
 
                                             <div class="row mb-4">
-                                                <label class="form-label" for="wakeTime">Start time</label>
+                                                <label class="form-label" for="wakeTime">End time</label>
 
                                                 <div class="col">
                                                     <div class="form mb-4"> 
