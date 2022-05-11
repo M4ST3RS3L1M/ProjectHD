@@ -112,7 +112,7 @@ END;
     </li>
 
     <li class="nav-item">
-    <a class="nav-link mx-2" href="addExercise.php">Add exercise</a>
+    <a class="nav-link mx-2" href="addExercise.php">Exercise & Health</a>
     </li>
 
     <li class="nav-item">
