@@ -108,7 +108,7 @@ END;
     $navigation .= <<<END
     
     <li class="nav-item">
-        <a class="nav-link mx-2" href="visualizeUserData.php">Visualize your data</a>
+        <a class="nav-link mx-2" href="healthDashboard.php">Health Dashboard</a>
     </li>
 
     <li class="nav-item">
@@ -143,7 +143,7 @@ END;
         $navigation .= <<<END
 
         <li class="nav-item">
-            <a class="nav-link mx-2" href="visualizeUserData.php">Visualize your data</a>
+            <a class="nav-link mx-2" href="healthDashboard.php">Health Dashboard</a>
         </li>
         
         <li class="nav-item">
