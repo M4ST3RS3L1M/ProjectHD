@@ -1,5 +1,6 @@
 <?php
 
+// Links to bootstrap, css files, javascript files stored in a variabel to be called upon on every webpage.
 $extLinks = <<<END
 
         <meta charset="utf-8">

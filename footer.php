@@ -1,3 +1,7 @@
+
+
+<!-- Footer containing Website Name, Website Logo and a small navigation field-->
+
 <footer class="mt-auto d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
     <p class="col-md-4 mb-0 text-muted">© 2022 StayFit, Ltd</p>
 

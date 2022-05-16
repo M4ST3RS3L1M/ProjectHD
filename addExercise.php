@@ -13,8 +13,7 @@
 
 
 
-
-
+        //register for Exercise
         if (isset($_POST['submit']) && isset($_SESSION['userID'])) {
             $exercise       = $mysqli->real_escape_string($_POST['exerciseType']);
             $dist           = $mysqli->real_escape_string($_POST['distance']);
@@ -36,7 +35,7 @@
 
         }
 
-        
+        //Register for Health data
         if (isset($_POST['submit2']) && isset($_SESSION['userID'])) {
             $health       = $mysqli->real_escape_string($_POST['healthType']);
             $amount       = $mysqli->real_escape_string($_POST['amount']);
@@ -53,7 +52,7 @@
         }
 
 
-        
+        //register for sleep
         if (isset($_POST['submit3']) && isset($_SESSION['userID'])) {
             $bdate          = $mysqli->real_escape_string($_POST['bdate']); 
             $btime          = $mysqli->real_escape_string($_POST['btime']); 
@@ -76,7 +75,7 @@
 
 
 
-                
+        //Register for number of naps 
         if (isset($_POST['submit4']) && isset($_SESSION['userID'])) {
             $naps           = $mysqli->real_escape_string($_POST['naps']);
             $date           = $mysqli->real_escape_string($_POST['date2']); 
@@ -118,23 +117,23 @@
 
     
 
-    <body onload="click()">
+    <body class="topp" onload="click()">
         <?php
         echo $navigation
         ?>
         
             
 
-        <section id="contact vh-100 top">
+        <section id="contact vh-100">
             <div class="container-lg py-5">
                 <div class="text-center">
-                <h2>Add exercises!</h2>
-                <p class="lead text-black-50">Add an exercise below!</p>
+                <h2>Log Exercises and Health Data below!</h2>
+                <p class="lead text-black-50">Use the navigation field to navigate through the tabs.</p>
                 </div>
 
                 <div class="row justify-content-center my-5">
 
-
+                    <!-- Navigation field for registering different user data-->
                     <ul class="nav nav-pills mb-3 justify-content-center" >
                         <li class="nav-pills"><a class="nav-link" id="exerciselink" href="#exercise">Add Exercise Data</a></li>
                         <li class="nav-pills"><a class="nav-link" href="#health">Add Health Data</a></li>
@@ -145,7 +144,7 @@
 
                     <div class="tab-content col-4">
 
-
+                        <!-- Contains Add Exercise data-->
                         <div id="exercise" class="tab-pane fade in justify-content-center">
                             <div class="card shadow-2-strong " style="border-radius: 1rem;">
                                 <div class="card-body p-5 text-center">
@@ -157,8 +156,8 @@
 
                                                 <div class="col-6">
                                                     <label class="form-label" for="exerciseType">Choose exercise</label>
-                                                    <select class="form-control form-select" name="exerciseType">
-                                                        <option value="1">Exercises</option>
+                                                    <select class="form-control form-select" name="exerciseType" required>
+                                                        <option value="">Exercises</option>
                                                         <option value="walking">Walking</option>
                                                         <option value="running">Running</option></option>
                                                         <option value="cycling">Cycling</option>
@@ -168,7 +167,7 @@
                                                 <div class="col-5">
                                                     <div class="form mb-4 km">
                                                         <label class="form-label" for="distance">Distance km/h</label>
-                                                        <input type="number" id="dist" name="distance" class="form-control" autocomplete="off"/>                            
+                                                        <input type="number" min="0" id="dist" name="distance" class="form-control" autocomplete="off" required/>                            
                                                     </div>
                                                 </div>
                                                 
@@ -181,7 +180,7 @@
                                                 <div class="col">
                                                     <div class="form mb-4"> 
                                                         <div>
-                                                            <input class="form-control" type="date" id="sdate" name="sdate" value="2022-04-28">
+                                                            <input class="form-control" type="date" id="sdate" name="sdate" value="<?php echo date('Y-m-d'); ?>" required />
                                                         </div>                                                
                                                     </div>
                                                 </div>
@@ -189,7 +188,7 @@
                                                 <div class="col">
                                                     <div class="form mb-4">
                                                         <div>
-                                                            <input class="form-control" type="time" id="stime" name="stime" value="08:00">
+                                                            <input class="form-control" type="time" id="stime" name="stime" value="<?php echo date('H:i'); ?>" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -201,7 +200,7 @@
                                                 <div class="col">
                                                     <div class="form mb-4"> 
                                                         <div>
-                                                            <input class="form-control" type="date" id="edate" name="edate" value="2022-04-28">
+                                                            <input class="form-control" type="date" id="edate" name="edate" value="<?php echo date('Y-m-d'); ?>" required />
                                                         </div>                                                
                                                     </div>
                                                 </div>
@@ -209,7 +208,7 @@
                                                 <div class="col">
                                                     <div class="form mb-4">
                                                         <div>
-                                                            <input class="form-control" type="time" id="etime" name="etime" value="08:00">
+                                                            <input class="form-control" type="time" id="etime" name="etime" value="<?php echo date('H:i'); ?>" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -226,7 +225,7 @@
 
                         
                         
-                        
+                        <!-- Contains Add Health data-->
                         <div id="health" class="tab-pane fade in justify-content-center">
                         
                             <div class="card shadow-2-strong" style="border-radius: 1rem; z-index: 1;">
@@ -240,8 +239,8 @@
                                                 <div class="col">
                                                     
                                                     <label class="form-label mb-4" for="healthType">Choose a type of health data</label>
-                                                    <select class="form-control form-select" name="healthType">
-                                                        <option value="1">Health Data</option>
+                                                    <select class="form-control form-select" name="healthType" required>
+                                                        <option value="">Health Data</option>
                                                         <option value="steps">Steps</option>
                                                         <option value="calories">calories</option>
                                                         <option value="weight">weight</option>
@@ -255,7 +254,7 @@
                                                 <div class="col">
                                                     <div class="form mb-4">
                                                         <label class="form-label" for="amount">Amount</label>
-                                                        <input type="number" id="dist" name="amount" class="form-control" autocomplete="off"/>                            
+                                                        <input type="number" min="0" id="dist" name="amount" class="form-control" autocomplete="off" required/>                            
                                                     </div>
                                                 </div>
 
@@ -263,7 +262,7 @@
                                                     <div class="form mb-4">                                        
                                                         <label class="form-label" for="date">Date</label>
                                                         <div class="col">
-                                                            <input class="form-control" type="date" id="date" name="date" value="2022-04-28">
+                                                            <input class="form-control" type="date" id="date" name="date" value="<?php echo date('Y-m-d'); ?>" required>
                                                         </div>    
                                                     </div>
                                                 </div>
@@ -284,7 +283,7 @@
 
 
 
-
+                        <!-- Contains Add sleep data-->
                         <div id="sleep" class="tab-pane fade in justify-content-center">
                             <div class="card shadow-2-strong " style="border-radius: 1rem;">
                                 <div class="card-body p-5 text-center">
@@ -300,7 +299,7 @@
                                                 <div class="col">
                                                     <div class="form mb-4"> 
                                                         <div>
-                                                            <input class="form-control" type="date" id="bdate" name="bdate" value="2022-04-28">
+                                                            <input class="form-control" type="date" id="bdate" name="bdate" value="<?php echo date('Y-m-d'); ?>" required />
                                                         </div>                                                
                                                     </div>
                                                 </div>
@@ -308,7 +307,7 @@
                                                 <div class="col">
                                                     <div class="form mb-4">
                                                         <div>
-                                                            <input class="form-control" type="time" id="btime" name="btime" value="08:00">
+                                                            <input class="form-control" type="time" id="btime" name="btime" value="<?php echo date('H:i'); ?>" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -321,7 +320,7 @@
                                                 <div class="col">
                                                     <div class="form mb-4"> 
                                                         <div>
-                                                            <input class="form-control" type="date" id="wdate" name="wdate" value="2022-04-28">
+                                                            <input class="form-control" type="date" id="wdate" name="wdate" value="<?php echo date('Y-m-d'); ?>" required />
                                                         </div>                                                
                                                     </div>
                                                 </div>
@@ -329,7 +328,7 @@
                                                 <div class="col">
                                                     <div class="form mb-4">
                                                         <div>
-                                                            <input class="form-control" type="time" id="wtime" name="wtime" value="08:00">
+                                                            <input class="form-control" type="time" id="wtime" name="wtime" value="<?php echo date('H:i'); ?>" required />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -348,7 +347,7 @@
 
 
 
-                        
+                        <!-- Contains Add naps data-->
                         <div id="numNaps" class="tab-pane fade in justify-content-center">
                         
                             <div class="card shadow-2-strong" style="border-radius: 1rem; z-index: 1;">
@@ -364,7 +363,7 @@
                                                     <div class="form mb-4">                                        
                                                         <label class="form-label" for="date2">Date</label>
                                                         <div class="col">
-                                                            <input class="form-control" type="date" id="date2" name="date2" value="2022-04-28">
+                                                            <input class="form-control"  type="date" id="date2" name="date2" value="<?php echo date('Y-m-d'); ?>" required />  
                                                         </div>
                                                     </div>
                                                 </div>
@@ -372,7 +371,7 @@
                                                 <div class="col-4">
                                                     <div class="form mb-4">
                                                         <label class="form-label" for="naps">Nr of naps</label>
-                                                        <input type="number" id="naps" name="naps" class="form-control" autocomplete="off"/>                            
+                                                        <input type="number" id="naps" min="0" name="naps" class="form-control" autocomplete="off" required/>                            
                                                     </div>
                                                 </div>
 
@@ -409,6 +408,10 @@
         <script src='https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker-full.min.js'></script>
 
 
+
+
+
+        <!-- Script for select form-->
         <script>
 
             const inputScreen = $('<select class="selectpicker"><option>test</option></select>').appendTo(conScreen);
@@ -418,10 +421,12 @@
 
         <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
 
+        <!-- AJAX script for loading in different tabs without refreshing-->
         <script >
             $(function(){
             $(document).ready(function () {
-            $('#exerciselink')[0].click();
+                $('#exerciselink')[0].click();
+                
             });
         });
         </script> 
@@ -430,6 +435,7 @@
         $(document).ready(function(){
             $(".nav-pills a").click(function(){
                 $(this).tab('show');
+                preventDefault();
             });
         });
         </script>
