@@ -43,6 +43,8 @@ $(document).ready(function() {
     });
 
     // CHECKS IF EMAIL IS ALREADY REGISTERED
+    // Based on this source:
+    // https://codewithawa.com/posts/check-if-user-already-exists-without-submitting-form
     $('#eMail').on('blur', function() {
         var email = $('#eMail').val();
         if (email == '') {
