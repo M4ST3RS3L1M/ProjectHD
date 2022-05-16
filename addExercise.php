@@ -125,7 +125,7 @@
         
             
 
-        <section id="contact vh-100">
+        <section id="contact vh-100 top">
             <div class="container-lg py-5">
                 <div class="text-center">
                 <h2>Add exercises!</h2>
