@@ -12,7 +12,7 @@
         <?php
         echo $navigation;
         ?>
-
+        <!-- More information about the website -->
         <div class="container">
             <div class="row">
                 <div class="col-6 align-self-start welcometext">

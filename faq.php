@@ -22,6 +22,7 @@
         echo $navigation;
         ?>
         
+        <!-- Frequently asked questions. Common questions and answers to them.-->
         <div class="container">
             <div class="row">
                 <div class="col-6 align-self-start welcometext">
