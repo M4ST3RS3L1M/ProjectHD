@@ -3,198 +3,10 @@
 	<head>
 
         <?php
-        $memberOnly = true;
-        include_once('nav.php');
-        echo $extLinks;
-
-        // CHART QUERIES //
-
-        // STEPS
-        // Query to get step data
-        $stepQuery = (
-            "SELECT hd.amount, hd.date
-            FROM HD_HealthData hd
-            JOIN HD_HealthType ht ON hd.healthTypeID = ht.healthTypeID
-            WHERE hd.userID= {$_SESSION['userID']} AND ht.healthType='steps'"
-        );
-
-        $phpStepData = array();
-        $phpStepDate = array();
-        // Extracting data from returned object
-        $result = mysqli_query($mysqli, $stepQuery);
-        while($obj=$result->fetch_object()){
-            array_push($phpStepData, $obj->amount);
-            array_push($phpStepDate, $obj->date);
-        }
-
-
-
-        // CALORIES
-        // Query to get calorie data
-        $calorieQuery = (
-            "SELECT hd.amount, hd.date
-            FROM HD_HealthData hd
-            JOIN HD_HealthType ht ON hd.healthTypeID = ht.healthTypeID
-            WHERE hd.userID= {$_SESSION['userID']} AND ht.healthType='calories'"
-        );
-
-        $phpCalorieData = array();
-        $phpCalorieDate = array();
-        // Extracting data from returned object
-        $result = mysqli_query($mysqli, $calorieQuery);
-        while($obj=$result->fetch_object()){
-            array_push($phpCalorieData, $obj->amount);
-            array_push($phpCalorieDate, $obj->date);
-        }
-
-
-
-        // WALKING DIST
-        // Query to get walking dist data
-        $walkDQuery = (
-            "SELECT ed.distance, ed.startTime
-            FROM HD_ExerciseData ed
-            JOIN HD_ExerciseType et ON ed.exerciseID = et.exerciseID
-            WHERE ed.userID= {$_SESSION['userID']} AND et.exerciseType='walking'"
-        );
-
-        $phpWalkData = array();
-        $phpWalkDate = array();
-        // Extracting data from returned object
-        $result = mysqli_query($mysqli, $walkDQuery);
-        while($obj=$result->fetch_object()){
-            $walkDate = $obj->startTime;
-            $walkDate = substr($walkDate, 0, 10); // To just display the date
-            array_push($phpWalkData, $obj->distance);
-            array_push($phpWalkDate, $walkDate);
-        }
-
-
-
-        // CYCLING DIST
-        // Query to get cycling dist data
-        $cyclingDQuery = (
-            "SELECT ed.distance, ed.startTime
-            FROM HD_ExerciseData ed
-            JOIN HD_ExerciseType et ON ed.exerciseID = et.exerciseID
-            WHERE ed.userID= {$_SESSION['userID']} AND et.exerciseType='cycling'"
-        );
-
-        $phpCyclingData = array();
-        $phpCyclingDate = array();
-        // Extracting data from returned object
-        $result = mysqli_query($mysqli, $cyclingDQuery);
-        while($obj=$result->fetch_object()){
-            $cycleDate = $obj->startTime;
-            $cycleDate = substr($cycleDate, 0, 10); // To just display the date
-            array_push($phpCyclingData, $obj->distance);
-            array_push($phpCyclingDate, $cycleDate);
-        }
-
-
-
-        // SLEEP AND DURATION
-        // Query to get sleep data
-        $bedtimeQuery = (
-            "SELECT bedTime, wakeTime
-            FROM HD_SleepData
-            WHERE userID= {$_SESSION['userID']}"
-        );
-
-        // Initializing needed arrays
-        $phpBedtimeData = array();
-        $phpBedtimeDate = array();
-        $phpWaketimeData = array();
-        $phpWaketimeDate = array();
-        $phpSleepDurData = array();
-
-        // Extracting data from returned object
-        $result = mysqli_query($mysqli, $bedtimeQuery);
-        while($obj=$result->fetch_object()){
-            $returnBedtime = $obj->bedTime;
-            $returnWakeUp = $obj->wakeTime;
-
-            // Get the date-part for bedtime and wake-up time of returned data
-            array_push($phpBedtimeDate, substr($returnBedtime, 0, 10));
-            array_push($phpWaketimeDate, substr($returnWakeUp, 0, 10));
-
-            // Get bedtime-part of returned data and format it as minutes
-            $bedtime = new DateTime(substr($returnBedtime, 11));
-            $bedtimeMinutes = $bedtime->format('H')*60 + ($bedtime->format('i')) + ($bedtime->format('s')/60);
-
-            // Get wakeup-part of returned data and format it as minutes
-            $waketime = new DateTime(substr($returnWakeUp, 11));
-            $waketimeMinutes = $waketime->format('H')*60 + ($waketime->format('i')) + ($waketime->format('s')/60);
-
-            // Adds bed- and waketime to array as in-data for chart
-            array_push($phpBedtimeData, $bedtimeMinutes);
-            array_push($phpWaketimeData, $waketimeMinutes);
-
-            // Part to extract SLEEP DURATION data
-
-            // If bedtime is before midnight
-            if ($bedtime > $waketime) {
-                // Calculate hours slept before midnight
-                $timeToMidnight = $bedtime->diff(new DateTime("24:00:00"));
-                $hoursToMidnight = $timeToMidnight->h + ($timeToMidnight->i/60) + ($timeToMidnight->s/3600);
-
-                // Calculate hourse slept after midnight
-                $remainingHours = new DateTime("00:00:00");
-                $remainingHours = $remainingHours->diff($waketime);
-                $remainingHours = $remainingHours->h + ($remainingHours->i/60) + ($remainingHours->s/3600);
-                
-                // Adds hours together for total sleep duration
-                $sleepDuration = $hoursToMidnight + $remainingHours;
-            }
-            //If bedtime is after midnight
-            else {
-                // Calculate total sleep duration
-                $timeSlept = $waketime->diff($bedtime);
-                $sleepDuration = $timeSlept->h + ($timeSlept->i/60) + ($timeSlept->s/3600);
-            }
-            
-            array_push($phpSleepDurData, $sleepDuration);
-        }
-
-
-
-        // NAPS
-        // Query to get nap data
-        $napQuery = (
-            "SELECT date, napsToday
-            FROM HD_NapData
-            WHERE userID= {$_SESSION['userID']}"
-        );
-
-        $phpNapData = array();
-        $phpNapDate = array();
-        // Extracting data from returned object
-        $result = mysqli_query($mysqli, $napQuery);
-        while($obj=$result->fetch_object()){
-            array_push($phpNapData, $obj->napsToday);
-            array_push($phpNapDate, $obj->date);
-        }
-
-
-
-        // WEIGHT
-        // Query to get weight data
-        $weightQuery = (
-            "SELECT hd.amount, hd.date
-            FROM HD_HealthData hd
-            JOIN HD_HealthType ht ON hd.healthTypeID = ht.healthTypeID
-            WHERE hd.userID= {$_SESSION['userID']} AND ht.healthType='weight'"
-        );
-
-        $phpWeightData = array();
-        $phpWeightDate = array();
-        // Extracting data from returned object
-        $result = mysqli_query($mysqli, $weightQuery);
-        while($obj=$result->fetch_object()){
-            array_push($phpWeightData, $obj->amount);
-            array_push($phpWeightDate, $obj->date);
-        }
-
+            $memberOnly = true;
+            include_once('nav.php');
+            include('chartQueries.php');
+            echo $extLinks;
         ?>
 
         <style>
@@ -203,6 +15,10 @@
             }
             .flex-column .nav-link {
                 padding: 17px 29px 16px!important;
+            }
+            .cardData {
+                color: #1b136c;
+                font-weight: bold;
             }
             canvas {
                 background-color: #f5f5f5;
@@ -218,64 +34,220 @@
             echo $navigation;
         ?>
         <div class="container text-black-50">
-            <div class="row">
-		        
-                </div>
-                <div class="row text-center">
-                    <h1 class="air">Data overview</h1>
-                    <h4 class="air">Select a tab</h4>
-                    <hr>
-                </div>
-                <div class="row">
-                        
-                    <!-- Nav tabs -->
-                    <div class="d-flex align-items-start col-lg-auto">
-                        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            <button class="nav-link active" id="v-pills-steps-tab" data-bs-toggle="pill" data-bs-target="#v-pills-steps" type="button" role="tab" aria-controls="v-pills-steps" aria-selected="true">Steps per day</button>
-                            <button class="nav-link" id="v-pills-energy-tab" data-bs-toggle="pill" data-bs-target="#v-pills-energy" type="button" role="tab" aria-controls="v-pills-energy" aria-selected="false">Energy expenditure</button>
-                            <button class="nav-link" id="v-pills-walking-tab" data-bs-toggle="pill" data-bs-target="#v-pills-walking" type="button" role="tab" aria-controls="v-pills-walking" aria-selected="false">Daily walking dist.</button>
-                            <button class="nav-link" id="v-pills-cycling-tab" data-bs-toggle="pill" data-bs-target="#v-pills-cycling" type="button" role="tab" aria-controls="v-pills-cycling" aria-selected="false">Daily cycling dist.</button>
-                            <button class="nav-link" id="v-pills-bedtime-tab" data-bs-toggle="pill" data-bs-target="#v-pills-bedtime" type="button" role="tab" aria-controls="v-pills-bedtime" aria-selected="false">Bedtimes</button>
-                            <button class="nav-link" id="v-pills-waketime-tab" data-bs-toggle="pill" data-bs-target="#v-pills-waketime" type="button" role="tab" aria-controls="v-pills-waketime" aria-selected="false">Wake-up-times</button>
-                            <button class="nav-link" id="v-pills-sleep-tab" data-bs-toggle="pill" data-bs-target="#v-pills-sleep" type="button" role="tab" aria-controls="v-pills-sleep" aria-selected="false">Sleep duration</button>
-                            <button class="nav-link" id="v-pills-nap-tab" data-bs-toggle="pill" data-bs-target="#v-pills-nap" type="button" role="tab" aria-controls="v-pills-nap" aria-selected="false">Daily naps</button>
-                            <button class="nav-link" id="v-pills-weight-tab" data-bs-toggle="pill" data-bs-target="#v-pills-weight" type="button" role="tab" aria-controls="v-pills-weight" aria-selected="false">Weight</button>
-                        </div>
-                    </div>
-
-                    <!-- Tab panes -->
-                    <div class="tab-content col-lg-9" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-steps" role="tabpanel" aria-labelledby="v-pills-steps-tab">
-                            <canvas id="steps-chart"></canvas>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-energy" role="tabpanel" aria-labelledby="v-pills-energy-tab">
-                            <canvas id="energy-chart"></canvas>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-walking" role="tabpanel" aria-labelledby="v-pills-walking-tab">
-                            <canvas id="walking-chart"></canvas>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-cycling" role="tabpanel" aria-labelledby="v-pills-cycling-tab">
-                            <canvas id="cycling-chart"></canvas>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-bedtime" role="tabpanel" aria-labelledby="v-pills-bedtime-tab">
-                            <canvas id="bedtime-chart"></canvas>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-waketime" role="tabpanel" aria-labelledby="v-pills-waketime-tab">
-                            <canvas id="waketime-chart"></canvas>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-sleep" role="tabpanel" aria-labelledby="v-pills-sleep-tab">
-                            <canvas id="sleepDur-chart"></canvas>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-nap" role="tabpanel" aria-labelledby="v-pills-nap-tab">
-                            <canvas id="nap-chart"></canvas>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-weight" role="tabpanel" aria-labelledby="v-pills-weight-tab">
-                            <canvas id="weight-chart"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <hr>
+            
+            <!-- First row - Heading -->
+            <div class="row text-center">
+                <h1 class="air">Your Health Dashboard</h1>
+                <hr class="air">
             </div>
+
+            <!-- Second row - Subheading and cards 1 -->
+            <div class="row justify-content-center  text-center">
+                <h2 class="cardData">Exercise and Health</h2>
+                <h4>Most recently logged data</h4>
+
+                <!-- 5 Cards for displaying data -->
+                <div class="col-lg-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Steps</h5>
+                            <p class="cardData">
+                                <!-- Last date and data -->
+                                <?php
+                                echo $phpStepDate[count($phpStepDate)-1] . "<br>";
+                                echo number_format($phpStepData[count($phpStepData)-1], 0, ',', ' ');
+                                ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Calories</h5>
+                            <p class="cardData">
+                                <?php
+                                echo $phpCalorieDate[count($phpCalorieDate)-1] . "<br>";
+                                echo number_format($phpCalorieData[count($phpCalorieData)-1], 0, ',', ' ');
+                                ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Walking Dist.</h5>
+                            <p class="cardData">
+                                <?php
+                                echo $phpWalkDate[count($phpWalkDate)-1] . "<br>";
+                                echo $phpWalkData[count($phpWalkData)-1] . "km";
+                                ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Cycling Dist.</h5>
+                            <p class="cardData">
+                                <?php
+                                echo $phpCyclingDate[count($phpCyclingDate)-1] . "<br>";
+                                echo $phpCyclingData[count($phpCyclingData)-1] . "km";
+                                ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Weight</h5>
+                            <p class="cardData">
+                                <?php
+                                echo $phpWeightDate[count($phpWeightDate)-1] . "<br>";
+                                echo $phpWeightData[count($phpWeightData)-1] . "kg";
+                                ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="air">
+            </div>
+
+            <!-- Third row - Graphs 1 -->
+            <div class="row justify-content-center  text-center">
+                <h4 class="air">Personalised graphs</h4>
+                        
+                <!-- Nav tabs -->
+                <div class="d-flex align-items-start col-lg-auto">
+                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active" id="v-pills-steps-tab" data-bs-toggle="pill" data-bs-target="#v-pills-steps" type="button" role="tab" aria-controls="v-pills-steps" aria-selected="true">Steps per day</button>
+                        <button class="nav-link" id="v-pills-energy-tab" data-bs-toggle="pill" data-bs-target="#v-pills-energy" type="button" role="tab" aria-controls="v-pills-energy" aria-selected="false">Energy expenditure</button>
+                        <button class="nav-link" id="v-pills-walking-tab" data-bs-toggle="pill" data-bs-target="#v-pills-walking" type="button" role="tab" aria-controls="v-pills-walking" aria-selected="false">Daily walking dist.</button>
+                        <button class="nav-link" id="v-pills-cycling-tab" data-bs-toggle="pill" data-bs-target="#v-pills-cycling" type="button" role="tab" aria-controls="v-pills-cycling" aria-selected="false">Daily cycling dist.</button>
+                        <button class="nav-link" id="v-pills-weight-tab" data-bs-toggle="pill" data-bs-target="#v-pills-weight" type="button" role="tab" aria-controls="v-pills-weight" aria-selected="false">Weight</button>
+                    </div>
+                </div>
+
+                <!-- Tab panes -->
+                <div class="tab-content col-lg-9 air" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-steps" role="tabpanel" aria-labelledby="v-pills-steps-tab">
+                        <canvas id="steps-chart"></canvas>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-energy" role="tabpanel" aria-labelledby="v-pills-energy-tab">
+                        <canvas id="energy-chart"></canvas>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-walking" role="tabpanel" aria-labelledby="v-pills-walking-tab">
+                        <canvas id="walking-chart"></canvas>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-cycling" role="tabpanel" aria-labelledby="v-pills-cycling-tab">
+                        <canvas id="cycling-chart"></canvas>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-weight" role="tabpanel" aria-labelledby="v-pills-weight-tab">
+                        <canvas id="weight-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fourth row - Subheading and cards 2 -->
+            <div class="row justify-content-center  text-center">
+                <hr class="air">
+                <h2 class="cardData">Sleeping Routines</h2>
+                <h4>Most recently logged data</h4>
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Bedtime</h5>
+                            <p class="cardData">
+                            <?php
+                            echo $phpBedtimeDate[count($phpBedtimeDate)-1] . "<br>";
+                            $lastBedtime = $phpBedtimeData[count($phpBedtimeData)-1];
+                            $lastBedtime = floor($lastBedtime/60) . ":" . floor($lastBedtime%60) . ":" . floor((($lastBedtime%60) % 1)*60);
+                            echo $lastBedtime;
+                            ?>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Wake-Time</h5>
+                            <p class="cardData">
+                            <?php
+                            echo $phpWaketimeDate[count($phpWaketimeDate)-1] . "<br>";
+                            $lastWaketime = $phpWaketimeData[count($phpWaketimeData)-1];
+                            $lastWaketime = floor($lastWaketime/60) . ":" . floor($lastWaketime%60) . ":" . floor((($lastWaketime%60) % 1)*60);
+                            echo $lastWaketime;
+                            ?>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Sleep Duration</h5>
+                            <p class="cardData">
+                            <?php
+                            echo $phpBedtimeDate[count($phpBedtimeDate)-1] . "<br>";
+                            echo number_format($phpSleepDurData[count($phpSleepDurData)-1], 1, ',', ' ') . "h";
+                            ?>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Naps</h5>
+                            <p class="cardData">
+                            <?php
+                            echo $phpNapDate[count($phpNapDate)-1] . "<br>";
+                            echo $phpNapData[count($phpNapData)-1];
+                            ?>
+                        </p>
+                        </div>
+                    </div>
+                </div>
+                <hr class="air">
+            </div>
+
+            <!-- Fifth row - Graphs 2 -->
+            <div class="row justify-content-center  text-center">
+                <h4 class="air">Personalised graphs</h4>
+                
+                <!-- Nav tabs -->
+                <div class="d-flex align-items-start col-lg-auto">
+                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active" id="v-pills-bedtime-tab" data-bs-toggle="pill" data-bs-target="#v-pills-bedtime" type="button" role="tab" aria-controls="v-pills-bedtime" aria-selected="true">Bedtimes</button>
+                        <button class="nav-link" id="v-pills-waketime-tab" data-bs-toggle="pill" data-bs-target="#v-pills-waketime" type="button" role="tab" aria-controls="v-pills-waketime" aria-selected="false">Wake-up-times</button>
+                        <button class="nav-link" id="v-pills-sleep-tab" data-bs-toggle="pill" data-bs-target="#v-pills-sleep" type="button" role="tab" aria-controls="v-pills-sleep" aria-selected="false">Sleep duration</button>
+                        <button class="nav-link" id="v-pills-nap-tab" data-bs-toggle="pill" data-bs-target="#v-pills-nap" type="button" role="tab" aria-controls="v-pills-nap" aria-selected="false">Daily naps</button>
+                    </div>
+                </div>
+
+                <!-- Tab panes -->
+                <div class="tab-content col-lg-9" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-bedtime" role="tabpanel" aria-labelledby="v-pills-bedtime-tab">
+                        <canvas id="bedtime-chart"></canvas>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-waketime" role="tabpanel" aria-labelledby="v-pills-waketime-tab">
+                        <canvas id="waketime-chart"></canvas>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-sleep" role="tabpanel" aria-labelledby="v-pills-sleep-tab">
+                        <canvas id="sleepDur-chart"></canvas>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-nap" role="tabpanel" aria-labelledby="v-pills-nap-tab">
+                        <canvas id="nap-chart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+            <hr class="air">
         </div>
 
         <?php

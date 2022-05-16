@@ -22,7 +22,7 @@ $(document).ready(function() {
                     password:password},
                 success:function(response) {
                     if(response.includes('cred--match')) {
-                        window.location.href = 'visualizeUserData.php';
+                        window.location.href = 'healthDashboard.php';
                     }
                     else {
                         $('#error_msg').text("Wrong username or password. Try again");

@@ -206,7 +206,7 @@
         <script src='https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker-full.min.js'></script>
         <script src="Media/js/jquery.passwordRequirements.min.js"></script>
         <script src="Media/js/jquery.validate.min.js"></script>
-        <script src="Media/js/formValidation.js"></script>
+        <script src="Media/js/registrationFormValidation.js"></script>
 
     </body>
 </html>
