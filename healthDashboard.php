@@ -54,8 +54,13 @@
                             <p class="cardData">
                                 <!-- Last date and data -->
                                 <?php
-                                echo $phpStepDate[count($phpStepDate)-1] . "<br>";
-                                echo number_format($phpStepData[count($phpStepData)-1], 0, ',', ' ');
+                                if (count($phpStepData) > 0) {
+                                    echo $phpStepDate[count($phpStepDate)-1] . "<br>";
+                                    echo number_format($phpStepData[count($phpStepData)-1], 0, ',', ' ');
+                                }
+                                else {
+                                    echo "No data found";
+                                }
                                 ?>
                             </p>
                         </div>
@@ -67,8 +72,13 @@
                             <h5 class="card-title">Calories</h5>
                             <p class="cardData">
                                 <?php
-                                echo $phpCalorieDate[count($phpCalorieDate)-1] . "<br>";
-                                echo number_format($phpCalorieData[count($phpCalorieData)-1], 0, ',', ' ');
+                                if (count($phpCalorieData) > 0) {
+                                    echo $phpCalorieDate[count($phpCalorieDate)-1] . "<br>";
+                                    echo number_format($phpCalorieData[count($phpCalorieData)-1], 0, ',', ' ');
+                                }
+                                else {
+                                    echo "No data found";
+                                }
                                 ?>
                             </p>
                         </div>
@@ -80,8 +90,13 @@
                             <h5 class="card-title">Walking Dist.</h5>
                             <p class="cardData">
                                 <?php
-                                echo $phpWalkDate[count($phpWalkDate)-1] . "<br>";
-                                echo $phpWalkData[count($phpWalkData)-1] . "km";
+                                if (count($phpWalkData) > 0) {
+                                    echo $phpWalkDate[count($phpWalkDate)-1] . "<br>";
+                                    echo $phpWalkData[count($phpWalkData)-1] . "km";
+                                }
+                                else {
+                                    echo "No data found";
+                                }
                                 ?>
                             </p>
                         </div>
@@ -93,8 +108,13 @@
                             <h5 class="card-title">Cycling Dist.</h5>
                             <p class="cardData">
                                 <?php
-                                echo $phpCyclingDate[count($phpCyclingDate)-1] . "<br>";
-                                echo $phpCyclingData[count($phpCyclingData)-1] . "km";
+                                if (count($phpCyclingData) > 0) {
+                                    echo $phpCyclingDate[count($phpCyclingDate)-1] . "<br>";
+                                    echo $phpCyclingData[count($phpCyclingData)-1] . "km";
+                                }
+                                else {
+                                    echo "No data found";
+                                }
                                 ?>
                             </p>
                         </div>
@@ -106,8 +126,13 @@
                             <h5 class="card-title">Weight</h5>
                             <p class="cardData">
                                 <?php
-                                echo $phpWeightDate[count($phpWeightDate)-1] . "<br>";
-                                echo $phpWeightData[count($phpWeightData)-1] . "kg";
+                                if (count($phpWeightData) > 0) {
+                                    echo $phpWeightDate[count($phpWeightDate)-1] . "<br>";
+                                    echo $phpWeightData[count($phpWeightData)-1] . "kg";
+                                }
+                                else {
+                                    echo "No data found";
+                                }
                                 ?>
                             </p>
                         </div>
@@ -163,10 +188,15 @@
                             <h5 class="card-title">Bedtime</h5>
                             <p class="cardData">
                             <?php
-                            echo $phpBedtimeDate[count($phpBedtimeDate)-1] . "<br>";
-                            $lastBedtime = $phpBedtimeData[count($phpBedtimeData)-1];
-                            $lastBedtime = floor($lastBedtime/60) . ":" . floor($lastBedtime%60) . ":" . floor((($lastBedtime%60) % 1)*60);
-                            echo $lastBedtime;
+                            if (count($phpBedtimeData) > 0) {
+                                echo $phpBedtimeDate[count($phpBedtimeDate)-1] . "<br>";
+                                $lastBedtime = $phpBedtimeData[count($phpBedtimeData)-1];
+                                $lastBedtime = floor($lastBedtime/60) . ":" . floor($lastBedtime%60) . ":" . floor((($lastBedtime%60) % 1)*60);
+                                echo $lastBedtime;
+                            }
+                            else {
+                                echo "No data found";
+                            }
                             ?>
                         </p>
                         </div>
@@ -178,10 +208,15 @@
                             <h5 class="card-title">Wake-Time</h5>
                             <p class="cardData">
                             <?php
-                            echo $phpWaketimeDate[count($phpWaketimeDate)-1] . "<br>";
-                            $lastWaketime = $phpWaketimeData[count($phpWaketimeData)-1];
-                            $lastWaketime = floor($lastWaketime/60) . ":" . floor($lastWaketime%60) . ":" . floor((($lastWaketime%60) % 1)*60);
-                            echo $lastWaketime;
+                            if (count($phpWaketimeData) > 0) {
+                                echo $phpWaketimeDate[count($phpWaketimeDate)-1] . "<br>";
+                                $lastWaketime = $phpWaketimeData[count($phpWaketimeData)-1];
+                                $lastWaketime = floor($lastWaketime/60) . ":" . floor($lastWaketime%60) . ":" . floor((($lastWaketime%60) % 1)*60);
+                                echo $lastWaketime;
+                            }
+                            else {
+                                echo "No data found";
+                            }
                             ?>
                         </p>
                         </div>
@@ -193,8 +228,13 @@
                             <h5 class="card-title">Sleep Duration</h5>
                             <p class="cardData">
                             <?php
-                            echo $phpBedtimeDate[count($phpBedtimeDate)-1] . "<br>";
-                            echo number_format($phpSleepDurData[count($phpSleepDurData)-1], 1, ',', ' ') . "h";
+                            if (count($phpSleepDurData) > 0) {
+                                echo $phpBedtimeDate[count($phpBedtimeDate)-1] . "<br>";
+                                echo number_format($phpSleepDurData[count($phpSleepDurData)-1], 1, ',', ' ') . "h";
+                            }
+                            else {
+                                echo "No data found";
+                            }
                             ?>
                         </p>
                         </div>
@@ -206,8 +246,13 @@
                             <h5 class="card-title">Naps</h5>
                             <p class="cardData">
                             <?php
-                            echo $phpNapDate[count($phpNapDate)-1] . "<br>";
-                            echo $phpNapData[count($phpNapData)-1];
+                            if (count($phpNapData) > 0) {
+                                echo $phpNapDate[count($phpNapDate)-1] . "<br>";
+                                echo $phpNapData[count($phpNapData)-1];
+                            }
+                            else {
+                                echo "No data found";
+                            }
                             ?>
                         </p>
                         </div>
