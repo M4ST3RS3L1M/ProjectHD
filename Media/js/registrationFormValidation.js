@@ -106,7 +106,7 @@ $(document).ready(function() {
     // PASSWORD REQUIREMENTS WHILE TYPING
     $(function(){
           $(".pr-password").passwordRequirements( {
-              style:"dark"
+              style:"light"
           });
     });
     
