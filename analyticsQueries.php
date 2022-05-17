@@ -69,7 +69,8 @@ $ipQuery = "SELECT IP_Address, COUNT(IP_Address), max(timestamp)
         FROM HD_WebAnalytics 
         WHERE IP_Address IS NOT NULL 
         GROUP BY IP_Address 
-        ORDER BY (COUNT(IP_Address)) DESC, date(timestamp)";
+        ORDER BY (COUNT(IP_Address)) DESC, date(timestamp)
+        LIMIT 15";
 
 $result = $mysqli->query($ipQuery);
 
