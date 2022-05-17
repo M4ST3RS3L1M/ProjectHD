@@ -13,7 +13,7 @@
 
 
 
-        //register for Exercise
+        //insert Exercise data into database
         if (isset($_POST['submit']) && isset($_SESSION['userID'])) {
             $exercise       = $mysqli->real_escape_string($_POST['exerciseType']);
             $dist           = $mysqli->real_escape_string($_POST['distance']);
@@ -35,7 +35,7 @@
 
         }
 
-        //Register for Health data
+        //Insert Health data into database
         if (isset($_POST['submit2']) && isset($_SESSION['userID'])) {
             $health       = $mysqli->real_escape_string($_POST['healthType']);
             $amount       = $mysqli->real_escape_string($_POST['amount']);
@@ -52,7 +52,7 @@
         }
 
 
-        //register for sleep
+        //Insert sleep data into database
         if (isset($_POST['submit3']) && isset($_SESSION['userID'])) {
             $bdate          = $mysqli->real_escape_string($_POST['bdate']); 
             $btime          = $mysqli->real_escape_string($_POST['btime']); 
@@ -75,7 +75,7 @@
 
 
 
-        //Register for number of naps 
+        //insert number of naps into database
         if (isset($_POST['submit4']) && isset($_SESSION['userID'])) {
             $naps           = $mysqli->real_escape_string($_POST['naps']);
             $date           = $mysqli->real_escape_string($_POST['date2']); 
@@ -153,7 +153,7 @@
                                         <form action="" method="POST">
                                         
                                             <div class="row mb-4 justify-content-center">
-
+                                                <!-- Select form for exercises, allows user to choose one exercise at a time-->
                                                 <div class="col-6">
                                                     <label class="form-label" for="exerciseType">Choose exercise</label>
                                                     <select class="form-control form-select" name="exerciseType" required>
@@ -163,17 +163,17 @@
                                                         <option value="cycling">Cycling</option>
                                                     </select>
                                                 </div>   
-                                                
+                                                <!-- Distance in kilometers -->
                                                 <div class="col-5">
                                                     <div class="form mb-4 km">
                                                         <label class="form-label" for="distance">Distance km/h</label>
-                                                        <input type="number" min="0" id="dist" name="distance" class="form-control" autocomplete="off" required/>                            
+                                                        <input type="number" step="0.01" min="0" id="dist" name="distance" class="form-control" autocomplete="off" required/>                            
                                                     </div>
                                                 </div>
                                                 
                                             </div>
 
-
+                                            <!-- Time and date-->
                                             <div class="row mb-4">
                                                 <label class="form-label" for="startTime">Start time</label>
 
@@ -269,7 +269,7 @@
                                             <div class="row mb-4">
                                                 
                                                 <div class="col">
-                                                    
+                                                    <!-- Select form for Health data, allows user to choose one Health data type at a time-->
                                                     <label class="form-label mb-4" for="healthType">Choose a type of health data</label>
                                                     <select class="form-control form-select" name="healthType" required>
                                                         <option value="">Health Data</option>
@@ -281,15 +281,15 @@
                                                 </div>                                    
                                                 
                                             </div>
-
+                                            <!-- Submit the amount of chosen health data -->
                                             <div class="row mb-4">
                                                 <div class="col">
                                                     <div class="form mb-4">
                                                         <label class="form-label" for="amount">Amount</label>
-                                                        <input type="number" min="0" id="dist" name="amount" class="form-control" autocomplete="off" required/>                            
+                                                        <input type="number" step="0.01" min="0" id="dist" name="amount" class="form-control" autocomplete="off" required/>                            
                                                     </div>
                                                 </div>
-
+                                                <!-- Date -->
                                                 <div class="col">
                                                     <div class="form mb-4">                                        
                                                         <label class="form-label" for="date">Date</label>
@@ -327,7 +327,7 @@
                                         <form action="" method="POST">
                                         
 
-
+                                            <!-- Date and time-->
                                             <div class="row mb-4">
                                                 <label class="form-label" for="bedTime">Start time</label>
 
@@ -398,7 +398,7 @@
 
                                             <div class="row mb-4">
 
-                                                
+                                                <!-- date -->
                                                 <div class="col-8">
                                                     <div class="form mb-4">                                        
                                                         <label class="form-label" for="date2">Date</label>
@@ -407,7 +407,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                                <!-- number of naps taken -->
                                                 <div class="col-4">
                                                     <div class="form mb-4">
                                                         <label class="form-label" for="naps">Nr of naps</label>
