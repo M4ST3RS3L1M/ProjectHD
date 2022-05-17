@@ -60,16 +60,20 @@
                                     <!-- The login form is created below. -->
 
                                     <form action="login.php" method="post" name="login" id="main">  
+                                        <!-- Username -->
                                         <div class="form mb-4">
                                             <label class="form-label text-white" for="username">Username</label>
                                             <input id="loginName" type="text" name="username" class="form-control form-control-lg">
                                         </div>
 
+                                        <!-- password -->
                                         <div class="form mb-4">
                                             <label class="form-label text-white" for="typePasswordX">Password</label>
                                             <input id="typePasswordX" type="password" name="password" class="form-control form-control-lg">
                                         </div>
                                         <div id="error_msg" class="mb-4"></div>
+
+                                        <!-- Login button -->
                                         <button id="login_btn" class="btn btn-outline-light px-5" type="button" name="login">Login</button>
                                     </form>
                                 </div>
