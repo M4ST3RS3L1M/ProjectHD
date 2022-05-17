@@ -20,8 +20,6 @@ while($obj=$result->fetch_object()){
     array_push($phpStepDate, $obj->date);
 }
 
-
-
 // CALORIES
 // Query to get calorie data
 $calorieQuery = (
@@ -39,8 +37,6 @@ while($obj=$result->fetch_object()){
     array_push($phpCalorieData, $obj->amount);
     array_push($phpCalorieDate, $obj->date);
 }
-
-
 
 // WALKING DIST
 // Query to get walking dist data
@@ -62,8 +58,6 @@ while($obj=$result->fetch_object()){
     array_push($phpWalkDate, $walkDate);
 }
 
-
-
 // CYCLING DIST
 // Query to get cycling dist data
 $cyclingDQuery = (
@@ -83,8 +77,6 @@ while($obj=$result->fetch_object()){
     array_push($phpCyclingData, $obj->distance);
     array_push($phpCyclingDate, $cycleDate);
 }
-
-
 
 // SLEEP AND DURATION
 // Query to get sleep data
@@ -149,8 +141,6 @@ while($obj=$result->fetch_object()){
     array_push($phpSleepDurData, $sleepDuration);
 }
 
-
-
 // NAPS
 // Query to get nap data
 $napQuery = (
@@ -167,8 +157,6 @@ while($obj=$result->fetch_object()){
     array_push($phpNapData, $obj->napsToday);
     array_push($phpNapDate, $obj->date);
 }
-
-
 
 // WEIGHT
 // Query to get weight data
