@@ -43,6 +43,8 @@ $(document).ready(function() {
     });
 
     // CHECKS IF EMAIL IS ALREADY REGISTERED
+    // Based on this source:
+    // https://codewithawa.com/posts/check-if-user-already-exists-without-submitting-form
     $('#eMail').on('blur', function() {
         var email = $('#eMail').val();
         if (email == '') {
@@ -82,6 +84,7 @@ $(document).ready(function() {
     });
     
     // DATEPICKER FOR DATE OF BIRTH
+    // Codelet from https://word-sentences.com/code-examples/bootstrap-5-datepicker-with-vanilla-js/
     const getDatePickerTitle = elem => {
         // From the label or the aria-label
         const label = elem.nextElementSibling;
@@ -111,6 +114,8 @@ $(document).ready(function() {
     });
     
     // RULE TO FORCE STRONG PASSWORDS
+    // Method by '@ketan chaudhari'
+    // https://stackoverflow.com/a/69009376
     $.validator.addMethod("strong_password", function (value, element) {
         let password = value;
         if (!(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%&])(.{8,20}$)/.test(password))) {
