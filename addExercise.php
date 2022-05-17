@@ -30,8 +30,8 @@
             VALUES ('$user', (SELECT exerciseID FROM HD_ExerciseType WHERE exerciseType = '$exercise'), '$dist', '$starttime', '$endtime')";
            
             $mysqli->query($query);
-            echo $mysqli->error;
-
+            //echo $mysqli->error;
+            
 
         }
 
@@ -47,7 +47,7 @@
             VALUES ('$user', (SELECT healthTypeID FROM HD_HealthType WHERE healthType = '$health'), '$amount', '$date')";
            
             $mysqli->query($query);
-            echo $mysqli->error;
+            //echo $mysqli->error;
 
         }
 
@@ -67,7 +67,7 @@
             VALUES ('$user', '$bedtime', '$waketime')";
            
             $mysqli->query($query);
-            echo $mysqli->error;
+            //echo $mysqli->error;
 
 
         }
@@ -86,7 +86,7 @@
             VALUES ('$user', '$date', '$naps')";
            
             $mysqli->query($query);
-            echo $mysqli->error;
+            //echo $mysqli->error;
 
         }
 
@@ -127,8 +127,8 @@
         <section id="contact vh-100">
             <div class="container-lg py-5">
                 <div class="text-center">
-                <h2>Log Exercises and Health Data below!</h2>
-                <p class="lead text-black-50">Use the navigation field to navigate through the tabs.</p>
+                    <h2>Log Exercises and Health Data below!</h2>
+                    <p class="lead text-black-50">Use the navigation field to navigate through the tabs.</p>
                 </div>
 
                 <div class="row justify-content-center my-5">
@@ -220,6 +220,38 @@
                                     </div>
                                 </div>
                             </div>
+                            
+
+                            <!--Confirm that data have been added-->
+                            <div class="lead text-black-50">
+                                <?php if (isset($_POST['submit']) && isset($_SESSION['userID'])) {
+                                        echo "Exercise added!";
+                                    }
+                                ?>
+                            </div>
+                            
+                            <div class="lead text-black-50">
+                                <?php if (isset($_POST['submit2']) && isset($_SESSION['userID'])) {
+                                        echo "Health Data added!";
+                                    }
+                                ?>
+                            </div>
+                            
+                            <div class="lead text-black-50">
+                                <?php if (isset($_POST['submit3']) && isset($_SESSION['userID'])) {
+                                        echo "Sleep Data added!";
+                                    }
+                                ?>
+                            </div>
+                            
+                            <div class="lead text-black-50">
+                                <?php if (isset($_POST['submit4']) && isset($_SESSION['userID'])) {
+                                        echo "Nap Data added!";
+                                    }
+                                ?>
+                            </div>
+
+
                         </div>
 
 
@@ -276,6 +308,9 @@
                                     </div>
                                 </div>             
                             </div>
+
+
+
                         </div>
 
 
@@ -341,6 +376,11 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                    
+
+
+
                         </div>
 
 
@@ -385,6 +425,9 @@
                                     </div>
                                 </div>             
                             </div>
+                            
+                            
+
                         </div>
 
 
