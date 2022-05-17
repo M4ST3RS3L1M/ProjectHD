@@ -105,43 +105,52 @@
             <div class="row">
                 <div class="col">
                     <form action="register.php" class="form row g-3" name="registration" method="POST">
+
+                        <!-- Username -->
                         <div class="col-md-4">
                             <label for="username" class="form-label text-black-50">Username<span class="req_field"> *</span></label>
                             <input type="text" id="username" class="form-control" name="username" placeholder="Username" autocomplete="off" required />
                             <div id="uname_response" class="mb-3"></div>
                         </div>
 
+                        <!-- Password -->
                         <div class="col-md-4">
                             <label for="password" class="form-label text-black-50">Password<span class="req_field"> *</span></label>
                             <input type="password" id="password" class="pr-password form-control" name="password" placeholder="Password" autocomplete="off" required />
                             
                         </div>
                         
-
+                        <!-- Repeat password -->
                         <div class="col-md-4">
                             <label for="repeat_password" class="form-label text-black-50">Repeat Password<span class="req_field"> *</span></label>
                             <input type="password" id="repeat_password" class="form-control" name="repeat_password" placeholder="Repeat Password" autocomplete="off" required />
                         </div>
+
+                        <!-- Description of how the password should be -->
                         <div id="passwordHelpBlock" class="col-md-12 form-text">
                             Your password must be 8-20 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character. It must also not contain spaces.
                         </div>
 
+                        <!-- First name -->
                         <div class="col-md-6">
                             <label for="fname" class="form-label text-black-50">First Name<span class="req_field"> *</span></label>
                             <input type="text" id="fname" class="form-control" name="fname" placeholder="First Name" autocomplete="off" />
                         </div>
 
+                        <!-- Last name -->
                         <div class="col-md-6">
                             <label for="lname" class="form-label text-black-50">Last Name<span class="req_field"> *</span></label>
                             <input type="text" id="lname" class="form-control" name="lname" placeholder="Last Name" autocomplete="off" />
                         </div>
 
+                        <!-- Date of Birth -->
                         <div class="col-md-6">
                             <i id="datetimepicker1" class="bi bi-calendar-date input-group-text"></i>
                             <label for="DOB" class="form-label text-black-50">Date of birth<span class="req_field"> *</span></label>
                             <input type="text" id="datepicker" class="datepicker_input form-control" name="DOB" placeholder="YYYY-MM-DD" required aria-label="Select your date of birth">
                         </div>
 
+                        <!-- Email -->
                         <div class="col-md-6">
                             <label for="eMail" class="form-label text-black-50">Email<span class="req_field"> *</span></label>
                             <input type="email" id="eMail" class="form-control" name="eMail" placeholder="Email" autocomplete="off" required />
@@ -150,6 +159,7 @@
                             </div>
                         </div>
                     
+                        <!-- Select sex -->
                         <div class="row justify-content-md-center air">
                             <label for="sex" class="form-label text-center text-black-50">
                                 Select your sex
@@ -170,6 +180,7 @@
                             </div>
                         </div>
 
+                        <!-- Terms and conditions -->
                         <div class="row justify-content-md-center air">
                             <div class="form-check form-switch col-md-4">
                                     <input class="form-check-input" type="checkBox" role="switch" name="terms" id="terms">
@@ -181,7 +192,7 @@
 
                         
 
-                        
+                        <!-- Register button -->
                         <div class="row justify-content-md-center air">
                             <div id="error_msg" class="col-md-4 air req_field"></div>
                             <input type="submit" id="reg_btn" class="btn btn-primary col-md-10" name="register_button" value="Create Account" />
